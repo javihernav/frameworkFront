@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="contenido">
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <b:messages globalOnly="true"/>
+                    <h4 class="header-title">Lista de Pasos</h4>
+                    <br/>
+                    <h:form prependId="false" class="scroller" style=" overflow-x: scroll;">
+                        <p align="right" style="padding-bottom: 20px;">
+                            <c:if test="#{sessionController.permisorol == 'Sqa'}">
+                                <b:commandButton action="#{pasosController.nuevo()}" style="margin-right: 5px;" value="Registrar" class="btn btn-success"/>
+                            </c:if>
+                            <b:commandButton value="Refrescar" actionListener="#{pasosController.init()}">
+                                <b:icon name="refresh"/>
+                                <f:ajax event="click" render="datatablepasos"/>
+                            </b:commandButton>
+                        </p>
+                        <b:dataTable  class="table" value="#{pasosController.pasos}" var="p" id="datatablepasos">
+                            <b:dataTableColumn label="Acción" value="#{p.actionStep}" />
+                            <b:dataTableColumn label="Localizador" value="#{p.typeStep}" />
+                            <b:dataTableColumn label="Valor" value="#{p.valueStep}" />
+                            <b:dataTableColumn label="Data" value="#{p.parameterStep}" style="width: 30px;"/>
+                            <b:dataTableColumn label="Caso" value="#{p.idCaso.nombreCaso}" />
+                            <b:dataTableColumn label="Opciones">
+                                <c:if test="#{sessionController.permisorol != 'Sqa'}">
+                                    <b:commandButton class="btn btn-sm" style="margin-right: 10px;" look="primary" iconAwesome="paint-brush" value="Editar" onclick="$('.modalpasos').modal();">
+                                        <f:ajax event="click" render=":form-editar" listener="#{pasosController.setPaso(p)}"/>
+                                    </b:commandButton>
+                                </c:if>
+                                <c:if test="#{sessionController.permisorol == 'Sqa'}">
+                                    <b:commandButton class="btn btn-sm" look="danger" iconAwesome="trash" value="" onclick="$('.modalPseudoClass').modal();">
+                                        <f:ajax event="click" render=":message-modal-confirm" listener="#{pasosController.setPaso(p)}"/>
+                                    </b:commandButton>
+                                    <!-- aqui -->
+                                    <b:commandButton action="#{pasosController.preModificar(p)}" class="btn btn-sm" style="margin-right: 10px;" look="primary" iconAwesome="paint-brush" value="" />
+                                                 
+                                </c:if> 
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </h:form>
+                    <b:modal id="amodal" title="Eliminar Pasos"  styleClass="modalPseudoClass">
+                        <h:panelGroup id="message-modal-confirm" layout="block">
+                            <p>¿Está seguro de eliminar el paso #{pasosController.paso.actionStep} ?
+                            </p>
+                        </h:panelGroup>
+                        <f:facet name="footer">
+                            <h:form id="form-eliminar" prependId="false">
+                                <b:button value="Cancelar" dismiss="modal" />
+                                <b:commandButton value="Eliminar" look="danger"
+                                                 actionListener="#{pasosController.eliminarPasos()}"/>
+                            </h:form>
+                        </f:facet>
+                    </b:modal>
+
+                    <b:modal id="pasomodal" title="Editar pasos" styleClass="modalpasos" style="text-align: center">
+                        <h:form id="form-editar" prependId="false" style="text-align:left; height: 180px;">
+
+                            <div class="col-md-6">
+                                <h:outputLabel value="Parametro"/>
+                                <h:inputText class="form-control" value="#{pasosController.paso.parameterStep}"/>
+                            </div>
+                            <div class="col-md-6">
+                                <h:outputLabel value="Coordenadas en X"/>
+                                <h:inputText class="form-control" value="#{pasosController.paso.corXStep}"/>
+                            </div>
+                            <div class="col-md-6">
+                                <h:outputLabel value="Coordenadas en Y"/>
+                                <h:inputText class="form-control" value="#{pasosController.paso.corYStep}"/>
+                            </div>
+
+                            <div class="col-md-6" style="margin-top: 10px; float: right;">
+                                <b:commandButton value="Editar" look="primary"
+                                                 actionListener="#{pasosController.verifityUpdate()}" style="margin-right: 3px;"/>
+                                <b:button value="Cancelar" dismiss="modal" look="danger" />
+                            </div>
+                        </h:form>
+                    </b:modal>
+
+                </div>
+            </div>
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>

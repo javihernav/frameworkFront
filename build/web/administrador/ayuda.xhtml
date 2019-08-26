@@ -1,0 +1,1346 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="contenido">
+
+
+        <div class="jumbotron text-center" style="padding-bottom: 30px;">
+            <h1 style="font-size: 50px;">Guía de usuario <i class="ti-layout-tab"></i></h1>
+            <p>Seleccione el título del tema del que desee saber.</p>
+        </div>
+
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Diseño Scripts
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body" >
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Ir al menú</h3><br/>
+                            <p>Dirigirse al menú en la opción <b>Diseño De Scripts</b> y dar clic en <b>Diseñar</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación de Suite</p>
+                            <br/>    
+                            <div class="col-xs-6">
+                                <img style="width: 50%;" src="#{request.contextPath}/recursos/images/ayuda/MenuDiseñoScripts.png"></img>
+                            </div>
+                            <div class="col-xs-6">
+                                <img style="width: 50%;" src="#{request.contextPath}/recursos/images/ayuda/MenuDiseñar.png"></img>
+                            </div> 
+                        </div>
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Creación de Suit </h3><br/>
+                            <p>La Suit reúne un conjunto de escenarios y los escenarios un conjunto de script automatizados.</p>
+                            <p>Se deben llenar todos los campos y posteriormente dar clic en Siguiente.</p>
+                            <br/>
+                            <div class="col-sm-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/MenuSuit.png"/>
+                            </div> 
+                        </div>
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 3 Creación de Escenario</h3><br/>
+                            <p>Se deben llenar todos los campos y posteriormente dar clic en Siguiente.</p>
+                            <p>Especificar correctamente el ambiente Web, Desk (escritorio), Móvil o Servicios, El estado debe ser activo para poder ejecutar el ecenario posteriormente.</p>        
+                            <br/>
+                            <div class="col-sm-12" ><img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/MenuEcenario.png"/></div> 
+                        </div>
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 4 Creación de Casos</h3><br/>
+                            <p>Se deben llenar todos los campos y posteriormente dar clic en Siguiente.</p>
+                            <p>El estado debe ser activo para poder ejecutar el caso posteriormente.</p>        
+                            <br/>
+                            <div class="col-sm-12" ><img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/MenuNuevoCaso.png"/></div> 
+                        </div>
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 5 Asignar pasos</h3><br/> 
+                            <div  style="  background-color: " class="col-md-10 col-md-offset-1">
+                                <p>Se deben llenar todos los campos y posteriormente dar clic en Agregar se agregará el paso a la lista en la parte inferior. los campos que se encuentran son: Acción del paso, Navegador, Tipo de Localizador, Localizador, Parámetro, Parámetro x, y en caso que se requiera el uso coordenadas. Dependiendo de tipo de acción que se elija se habilitaran los campos necesarios a continuación se indican los tipos de campo.</p>   
+                                <b>Acción del paso:</b> Indica la acción que se va a realizar como ingresar a una URL, dar un clic, ingresar texto en un campo o tiempo de espera. <br/>
+
+                                <b>Navegador:</b> Se selecciona el navegador sobre el cual se ejecutara el paso ya sea Chrome, Firefox o Internet Explorer.<br/>
+                                <b>Tipo de Localizador:</b> Es el tipo tag o identificador del elemento de la página con el que se va a interactuar (name, id, xpad, etc..).   <br/>  
+                                <b>Localizador:</b> Es el nombre que identifica al elemento, (la forma en la que se llama el tag).<br/>  
+                                <b>Parámetro:</b> Lo que se desea ingresar en el campo.<br/>  
+                                <b>Parámetro x, y:</b> la posición en coordenadas del elemento. <br/>  
+                            </div>  
+                            <div class="col-sm-12" ><img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/MenuAsignarpasos.png"/></div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Ejecución
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Ir al menú</h3><br/>
+                            <p>Dirigirse al menú en la opción <b>Administrar</b> y dar clic en <b>Clientes Ejecución</b></p>
+                            <p>A continuación se dirigirá a la pantalla de clientes disponibles</p>
+                            <br/>    
+                            <div class="col-xs-6">
+                                <img style="width: 50%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion1.png"></img>
+                            </div>
+                            <div class="col-xs-6">
+                                <img style="width: 50%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion2.png"></img>
+                            </div> 
+                        </div>
+
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Clientes</h3><br/>
+                            <p>A continuación se dirigirá a la pantalla de clientes disponibles y se debera dar click en <b>Activar</b> para habilitar el Cliente a ejecutar</p>
+                            <br/>   
+                            <div class="col-xs-12">
+                                <img style="width: 65%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion3.gif"></img>
+                            </div> 
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 3 Ejecución Back</h3><br/>
+                            <p>Dirigirse ala carpeta de <b>Ejecucion</b> y dar clic en <b>Ejecutar.bat</b></p>
+                            <p>A continuación se efectura la ejecucion de los casos <b>Habilitados</b>  por el cliente seleccionado a ejecutar anteriormente</p>
+                            <br/>    
+                            <div class="col-xs-12">
+                                <img style="width: 60%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion4.gif"></img>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 4 Resultados - Reporte</h3><br/>
+                            <p>Nos dirigimos a la carpeta <b>extentReports</b>.</p>
+                            <p>A continuación se visualizara el reporte de la anterior <b>Ejecucion</b>.</p>
+                            <br/>    
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion5.gif"></img>
+                            </div>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion6.png"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Administrar Usuarios
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Ir al menú</h3><br/>
+                            <p>Dirigirse al menú en la opción <b>Administrar</b> y dar clic en <b>Usuarios</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación gestion de usuarios del sistema</p>
+                            <br/>    
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Editar</h3><br/>
+                            <p>Dirigirse al botton <b>Editar</b> y dar click</p>
+                            <p>A continuación se dirigirá a la pantalla para la edicion de los datos basicos del usuario. y dara click en <b>Actualizar</b> para aplicar los cambios.</p>
+                            <br/>    
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 3 Eliminar</h3><br/>
+                            <p>Dirigirse al botton <b>Eliminar</b> y dar click.</p>
+                            <p>A continuación se visualizara un ventana de confirmación. Se debera dar click en <b>Eliminar</b> para confirmar.</p>
+                            <br/>    
+                            <div class="col-xs-6">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario3.gif"></img>
+                            </div>
+                            <div class="col-xs-6">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario4.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 4 Registrar</h3><br/>
+                            <p>Dirigirse al botton <b>Registrar</b> y dar click.</p>
+                            <p>A continuación se visualizara el formulario de registro con los campos requeridos. Al finalizar se debera dar click en <b>Registro</b> para culminar con el registro.</p>
+                            <br/>    
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario5.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 5 Carga Masiva</h3><br/>
+                            <p>Dirigirse al botton <b>Carga Masiva</b> y dar click.</p>
+                            <p>A continuación se visualizara el formulario para carga el formato. Al finalizar se debera dar click en <b>Subir</b> para culminar con el registro masivo.</p>
+                            <br/>    
+                            <div class="col-xs-7">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario6.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario7.gif"></img>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFor" aria-expanded="false" aria-controls="collapseFor">
+                            Administrar Framework
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFor" class="collapse" aria-labelledby="headingFor" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Creación de Suite</h3><br/>
+                            <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Suits</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación y administración de Suit</p>
+                            <br/>      
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Suite1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Creación</h3><br/>
+                            <p>Para crear una nueva Suite dar clic en registrar se dirigirá a un formulario donde ingresar los datos para la Suite nueva. Se deben ingresar todos los campos Nombre, Descripción, Usuario  y estado, posteriormente clic en registro. La nueva Suite se agregara a la lista.<br></br> 
+                                <b>Nombre:</b> El nombre que se asignará a la nueva Suite.
+                                <br/>  
+                                <b>Descripción:</b> Una breve descripción de la Suite.
+                                <br/>
+                                <b>Usuario:</b> El cliente u organización a la que corresponde esta Suite.<br/>  
+                                <b>Estado:</b> Los estados son activo o inactivo, la suite debe estar activa para poder ejecutar los casos de automatización asociados a ella de lo contrario dejar en inactiva. 
+                            </p>
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Suite2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Modificar y eliminar Suite</h3><br/>
+                            <p>Para modificar la información de una Suite dar clic en el botón con forma de pincel al costado de la suite se dirigirá a un formulario donde se podrán cambiar los datos y posterior mente clic en actualizar.
+                            </p>  
+                            <div class="col-xs-12">
+                                <img style="width: 70%;" src="#{request.contextPath}/recursos/images/ayuda/Suite3.gif"></img>
+                            </div>
+                            <p><br/>
+                                Para Eliminar una suite de click en el botón <b>X</b> al costado de la suite que se desee eliminar.
+                            </p>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Suite4.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Suite5.gif"></img>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Creación de Escenario</h3><br/>
+                            <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Escenarios</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación y administración de Escenarios</p>
+                            <br/>      
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Creación</h3><br/>
+                            <p>Para crear un nuevo escenario dar clic en registrar se dirigirá a un formulario para ingresar los datos para el escenario nuevo. Se deben ingresar todos los campos Nombre, Descripción, Ambiente, Suite, y estado, posteriormente clic en registro. El nuevo escenario se agregara a la lista.<br/>
+                                <b>Nombre:</b> El nombre que se asignará a la nuevo Escenario.
+                                <br/>  
+                                <b>Descripción:</b> Una breve descripción del Escenario.
+                                <br/>
+                                <b>Ambiente:</b> El ambiente es donde se ejecutara el caso ya sea web, escritorio, etc...<br/>  
+                                <b>Suite:</b> La Suite a la que se asociara el escenario. <br/>  
+                                <b>Estado:</b> El estado debe ser activo para poder ejecutar el caso de lo contrario inactivo.
+
+                            </p>   
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Modificar y eliminar Escenarios</h3><br/>
+                            <p>Para modificar la información de un Escenario dar clic en el botón con forma de pincel al costado del se dirigirá a un formulario donde se podrán cambiar los datos y posteriormente clic en actualizar.<br/><br/></p>
+                            <div class="col-xs-12">
+                                <img style="width: 70%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios5.gif"></img>
+                            </div>
+                            <p>Para Eliminar un escenario dar clic en el botón con X al costado.</p>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios3.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios4.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Creación de Casos</h3><br/>
+                            <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Casos</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación y administración de Casos</p>
+                            <br/>      
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Casos1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Creación</h3><br/>
+                            <p>Para crear un nuevo caso dar clic en registrar se dirigirá a un formulario para ingresar los datos para el caso nuevo. Se deben ingresar todos los campos Nombre, Escenario y estado, posteriormente clic en registro. El nuevo caso se agregara a la lista.<br/><br/> 
+                                <b>Nombre:</b> El nombre que se asignará a la nuevo Escenario.
+                                <br/>           
+                                <b>Escenario:</b> La Escenario a la que se asociara el caso. <br/>  
+                                <b>Estado:</b> El estado debe ser activo para poder ejecutar el caso de lo contrario inactivo.
+                            </p> 
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Casos2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Modificar y eliminar Casos</h3><br/>
+                            <p>Para modificar la información de un caso dar clic en el botón con forma de pincel al costado del, se dirigirá a un formulario donde se podrán cambiar los datos y posteriormente clic en actualizar.<br/><br/>
+                                <div class="col-xs-12">
+                                    <img style="width: 70%;" src="#{request.contextPath}/recursos/images/ayuda/Casos3.gif"></img>
+                                </div>
+                            </p>  
+                            <p>Para Eliminar un caso dar clic en el botón con X al costado.</p>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Casos4.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Casos5.gif"></img>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Creación de Pasos</h3><br/>
+                            <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Pasos</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación y administración de Pasos</p>
+                            <br/>      
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Creación</h3><br/>
+                            <p>Para crear un nuevo caso dar clic en registrar se dirigirá a un formulario para ingresar los datos para el caso nuevo. Se deben ingresar todos los campos Nombre, Escenario y estado, posteriormente clic en registro. El nuevo caso se agregara a la lista.<br/><br/> 
+                                <b>Nombre:</b> El nombre que se asignará a la nuevo Escenario.
+                                <br/>           
+                                <b>Escenario:</b> La Escenario a la que se asociara el caso. <br/>  
+                                <b>Estado:</b> El estado debe ser activo para poder ejecutar el caso de lo contrario inactivo.
+                            </p> 
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Modificar y eliminar Pasos</h3><br/>
+                            <p>Para modificar la información de un caso dar clic en el botón con forma de pincel al costado del, se dirigirá a un formulario donde se podrán cambiar los datos y posteriormente clic en actualizar.<br/><br/>
+                                <div class="col-xs-12">
+                                    <img style="width: 70%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos3.gif"></img>
+                                </div>
+                            </p>  
+                            <br/>
+                            <p>Para Eliminar un paso dar clic en el botón con X al costado.</p>
+                            <br/>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos4.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos5.gif"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Metodos (KeyWords)
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Ambiente Web</h3><br/>
+                            <br/>
+                            <p>A continuación se muestran los métodos - <b>keyWords</b> disponibles en ambiente web en donde se describirá muy brevemente su funcionalidad y los parámetros requeridos.</p>
+                            <br/>      
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Ingresar URL</b>
+                                        <p>Nos permitirá abrir la instancia del navegador seleccionado ingresando la url inicial.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Parámetro: URL</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Ir Atrás</b>
+                                        <p>Nos permitirá realizar la función de ir atras en una pagina.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Ir Adelante</b>
+                                        <p>Nos permitirá realizar la función de ir adelante en una pagina</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Refrescar</b>
+                                        <p>Nos permitirá refrescar la pagina actual.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Cerrar Navegador</b>
+                                        <p>Nos permitirá cerrar por completo el navegador actual.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Cambiar Frame</b>
+                                        <p>Nos permite cambiar la vista a un Iframe mediante el elemento.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Cambiar Frame Index</b>
+                                        <p>Nos permite cambiar de vista a un Iframe mediante el index.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Parámetro: Valor a escribir.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Cambiar a Frame Padre</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Cambiar a Frame Principal</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Alternar Frame Mismo Nivel</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Cerrar Ventana</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Cambiar de ventana</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Volver a Ventana Original</b>
+                                        <p>Nos permite regresar a la venta de navegador original.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Cambiar Pestana</b>
+                                        <p>Nos permite avanzar una posición entre las pestañas existentes.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Comparar Texto Alert</b>
+                                        <p>Nos permite avanzar una posición entre las pestañas existentes.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Click Boton Aceptar</b>
+                                        <p>Nos permite dar click a los eventos de modal.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Click Boton Cancelar</b>
+                                        <p>Nos permite dar click a los eventos de modal.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">SendKey</b>
+                                        <p>Nos permite realizar escritura un elemento.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p>Parámetro: Valor a escribir.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Ingresar texto campo Hidden</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Limpiar Campo</b>
+                                        <p>Nos permite vaciar un elemento mediante su identificador.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Clickear Radiobutton</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Clickear CheckBox</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Marcar Todos CheckBox</b>
+                                        <p>Nos permite vaciar un elemento mediante su identificador.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Desmarcar Todos CheckBox</b>
+                                        <p>Nos permitirá desmarcar o deseleccionar por elemento CheckBox visualizados en la página.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Seleccionar Elemento Lista (Visible Text)</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Seleccionar Elemento Lista (Index)</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Seleccionar Elemento Lista (Value)</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Deseleccionar Elemento Lista (Visible Text)</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Deseleccionar Elemento Lista (Index)</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Deseleccionar Elemento Lista (value)</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Seleccionar Toda la Lista</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Deseleccionar Toda la Lista</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Subir Archivo</b>
+                                        <p><div class="alert alert-warning" style="margin: 0;" role="alert"><b>Mantenimiento</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Click</b>
+                                        <p>Nos permitirá realizar un click sobre el elemento seleccionado.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Doble Click</b>
+                                        <p>Nos permitirá realizar un doble click sobre el elemento seleccionado.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Click Derecho</b>
+                                        <p>Nos permitirá realizar un click derecho sobre el elemento seleccionado.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Scroll</b>
+                                        <p>Nos permitirá realizar Scroll a la página principal mediante coordenadas.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>X: Coordenada en X.</p>
+                                        <p>Y: Coordenada en Y.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Esperar (Millisegundos)</b>
+                                        <p>Nos permite adicionar esperas estáticas intermedias en milisegundos.</p>
+                                        <p>Parámetro: Valor a escribir.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Tomar Evidencia</b>
+                                        <p>Nos permitirá realizar captura general de toda pantalla seleccionada.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Tomar Evidencia Elemento</b>
+                                        <p>Nos permitirá realizar capturas a elementos específicos.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Enviar formulario</b>
+                                        <p>Nos permitirá realizar un submit sobre los botones de los formularios.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Mover A Elemento Coordenadas</b>
+                                        <p>Nos permitirá mover el cursor a un elemento mediante coordenadas.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p>X: Coordenada en X.</p>
+                                        <p>Y: Coordenada en Y.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Esperar elemento</b>
+                                        <p>Nos permitirá adicionar una espera dinámica a un elemento en particular.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Mover A Elemento</b>
+                                        <p>Nos permitirá mover el curso a un elemento específico.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Finalizar Ejecución</b>
+                                        <p>Nos permitirá culminar la ejecución de la automatización.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">SendKey Excel</b>
+                                        <p>Nos permitirá realizar escritura a un elemento HTML mediante un archivo plano.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Parámetro: Valor de la celda o columna del excel. </p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Loop</b>
+                                        <p>Nos permitirá realizar dar inicio a un ciclo de repeticiones.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">EndLoop</b>
+                                        <p>Nos permitirá dar fin al ciclo de repeticiones.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Fila Inicial Excel</b>
+                                        <p>Nos permitirá seleccionar la fila inicia de la lectura de los datos del archivo plano.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Click JS</b>
+                                        <p>Nos permitirá realizar click mediante Java Script y los elementos tag de HTML.</p>
+                                        <p>Navegador: Chrome, Explorer, Firefox.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Click Derecho En Pagina</b>
+                                        <p>Nos permitirá realizar un click derecho sobre donde se encuentro posicionado el cursor principalmente.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Click Mouse</b>
+                                        <p>Nos permitirá realizar un click mediante la clase Actions de selenium.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Click Robot</b>
+                                        <p>Nos permitirá realizar un click con la clase Robot de selenium a un elemento HTML.</p>
+                                        <p>Tipo de Localizador: Id, Name, ClassName, Xpath, CssSelecctor, linkText, Partial Link Text, Tag Name.</p>
+                                        <p>Localizador: Valor del localizador.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Borrar Cookies</b>
+                                        <p>Nos permitirá realizar un eliminado de las cookies del navegador utilizado.</p>
+                                        <p>Parámetro: Nos permitirá enviar una cookie en especial que se quiera eliminar. O todas las cookies del navegador.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Ejecutar Javascript</b>
+                                        <p>Nos permitirá realizar un eliminado de las cookies del navegador utilizado.</p>
+                                        <p>Parámetro: Sentencia JavaScript.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">SendKey Excel Robot</b>
+                                        <p>Nos permitirá realizar escritura a elementos input mediante data externado de un archivo plano.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">SendKey Excel Gui</b>
+                                        <p>Nos permitirá realizar escritura sobre una caja de texto habilitada.</p>
+                                        <p>Parámetro: Nombre de la columna a consumir.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                         <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Sikuli (Automatización Guiada Por Imagen)</h3><br/>
+                            <br/>
+                            <p>Nos permitirá realizar acciones mediante el uso de reconocimiento de imagen.<br></br> 
+                                Tener en cuenta las ostrucciones de imagen.<br/>  
+                            </p>
+                            <br/>
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Click</b>
+                                        <p>Nos permitirá realizar un click a una imagen seleccionada.</p>
+                                        <p>Parámetro: Recibe la url o path de la imagen a clickear.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Doble Click</b>
+                                        <p>Nos permitirá realizar un doble click a una imagen seleccionada.</p>
+                                        <p>Parámetro: Recibe la url o path de la imagen a clickear.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Click Especial</b>
+                                        <p>Nos permitirá realizar un click más preciso a una imagen seleccionada incluyendo coordenadas.</p>
+                                        <p>Parámetro: Recibe la url o path de la imagen a clickear.</p>
+                                        <p>X: Coordenada X del elemento o imagen.</p>
+                                        <p>Y: Coordenada Y del elemento o imagen.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Doble Click Especial</b>
+                                        <p>Nos permitirá realizar un doble click más preciso a una imagen seleccionada incluyendo coordenadas.</p>
+                                        <p>Parámetro: Recibe la url o path de la imagen a clickear.</p>
+                                        <p>X: Coordenada X del elemento o imagen.</p>
+                                        <p>Y: Coordenada Y del elemento o imagen.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Click Robot</b>
+                                        <p>Nos permitirá realizar un click mediante la clase Robot y el reconocimiento de imagen.</p>
+                                        <p>Parámetro: Recibe la url o path de la imagen a clickear.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Click Derecho</b>
+                                        <p>Nos permitirá realizar un click derecho mediante el reconocimiento de imagen.</p>
+                                        <p>Parámetro: Recibe la url o path de la imagen a clickear.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Espera Imagen</b>
+                                        <p>Nos permitirá realizar un click espera que nos dará tiempo hasta que encuentre una imagen en especial.</p>
+                                        <p>Parámetro: Recibe la url o path de la imagen a esperar.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Pegar Texto</b>
+                                        <p>Nos permitirá realizar escritura plana sobre donde se encuentro ubicado en primera instancia el cursor.</p>
+                                        <p>Parámetro: Texto a escribir.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Escribir Robot</b>
+                                        <p>Nos permitirá realizar escritura plana mediante la clase Robot sobre donde se encuentro ubicado en primera instancia el cursor.</p>
+                                        <p>Parámetro: Texto a escribir.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Sikuli Focus Imagen</b>
+                                        <p>Nos permitirá realizar el foco de un elemento mediante el reconocimiento de imagen.</p>
+                                        <p>Parámetro: Recibe la url o path de la imagen a clickear.</p>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Funciones de Teclado</h3><br/>
+                            <br/>
+                            <p>Nos permitirá replicar en una ocasión la función que realiza normalmente el teclado..<br></br> 
+                                <b>Nombre:</b> Tener en cuenta el teclado seleccionado por el sistema
+                                <br/>  
+                            </p>
+                            <br/>
+
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Enter</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Escape</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Tab</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">BackSpace</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Home</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">End</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Delete</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Copy</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Cut</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Paste</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Seleccionar todo (A)</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Seleccionar todo (E)</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Find (F)</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Find (B)</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Close Tab</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Next</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Back</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">Close All</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">AvPag</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-bottom: 20px;">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <b style="font-size: 15px;">RePag</b>
+                                        <p><div class="alert alert-success" style="margin: 0;" role="alert"><b>Activo</b></div></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFor" aria-expanded="false" aria-controls="collapseFor">
+
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFor" class="collapse" aria-labelledby="headingFor" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <!--                            <h3>Creación de Suite</h3><br/>
+                                                        <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Suits</b></p>
+                                                        <p>A continuación se dirigirá a la pantalla para creación y administración de Suit</p>
+                                                        <br/>      
+                                                        <div class="col-xs-12">
+                                                            <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Suite1.gif"></img>
+                                                        </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>

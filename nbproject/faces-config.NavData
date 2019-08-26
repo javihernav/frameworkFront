@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="cliente/vergestiones.xhtml" x="1400" y="750" zoom="true"/>
+        <Node id="administrador/ejecutar.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="registro.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="administrador/versuits.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="administrador/administrador.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="administrador/registrarambiente.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="administrador/registrargrupoacciones.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="administrador/verescenarios.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="administrador/editarusuario.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="cliente/versuits.xhtml" x="1150" y="900" zoom="true"/>
+        <Node id="cliente/editarsuits.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="administrador/registrarpasos.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="cliente/vercasos.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="administrador/editarpasos.xhtml" x="1650" y="600" zoom="true"/>
+        <Node id="administrador/editarambientes.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="administrador/editarescenarios.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="administrador/registrarnavegador.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="cliente/editarescenarios.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="resetpassword.xhtml" x="2400" y="300" zoom="true"/>
+        <Node id="administrador/editaracciones.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="administrador/editargrupoacciones.xhtml" x="650" y="1200" zoom="true"/>
+        <Node id="administrador/inicio.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="administrador/verambientes.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="administrador/vergestiones.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="administrador/cargaejecucion.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="cliente/registrarescenarios.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="login.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="administrador/vergrupoacciones.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="administrador/editarcasos.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="administrador/registrarescenarios.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="administrador/editarsuits.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="cliente/verescenarios.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="cliente/verpasos.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="administrador/registrarsuits.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="administrador/vergestiones2.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="cliente/ayuda.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="administrador/registrarusuarios.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="administrador/registraracciones.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="administrador/registrarcasos.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="administrador/verclientes.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="administrador/verpasos.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="administrador/vernavegadores.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="cliente/registrarsuits.xhtml" x="150" y="1500" zoom="true"/>
+        <Node id="administrador/verusuarios.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="cliente/vergestiones2.xhtml" x="900" y="1050" zoom="true"/>
+        <Node id="administrador/ayuda.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="cliente/inicio.xhtml" x="2150" y="300" zoom="true"/>
+        <Node id="cliente/registrarcasos.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="cliente/editarcasos.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="administrador/verpasos3.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="cliente/cliente.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="administrador/vercasos2.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="cliente/registrarpasos.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="cliente/editarpasos.xhtml" x="2650" y="150" zoom="true"/>
+        <Node id="administrador/veracciones.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="administrador/cliente.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="administrador/vercasos.xhtml" x="1150" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

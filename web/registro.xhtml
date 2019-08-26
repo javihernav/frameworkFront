@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Registro</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="frameworks" name="bootstrap3.3.7/css/bootstrap.css"/>
+        <h:outputStylesheet library="frameworks" name="font-awesome/font-awesome.min.css"/>
+        <h:outputStylesheet library="css" name="estilos2.css"/>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/img/logo.ico"/>
+        <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" />
+    </h:head>
+    <h:body>
+
+        <div class="container">
+            <form class="form-registro" method="POST">
+                <p:growl showDetail="true" for="form-registro" globalOnly=""/>
+                <div class="row">
+                    <a href="login.xhtml">
+                        <button id="botonatras" type="button" class="btn btn-default"  style="margin-bottom: 15px; margin-left: 15px;">
+                            <span class="fa fa-undo" aria-hidden="true"></span>
+                        </button>
+                    </a>
+                    <div class="col-md-6 col-md-offset-3">
+                        <div id="fondo" class="panel panel-login">
+                            <div class= "panel-heading">
+                                <div class="row">
+                                    <br/>
+                                    <div class="col-xs-12">
+                                        <p style="color: #fff; font-size: 18px;">Registro</p>
+                                        <hr style="margin-top: 10px; margin-bottom: 10px;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div>
+                                            <b:form  id="login-form" prependId="true" role="form" style="display: block;">
+                                                <div align="center" style="padding-bottom: 15px;">
+                                                    <h:graphicImage id="img-registro" library="img" name="Logo.png" width="130px" height="100px" alt="user"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <b:inputText type="text" id="priNombre" tabindex="1" required="true"
+                                                                 class="form-control" placeholder="Primer Nombre" value="#{registroController.nuevoUsuario.primerNombre}"
+                                                                 maxlength="30" h:requiredMessage="Campo obligatorio" h:validatorMessage="Solo letras - Carácteres de 4 a 30">
+                                                        <f:validateRegex for="priNombre" pattern="[A-Za-z0-9]{4,30}"/>
+                                                        <b:message for="priNombre"/>
+                                                    </b:inputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <b:inputText type="text" id="segNombre" tabindex="2"
+                                                                 class="form-control" placeholder="Segundo Nombre" value="#{registroController.nuevoUsuario.segundoNombre}"
+                                                                 h:requiredMessage="Campo obligatorio" h:validatorMessage="Solo letras - Carácteres de 4 a 30">
+                                                        <f:validateRegex for="segNombre" pattern="[A-Za-z0-9]{4,30}"/>
+                                                        <b:message for="segNombre"/>
+                                                    </b:inputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <b:inputText type="text" id="priApellido" tabindex="3"  required="true"
+                                                                 class="form-control" placeholder="Primer Apellido" value="#{registroController.nuevoUsuario.primerApellido}"
+                                                                 h:requiredMessage="Campo obligatorio" h:validatorMessage="Solo letras - Carácteres de 4 a 30">
+                                                        <f:validateRegex for="priApellido" pattern="[A-Za-z0-9]{4,30}"/>
+                                                        <b:message for="priApellido"/>
+                                                    </b:inputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <b:inputText type="text" id="segApellido" tabindex="4" 
+                                                                 class="form-control" placeholder="Segundo Apellido" value="#{registroController.nuevoUsuario.segundoApellido}"
+                                                                 h:requiredMessage="Campo obligatorio" h:validatorMessage="Solo letras - Carácteres de 4 a 30">
+                                                        <f:validateRegex for="segApellido" pattern="[A-Za-z0-9]{4,30}"/>
+                                                        <b:message for="segApellido"/>
+                                                    </b:inputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <b:inputText type="text" id="correo" tabindex="5" class="col-md-6 col-xs-6 espacios"  required="true"
+                                                                 placeholder="Correo Electronico" value="#{registroController.nuevoUsuario.correo}"
+                                                                 h:requiredMessage="Campo obligatorio" h:validatorMessage="Correo incorrecto: ejemplo123@gmail.com">
+                                                        <f:validateRegex for="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+                                                        <b:message for="correo" show-summary="true"/>
+                                                    </b:inputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}" tabindex="6"  class="form-control" required="true">
+                                                        <f:selectItem itemLabel="(Seleccione un Documento)" itemValue="" itemDisabled="false"/>
+                                                        <f:selectItems value="#{tipodocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                                    </b:selectOneMenu>
+                                                </div>
+                                                <div class="form-group">
+                                                    <b:inputText type="number" id="documento" tabindex="7" class="form-control" required="true"
+                                                                 placeholder="Documento" value="#{registroController.nuevoUsuario.documento}"
+                                                                 h:requiredMessage="Campo obligatorio" h:validatorMessage="Caracteres de 7 a 20">
+                                                        <f:validateLength for="documento" minimum="7" maximum="20"/>
+                                                        <b:message for="documento"/>
+                                                    </b:inputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <b:inputText type="number" id="telefono" tabindex="8" class="form-control" required="true"
+                                                                 placeholder="Teléfono" value="#{registroController.nuevoUsuario.telefono}"
+                                                                 h:requiredMessage="Campo obligatorio" h:validatorMessage="Caracteres de 7 a 15">
+                                                        <f:validateLength for="telefono" minimum="7" maximum="15"/>
+                                                        <b:message for="telefono"/>
+                                                    </b:inputText>
+                                                </div>
+                                                <div>
+                                                    <p class="text-center">¿Ya tienes una cuenta?<a href="login.xhtml" style="text-decoration: none;"> Ingresa Aquí</a></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                            <b:commandButton id="formReg" class="form-control btn btn-primary" value="Registrar" icon="send" actionListener="#{registroController.registrar()}"/>
+                                                            <!--<input type="submit" id="login-submit" class="form-control btn btn-primary" value="Registrar" placeholder="Registrar" />-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </b:form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--SCRIPTS FORMULARIO-->
+        <h:outputScript library="frameworks" name="jquery/jquery.js"/>
+        <h:outputScript library="frameworks" name="bootstrap3.3.7/js/bootstrap.min.js"/>
+    </h:body>
+</html>

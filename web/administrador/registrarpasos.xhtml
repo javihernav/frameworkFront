@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="contenido">
+        <br/>
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <b:messages globalOnly="true"/>
+                    <h4 class="header-title">Registar Pasos</h4>
+                    <h:form id="formulario">
+
+                        <h:outputText value="Caso"/>
+                        <b:selectOneMenu class="form-control" id="idcaso" value="#{registroPasosController.nuevopaso.idCaso}">
+                            <f:selectItem itemValue="" itemLabel="Seleccion"></f:selectItem>
+                            <f:selectItems value="#{casosController.casos}" var="c" itemLabel="#{c.nombreCaso}"/>
+                        </b:selectOneMenu>
+                        <b:commandButton class="btn btn-sm mb-2" look="primary" iconAwesome="plus" value="Ver Pasos" onclick="$('.ver-pasos').modal();">
+                            <f:ajax event="click" listener="#{registroPasosController.cargarPasos}"  render=":tablepasos order" execute="idcaso"/>
+                        </b:commandButton>
+                        <br/>
+                        <br/>
+                        <div class="form-group ordersteplist">
+                            <b:inputText value="#{registroPasosController.valoralterno}" span="6" label="Orden Paso Alterno">
+                                <f:ajax execute="@this" event="keyup" listener="#{registroPasosController.validarValorAlterno}" render="Mensajesui"/>
+                            </b:inputText>
+                            <b:inputText value="#{registroPasosController.nuevopaso.orderstep}"  id="order" label="Orden Paso Predeterminado" disabled="true" span="6"/>
+
+                            <h:outputLabel style="size: 10px; color: red;" value="#{registroPasosController.validarrango}" id="Mensajesui"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputText value="Acción"/>
+                            <h:selectOneMenu class="form-control" value="#{registroPasosController.nuevopaso.actionStep}" id="accionespaso">
+                                <f:selectItem itemValue="" itemLabel="Seleccione..."></f:selectItem>
+                                <f:selectItems value="#{accionesController.acciones}" var="a" itemValue="#{a.nombreAccion}" itemLabel="#{a.nombreAccion}"/>
+                                <f:ajax event="change" onevent="validar()"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="form-group navegador">
+                            <h:outputText value="Navegador"/>
+                            <b:selectOneMenu value="#{registroPasosController.nuevopaso.navegador}">
+                                <f:selectItem itemValue="" itemLabel="Seleccione..."></f:selectItem>
+                                <c:forEach items="#{navegadorController.navegadores}" var="n">
+                                    <c:if test="#{n.estadoNavegador == 1}">
+                                        <f:selectItem itemValue="#{n.nombreNavegador}" itemLabel="#{n.nombreNavegador}"/>
+                                    </c:if>
+                                </c:forEach>
+                            </b:selectOneMenu>
+                        </div>
+                        <div class="form-group typestep">
+                            <h:outputText value="Tipo de Localizador"/>
+                            <b:selectOneMenu value ="#{registroPasosController.nuevopaso.typeStep}">
+                                <f:selectItem itemValue="" itemLabel="Seleccione..."></f:selectItem>
+                                <f:selectItem itemValue="ID" itemLabel="ID"></f:selectItem>
+                                <f:selectItem itemValue="Name" itemLabel="Name"></f:selectItem>
+                                <f:selectItem itemValue="ClassName" itemLabel="Class Name"></f:selectItem>
+                                <f:selectItem itemValue="LinkText" itemLabel="Link Text"></f:selectItem>
+                                <f:selectItem itemValue="PartialLinkText" itemLabel="Partial Link Text"></f:selectItem>
+                                <f:selectItem itemValue="TagName" itemLabel="Tag Name"></f:selectItem>
+                                <f:selectItem itemValue="XPath" itemLabel="XPath"></f:selectItem>
+                                <f:selectItem itemValue="CssSelector" itemLabel="Css Selector"></f:selectItem>
+                            </b:selectOneMenu>
+                        </div>
+                        <div class="form-group valuestep">
+                            <h:outputText value="Localizador"/>
+                            <b:inputText value="#{registroPasosController.nuevopaso.valueStep}"/>
+                        </div>
+                        <div class="form-group data">
+                            <h:outputText value="Data"/>
+                            <b:inputText value="#{registroPasosController.nuevopaso.parameterStep}"/>
+                        </div>
+                        <div class="form-group coorX">
+                            <h:outputText value="Coordenada X"/>
+                            <b:inputText value="#{registroPasosController.nuevopaso.corXStep}"/>
+                        </div>
+                        <div class="form-group coorY">
+                            <h:outputText value="Coordenada Y"/>
+                            <b:inputText value="#{registroPasosController.nuevopaso.corYStep}"/>
+                        </div>
+                        <div class="form-group">
+                            <b:commandButton value="Registro" style="margin-right: 5px;" class="btn btn-sm btn btn-success" icon="floppy-disk" action="#{registroPasosController.registrar2()}"/>
+
+                            <b:button  href="verpasos.xhtml" class="btn btn-sm btn btn-dark" value="Volver" />
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+
+        <b:modal id="pasomodal" title="Ver Orden Pasos" styleClass="ver-pasos" style="text-align: center">
+            <b:dataTable id="tablepasos"  class="table table-bordered table-striped col-12" value="#{registroPasosController.pasos}" var="p">
+                <b:dataTableColumn label="ID" value="#{p.id}"/>
+                <b:dataTableColumn label="Nombre Acción" value="#{p.actionStep}"/>
+                <b:dataTableColumn label="Orden Ejecución" value="#{p.orderstep}"/>
+            </b:dataTable>
+
+        </b:modal>
+
+    </ui:define>
+
+</ui:composition>

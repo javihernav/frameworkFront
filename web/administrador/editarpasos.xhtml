@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="contenido">
+        <br/>
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <b:messages globalOnly="true"/>
+                    <h4 class="header-title">Modificar Pasos</h4>
+                    <h:form id="formulario">
+                        <h:outputLabel value="Accion"/>
+                        <h:selectOneMenu class="form-control" value="#{pasosController.paso.actionStep}" id="accionespaso">
+                            <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
+                            <f:selectItems value="#{accionesController.acciones}" var="a" itemValue="#{a.nombreAccion}" itemLabel="#{a.nombreAccion}"/>
+                            <f:ajax event="change" onevent="validar()"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Navegador"/>
+                        <b:selectOneMenu value="#{pasosController.paso.navegador}">
+                            <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
+                            <c:forEach items="#{navegadorController.navegadores}" var="n">
+                                <c:if test="#{n.estadoNavegador == 1}">
+                                    <f:selectItem itemValue="#{n.nombreNavegador}" itemLabel="#{n.nombreNavegador}"/>
+                                </c:if>
+                            </c:forEach>
+                        </b:selectOneMenu>
+                        <h:outputLabel value="Tipo de Localizador"/>
+                        <b:selectOneMenu value ="#{pasosController.paso.typeStep}">
+                            <f:selectItem itemValue="" itemLabel="Seleccione..."></f:selectItem>
+                            <f:selectItem itemValue="ID" itemLabel="ID"></f:selectItem>
+                            <f:selectItem itemValue="Name" itemLabel="Name"></f:selectItem>
+                            <f:selectItem itemValue="ClassName" itemLabel="Class Name"></f:selectItem>
+                            <f:selectItem itemValue="LinkText" itemLabel="Link Text"></f:selectItem>
+                            <f:selectItem itemValue="PartialLinkText" itemLabel="Partial Link Text"></f:selectItem>
+                            <f:selectItem itemValue="TagName" itemLabel="Tag Name"></f:selectItem>
+                            <f:selectItem itemValue="XPath" itemLabel="XPath"></f:selectItem>
+                            <f:selectItem itemValue="CssSelector" itemLabel="Css Selector"></f:selectItem>
+                        </b:selectOneMenu>
+                        <h:outputLabel value="Localizador"/>
+                        <b:inputText value="#{pasosController.paso.valueStep}"/>
+                        <h:outputLabel value="Data"/>
+                        <b:inputText value="#{pasosController.paso.parameterStep}"/>
+                        <h:outputLabel value="Coordenada X"/>
+                        <b:inputText value="#{pasosController.paso.corXStep}"/>
+                        <h:outputLabel value="Coordenada Y"/>
+                        <b:inputText value="#{pasosController.paso.corYStep}"/>
+                        <h:outputLabel value="Número Paso"/>
+                        <b:inputText value="#{pasosController.paso.orderstep}"/>
+                        <div class="form-group">
+                            <b:commandButton value="Modificar" style="margin-right: 5px;" class="btn btn-sm btn btn-success" icon="floppy-disk" action="#{pasosController.actualizarPasos()}"/>
+                            <b:button  href="verpasos.xhtml" class="btn btn-sm btn btn-dark" value="Volver" />
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

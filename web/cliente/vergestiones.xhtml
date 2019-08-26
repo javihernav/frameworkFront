@@ -1,0 +1,476 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="contenido">    
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row" id="gestion">
+                        <div class="stepwizard">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" type="button" class="btn btn-primary btn-circle" id="uno">1</a>
+                                    <p>Paso 1</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-2" type="button" class="btn btn-default btn-circle disabled" disabled="disabled" id="dos">2</a>
+
+                                    <p>Paso 2</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" type="button" class="btn btn-default btn-circle disabled" disabled="disabled" id="tres">3</a>
+                                    <p>Paso 3</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" type="button" class="btn btn-default btn-circle disabled" disabled="disabled" id="cuatro">4</a>
+                                    <p>Paso 4</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h:form class="col-md-12 mt-5"  id="formulario"  >
+
+                            <!-- /////////////////////////////////////////// SECCION PARA REGISTRAR SUITS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+                            <div class="row setup-content" id="step-1">
+                                <div class="col-md-12 row">
+                                    <!-- Titulo de la section  -->
+                                    <div class="col-md-12" style="text-align: center;">
+                                        <h3 style="padding-bottom: 20px; padding-top: 20px"> Nueva Suit</h3>
+                                    </div>
+                                    <!-- Primer Columna -->
+                                    <div class="col-md-6">
+                                        <div class="form-group" >
+                                            <h:outputText value="Nombre"/>
+                                            <b:inputText style="height: 36px;"  autocomplete="off" a:placeholder="Nombre de la Suit" id="idnamesuit" value="#{gestionController.nuevasuit.nombreSuit}">
+                                                <f:ajax event="keyup" render="Mensajesui" listener="#{gestionController.validatesuit(e)}"/>
+                                            </b:inputText>
+                                            <h:outputLabel style="size: 10px; color: red;" value="#{gestionController.validarsuit}" id="Mensajesui"/>
+
+                                            <div id="namesuit">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <h:outputText value="Descripción"/>
+                                            <b:inputTextarea id="iddescriptionsuit" a:placeholder="Breve descripción de la Suite" value="#{gestionController.nuevasuit.descripcionSuit}"/>
+                                            <div id="descriptionsuit">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Segunda Columna-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h:outputText value="Usuario"/>
+                                            <c:if test="#{sessionController.permisorol == 'Sqa'}">
+                                                <b:selectOneMenu id="idusuariosuit" style="height: 36px;" value="#{gestionController.nuevasuit.idUsuario}">
+                                                    <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
+                                                    <f:selectItems value="#{usuariosController.usuarios}" var="r" itemLabel="#{r.primerNombre} #{r.segundoNombre} #{r.primerApellido} #{r.segundoApellido}"/>
+                                                </b:selectOneMenu>
+                                            </c:if>
+                                            <c:if test="#{sessionController.permisorol == 'Cliente'}">
+                                                <b:selectOneMenu id="idusuariosuit" style="height: 36px;" value="#{gestionController.nuevasuit.idUsuario}">
+                                                    <f:selectItem itemValue="#{sessionController.usuario}" itemLabel="#{sessionController.usuario.primerNombre}"/> 
+                                                </b:selectOneMenu>
+                                            </c:if>
+                                            <div id="usersuitdiv">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group" >
+                                            <h:outputText value="Estado"/>
+                                            <b:selectOneMenu id="idestadosuit" style="height: 36px;"  value="#{gestionController.nuevasuit.estadoSuit}">
+                                                <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
+                                                <f:selectItem itemValue="1" itemLabel="Activa"></f:selectItem>
+                                                <f:selectItem itemValue="2" itemLabel="Inactiva"></f:selectItem>
+                                            </b:selectOneMenu>
+                                            <div id="statesuitdiv">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 boton">
+                                        <p align="center">
+                                            <a class="btn btn-primary btn-lg offset-5 btn-sm" href="#" icon="fa-arrow-right" id="Paso_uno">Siguiente
+                                            </a>
+                                        </p>
+                                    </div>
+
+                                    <div class="alert offset-4" id="error_uno">
+                                        <p id="error"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ///////////////////////////////////////// SECCION PARA REGISTYRAR ESCENARIOS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+                            <div class="row setup-content" id="step-2">
+                                <div class="col-md-12 row">
+                                    <div class="col-md-12 row">
+                                        <!-- Titulo de la section  -->
+                                        <div class="col-md-12" style="text-align: center;">
+                                            <h3 style="padding-bottom: 20px; padding-top: 20px;"> Nuevo Escenario</h3>
+                                        </div>
+                                        <!-- Primera Columna -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <h:outputText value="Nombre"/>
+                                                <b:inputText id="nombreescenario" style="height: 36px;"  autocomplete="off" value="#{gestionController.nuevoescenario.nombreEscenario}">
+                                                    <f:ajax event="keyup" render="Mensajeesce" listener="#{gestionController.validatesuit(e)}"/>
+                                                </b:inputText>
+                                                <h:outputLabel style="size: 10px; color: red;" value="#{gestionController.validarescenario}" id="Mensajeesce"/>
+                                                <div id="nombreescenario">
+
+                                                </div>                                  
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <h:outputText value="Descripción"/>
+                                                <b:inputTextarea id="descriptionescenario" value="#{gestionController.nuevoescenario.descripcionEscenario}"/>
+                                                <div id="escenariodivdes">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Segunda Columna -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <h:outputText value="Ambiente"/>
+                                                    <b:selectOneMenu id="ambienteescenario" style="height: 36px;"  value="#{gestionController.nuevoescenario.idAmbiente}">
+                                                        <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
+                                                        <f:selectItems value="#{ambientesController.ambientes}" var ="a" itemLabel="#{a.nombreAmbiente}"/>
+                                                    </b:selectOneMenu>
+                                                </div>
+
+                                                <div id="escenariodivambiente">
+
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col-md-1">
+                                                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-info" >+</button>
+                                                    </div>
+                                                    <div class="col-md-9">
+
+                                                        <div class="alert alert-warning" id="alert_android">
+                                                            <i>Los datos de la ventana emergente son solo necesarios si el ambiente seleccionado es movil.</i>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="form-group">
+
+                                                    <h:outputText value="Estado"/>
+                                                    <b:selectOneMenu id="estadoescenario" style="height: 36px;"  value ="#{gestionController.nuevoescenario.estadoEscenario}">
+                                                        <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
+                                                        <f:selectItem itemValue="1" itemLabel="Activa"></f:selectItem>
+                                                        <f:selectItem itemValue="2" itemLabel="Inactiva"></f:selectItem>
+                                                    </b:selectOneMenu>
+                                                    <div id="estadodivescenario">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 boton">
+                                            <p align="center">
+                                                <button class="btn btn-primary offset-5 btn-sm" id="anterior_uno" type="button">Atras</button> 
+                                                <button class="btn btn-primary nextBtn btn-sm" type="button" id="Paso_dos">Siguiente</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- //////////////////////////////////////// MODAL PARA REGISTRAR LA DESCRIPCIION DEL DISPOSITIVO SI EL AMBIENTE ES MOVIL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --> 
+                            <div class="modal modales"  id="myModal">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <!-- Encabezado -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">DescripcciÃ³n dispositivo</h4>
+                                            <button type="button" class="close" data-dismiss="modal">x</button>
+                                        </div>
+
+                                        <!-- cuerpo -->
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h:outputLabel>Nombre</h:outputLabel>
+                                                        <b:inputText class="form-control"  value="#{gestionController.nuevodispo.nombre}" id="name_dispo" a:placeholder="Ingrese el nombre del dispositivo...."/>
+                                                        <div id="diverrordisponame">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h:outputLabel>Puerto URL Appium</h:outputLabel>
+                                                        <b:inputText class="form-control" value="#{gestionController.nuevodispo.puertoURLAppium}" id="puerto_appium" a:placeholder="Ingrese la url del puerto appium...."/>
+                                                        <div id="diverrorpuerto">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h:outputLabel>Plataforma dispositivo</h:outputLabel>
+                                                        <b:inputText class="form-control" value="#{gestionController.nuevodispo.plataformaDispositivo}" id="plataforma_dispo" a:placeholder="Ingrese la plataforma del dispositivo....."/>
+                                                        <div id="diverrorplataform"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h:outputLabel>App Activity</h:outputLabel>
+                                                        <b:inputText class="form-control" value="#{gestionController.nuevodispo.appActivity}" id="appacti_dispo" a:placeholder="Ingrese el App Activity del dispositivo....."/>
+                                                        <div id="diverrorappacti"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h:outputLabel>Device</h:outputLabel>
+                                                        <b:inputText class="form-control" value="#{gestionController.nuevodispo.device}" id="device_dispo" a:placeholder="Ingrese el device....."/>
+                                                        <div id="diverrordevice"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h:outputLabel>Version del Dispositivo</h:outputLabel>
+                                                        <b:inputText class="form-control" value="#{gestionController.nuevodispo.versionDispositivo}" id="version_dispo" a:placeholder="Ingrese la versiÃ³n del dispositivo....."/>
+                                                        <div id="diverrorversion"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h:outputLabel>App Package</h:outputLabel>
+                                                        <b:inputText class="form-control" value="#{gestionController.nuevodispo.appPackage}" id="app_dispo" a:placeholder="Ingrese el App Package del dispositivo....."/>
+                                                        <div id="diverrorapppackage"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h:outputLabel>URL App</h:outputLabel>
+                                                        <b:inputText class="form-control" value="#{gestionController.nuevodispo.urlApp}" id="urlapp_dispo" a:placeholder="Ingrese la URL App del dispositivo....."/>
+                                                        <div id="diverrorurlapp"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- footer -->
+                                        <div class="modal-footer">
+                                            <p align="center">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- //////////////////////////////////////// SECCION PARA REGISTRAR LOS CASOS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                            <div class="row setup-content" id="step-3">
+                                <div class="col-md-12 row">
+                                    <!-- Titulo de la section  -->
+                                    <div class="col-md-12" style="text-align: center;">
+                                        <h3 style="padding-bottom: 20px; padding-top: 20px"> Nuevo Caso</h3>
+                                    </div>
+                                    <!-- Primer Columna -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h:outputText value="Nombre"/>
+                                            <b:inputText id="namecaso" style="height: 36px;"  value="#{gestionController.nuevocaso.nombreCaso}"/>
+                                            <div id="diverrorcasonombre">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Segunda columna -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h:outputText value="Estado"/>
+                                            <b:selectOneMenu id="estadocaso" style="height: 36px;"  value ="#{gestionController.nuevocaso.estadoCaso}">
+                                                <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
+                                                <f:selectItem itemValue="1" itemLabel="Activa"></f:selectItem>
+                                                <f:selectItem itemValue="2" itemLabel="Inactiva"></f:selectItem>
+                                            </b:selectOneMenu>
+                                            <div id="diverrorestadocaso">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12 boton">
+                                        <p align="center">
+                                            <button class="btn btn-primary btn-sm offset-5" id="anterior_dos" type="button">Atras</button> 
+                                            <button class="btn btn-primary nextBtn btn-sm" type="button" id="Paso_tres">Siguiente</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- //////////////////////////////////////////// SECCION PARA REGISTRAR LOS PASOS DEL CASO \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                            <div class="row setup-content" id="step-4">
+                                <div class="col-md-12 row">
+                                    <!-- Titulo de la section  -->
+                                    <div class="col-md-12" style="text-align: center;">
+                                        <h3 style="padding-bottom: 20px; padding-top: 20px"> Asignar pasos</h3>
+                                        <b:messages globalOnly="true" id="mesajepaso"/>
+                                    </div>
+                                    <!-- Primer Columna -->
+                                    <div class="col-md-6" id="col1">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <h:outputText value="Acción del paso"/>
+                                                <!-- -->
+                                                <h:inputText id="txtAccion" class="form-control col-md-6" value="#{accionesController.fragmento}" onkeyup="mostrarOpcionesSelect('formulario:accionespaso')" a:placeholder="Ingrese cualquier parte del nombre y seleccione el paso de la lista">
+                                                    <f:ajax event="keyup" listener="#{accionesController.buscarAccionesNombreParcial()}" render="accionespaso"/>
+                                                </h:inputText>
+
+
+                                                <!-- -->
+                                                <h:selectOneListbox class="form-control" style="height: 108px;"  value="#{gestionController.nuevopaso.actionStep}" id="accionespaso" >
+                                                    <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
+                                                    <f:selectItems value="#{accionesController.acciones}" var="a" itemValue="#{a.nombreAccion}" itemLabel="#{a.nombreAccion}"/>
+                                                    <f:ajax event="change" onevent="validar()"/>
+                                                </h:selectOneListbox>
+                                            </div>
+                                            <div class="form-group typestep">
+                                                <h:outputText value="Tipo de Localizador"/>
+                                                <h:selectOneMenu class="form-control" style="height: 36px;"  value ="#{gestionController.nuevopaso.typeStep}" id="typestep">
+                                                    <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
+                                                    <f:selectItem itemValue="ID" itemLabel="ID"></f:selectItem>
+                                                    <f:selectItem itemValue="Name" itemLabel="Name"></f:selectItem>
+                                                    <f:selectItem itemValue="ClassName" itemLabel="Class Name"></f:selectItem>
+                                                    <f:selectItem itemValue="LinkText" itemLabel="Link Text"></f:selectItem>
+                                                    <f:selectItem itemValue="PartialLinkText" itemLabel="Partial Link Text"></f:selectItem>
+                                                    <f:selectItem itemValue="TagName" itemLabel="Tag Name"></f:selectItem>
+                                                    <f:selectItem itemValue="XPath" itemLabel="XPath"></f:selectItem>
+                                                    <f:selectItem itemValue="CssSelector" itemLabel="Css Selector"></f:selectItem>
+                                                </h:selectOneMenu>
+                                            </div>
+                                            <div class="form-group data">
+                                                <h:outputText value="Parámetro"/>
+                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.parameterStep}" id="data"/>
+
+                                            </div>
+                                            <div class="form-group coorY">
+                                                <h:outputText value="Coordenada Y"/>
+                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corYStep}" id="coorY"/>                                                           
+                                                <p>Por favor solo ingrese Valores numericos</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Segunda Columna -->
+                                    <div class="col-md-6">
+                                        <div class="form-group navegador">
+                                            <h:outputText value="Navegador"/>
+                                            <h:selectOneMenu class="form-control" style="height: 36px;"  value="#{gestionController.nuevopaso.navegador}" id="navegador">
+                                                <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
+                                                <f:selectItem itemValue="Chrome" itemLabel="Chrome"></f:selectItem>
+                                                <f:selectItem itemValue="Firefox" itemLabel="Firefox"></f:selectItem>
+                                                <f:selectItem itemValue="InternetExplorer" itemLabel="Internet Explorer"></f:selectItem>
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="form-group valuestep">
+                                            <h:outputText value="Localizador"/>
+                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.valueStep}" id="valuestep"/>                                             
+                                        </div>
+                                        <div class="form-group coorX">
+                                            <h:outputText value="Coordenada X"/>
+                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corXStep}" id="coorX"/>
+                                            <p>Por favor solo ingrese Valores numericos</p>
+                                        </div>
+                                        <div class="form-group" style="float:right;">
+                                            <b:commandButton value="Agregar" class="btn btn-success btn-sm" actionListener="#{gestionController.agregarpaso()}">
+                                                <f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX"/>
+                                            </b:commandButton>
+                                        </div>
+                                    </div>
+                                    <div  id="divtable">
+                                        <div class="container col-11">
+                                            <h:dataTable class="table table-bordered table-hover" id="table" value="#{gestionController.listpaso}"  var="p">
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputLabel value="Acción"/>
+                                                    </f:facet>
+                                                    <h:outputLabel value="#{p.id} - #{p.actionStep}">
+                                                    </h:outputLabel>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputLabel value="Navegador"/>
+                                                    </f:facet>
+                                                    <h:outputLabel value="#{p.navegador}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputLabel value="Localizador"/>
+                                                    </f:facet>
+                                                    <h:outputLabel value="#{p.typeStep}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputLabel value="Valor"/>
+                                                    </f:facet>
+                                                    <h:outputLabel value="#{p.valueStep}"/>
+                                                </h:column><h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputLabel value="Parámetro"/>
+                                                    </f:facet>
+                                                    <h:outputLabel value="#{p.parameterStep}"/>
+                                                </h:column><h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputLabel value="X"/>
+                                                    </f:facet>
+                                                    <h:outputLabel value="#{p.corXStep}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputLabel value="Y"/>
+                                                    </f:facet>
+                                                    <h:outputLabel value="#{p.corYStep}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputLabel value="# Ejecución"/>
+                                                    </f:facet>
+                                                    <h:outputLabel value="#{p.orderstep}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputLabel value="Acción"/>
+                                                    </f:facet>
+                                                    <h:commandButton class="btn btn-danger btn-sm" value="X" actionListener="#{gestionController.eliminarpaso(p)}">
+                                                        <f:ajax onevent="refresh"/>
+                                                    </h:commandButton>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 boton">
+
+                                        <div class="btn-envio-sin" style="float: right"> 
+                                            <!-- /////////////// SI, ENVIA DATOS SIN AMBIENTE MOVIL \\\\\\\\\\\\\\\\\\\\\ -->
+                                            <button id="anterior_tres" style="margin: 5px;" class="btn btn-primary btn-sm mr-1">Atras</button>
+                                            <b:commandButton class="btn btn-sm btn btn-success" style="margin: 5px;" actionListener="#{gestionController.registrarsuit()}" value="Guardar"/>      
+                                        </div>
+                                        <div class="btn-envio-con" style="float: right;">
+                                            <!-- ////////////// SI, ENVIA DATOS CON AMBEINTE MOVIL \\\\\\\\\\\\\\\\\\\ -->
+                                            <button id="anterior_tres" style="margin: 5px;" class="btn btn-primary btn-sm mr-1">Atras</button>
+                                            <h:commandButton class="btn btn-success btn-sm btn-envio-con" style="margin: 5px;" actionListener="#{gestionController.registerwithdispo()}" value="Guardar sa"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
+                        <script src="#{request.contextPath}/recursos/js/mostrarOpcionesSelect.js" type="text/javascript"></script> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

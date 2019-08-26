@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:define name="contenido">
+        <br/>
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Lista de Pasos</h4>
+                    <br/>
+                    <h:form id="form" prependId="false">
+                        <p:growl id="msgs" showDetail="true" />
+
+                        <p:dataTable var="p" value="#{pasosController.pasos}" draggableRows="true">
+                            <p:ajax event="rowReorder" listener="#{pasosController.onRowReorder}" update=":form:msgs" />
+                            <f:facet name="header">
+                            </f:facet>
+                            <p:column headerText="Acción">
+                                <h:outputText value="#{p.actionStep}" />
+                            </p:column>
+
+                            <p:column headerText="Localizador">
+                                <h:outputText value="#{p.typeStep}" />
+                            </p:column>
+
+                            <p:column headerText="Valor">
+                                <h:outputText value="#{p.valueStep}" />
+                            </p:column>
+
+                            <p:column headerText="Data">
+                                <h:outputText value="#{p.parameterStep}" />
+                            </p:column>
+                            <p:column headerText="Caso">
+                                <h:outputText value="#{p.idCaso.nombreCaso}" />
+                            </p:column>
+                            <p:column headerText="Acciones">
+                                
+                            </p:column>
+                        </p:dataTable>
+
+                    </h:form>
+                
+                </div>
+                </div>
+            </div>
+    </ui:define>
+</ui:composition>

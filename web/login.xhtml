@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>FrameWork SQA S.A</title>
+        <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/recursos/images/logo.ico"/>
+        <link href="recursos/css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body>
+        <div id="formWrapper">
+            <div id="form">
+                <div>
+                    <b:messages globalOnly="true" style="font-size: 12px; text-align: center;"/>
+                </div>
+                <div class="logo">
+                    <img style="height: 140px;" src="recursos/images/logoo.png" ></img>
+                </div>
+                <h:form prependId="false">
+                    <div class="form-item">
+                        <b:inputText type="text" name="usuario" id="usuario" class="form-style" style="font-size: 12px;" autocomplete="off" value="#{sessionController.documento}" placeholder="Documento"/>
+                    </div>
+                    <div class="form-item" style="text-align: center; margin-bottom: 15px;">
+                        <b:inputText type="password" name="contrasena" id="contrasena" class="form-style" style="font-size: 12px;" value="#{sessionController.clave}" placeholder="Contraseña"/>
+                        <a style="font-size: 13px;" href="#{sessionController.resetPassword()}">¿Olvidaste tu cuenta?</a>
+                    </div>
+                    <div class="form-item"> 
+                        <h:commandButton class="btn btn-success btn btn-block btn-xl" style="font-size: 15px;" action="#{sessionController.iniciarSesion()}" value="Iniciar sesión"/>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
+

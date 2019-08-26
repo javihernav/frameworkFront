@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="contenido">
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <b:messages globalOnly="true"/>
+
+                    <h4 class="header-title">Registrar Navegador</h4>
+                    <h:form prependId="false">
+                        <h:outputLabel value="Nombre Navegador"/>
+                        <h:inputText class="form-control" value="#{navegadorController.navegador.nombreNavegador}"/>
+                        <br/>
+                        <h:outputLabel value="Estado"/>
+                        <b:selectOneMenu value ="#{navegadorController.navegador.estadoNavegador}">
+                            <f:selectItem itemValue="" itemLabel="Seleccionar...."></f:selectItem>
+                            <f:selectItem itemValue="1" itemLabel="Activa"></f:selectItem>
+                            <f:selectItem itemValue="2" itemLabel="Inactiva"></f:selectItem>
+                        </b:selectOneMenu>
+                        <br/>
+                        <p align="center">
+                            <b:commandButton value="Registro" class="btn btn btn-success" style="margin-right: 5px;" icon="floppy-disk" action="#{navegadorController.registrar()}" />
+                            <b:button href="vernavegadores.xhtml" class="btn  btn btn-dark" value="Volver" />
+                        </p>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

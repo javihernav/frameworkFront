@@ -1,0 +1,12 @@
+/*
+Estilos para el select de pasos en los casos de prueba
+*/
+/* 
+    Created on : 26/08/2019, 10:04:51 AM
+    Author     : SQA-PRUEBA
+*/
+
+#accionespaso, .busca{float:left;}
+#accionespaso{width:100px;}
+/*.busca{width:30px; height:30px; background:#ccc; margin:20px 0 0 15px;
+  box-shadow:0 0 4px #000;cursor:pointer;}*/

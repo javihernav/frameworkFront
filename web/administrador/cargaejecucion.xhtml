@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui">
+    <f:event type="preRenderView" listener="#{sessionController.validarSesion()}"/>
+
+    <ui:define name="contenido">
+        <div class="col-12">
+            <br/>
+            <div class="card">
+                <div class="card-body">
+                    <h:form style="height: 300px; text-align: left" enctype="multipart/form-data" >
+                        <b:messages globalOnly="true" id="mensajecargagest"/>
+                        <div class="col-12 mt-5">
+                            <div class="col-md-12 mt-5">
+                                <h:outputLabel value="Archivo Externo"/>
+                                <h:inputFile class="form-control" id="archivoEjecucion" value="#{gestionController.archivoEjecucion}"/>
+                            </div>
+                            <div class="col-md-12" style="margin-top:15px;">
+                                <h:outputLabel value="Formato a usar:"/>
+                                <a href="carga_masiva_ejecucion.xls" class="btn btn-link">Descargar</a>
+                            </div>
+                            <div class="col-md-12 mt-5" style="margin-top: 15px;">
+                                <p align="center">
+                                    <b:commandButton actionListener="#{gestionController.uploadEjecucion()}" style="margin-right: 5px;" value="Subir" class="btn btn-primary" onclick="cargando()"/>
+                                    <b:button value="Cancelar" dismiss="modal"/>
+                                </p>
+                            </div>
+                        </div>
+
+                    </h:form>
+
+                </div>
+                <div class="imagenajax" style="padding-top: 80px;">
+                    <img style="width: 130px; height: 130px;" src="#{request.contextPath}/recursos/images/blue-.gif" />
+                    <center><p>Cargando...</p></center>
+                    <!--<div id="loader-container">
+                        <div class="loader-div">
+        
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

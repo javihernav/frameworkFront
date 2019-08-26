@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="contenido">
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Lista de Usuarios</h4>
+                    <b:messages globalOnly="true" id="cargamess"/>
+                    <br/>
+                    <h:form prependId="false" enctype="multipart/form-data">
+                        <p align="right" style="padding-bottom:  20px;">
+                            <c:if test="#{sessionController.permisorol == 'Sqa'}">
+                                <b:commandButton action="#{usuariosController.nuevo()}" style="margin-right: 5px;" value="Registrar" class="btn btn-success"/>
+                            </c:if>
+                            <b:button value="Carga Masiva" look="primary" onclick="$('.modalCarga').modal();" style="margin-right: 5px;"/>
+                            <b:commandButton value="Refrescar" actionListener="#{usuariosController.init()}">
+                                <b:icon name="refresh"></b:icon>
+                                <f:ajax event="click" render="datatableusuarios"/>
+                            </b:commandButton>
+                        </p>
+                        <b:dataTable value="#{usuariosController.usuarios}" var="u" id="datatableusuarios">
+                            <b:dataTableColumn label="ID" value="#{u.id}" />
+                            <b:dataTableColumn label="Nombre" value="#{u.primerNombre} #{u.segundoNombre}" />
+                            <b:dataTableColumn label="Apellido" value="#{u.primerApellido} #{u.segundoApellido}" />
+                            <b:dataTableColumn label="Documento" value="#{u.documento}" />
+                            <b:dataTableColumn label="Correo Eléctronico" value="#{u.correo}" />
+                            <b:dataTableColumn label="Empresa" value="#{u.empresa}" />
+                            <b:dataTableColumn label="Opciones">
+                                <b:commandButton class="btn btn-sm" style="margin-right: 10px;" look="primary" iconAwesome="paint-brush" value="" action="#{usuariosController.preModificar(u)}"/>
+                                <b:commandButton class="btn btn-sm" look="danger" iconAwesome="trash" value="" onclick="$('.modalPseudoClass').modal();">
+                                    <f:ajax event="click" render=":message-modal-confirm" listener="#{usuariosController.setUsuario(u)}"/>
+                                </b:commandButton>
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </h:form>
+                    <b:modal id="amodal" title="Eliminar Usuarios"  styleClass="modalPseudoClass" >
+                        <h:panelGroup id="message-modal-confirm" layout="block">
+                            <p>¿Está seguro de eliminar el usuario #{usuariosController.usuario.primerNombre} ?
+                            </p>
+                        </h:panelGroup>
+                        <f:facet name="footer">
+                            <h:form id="form-eliminar" prependId="false" enctype="multipart/form-data">
+                                <b:button value="Cancelar" dismiss="modal" />
+                                <b:commandButton value="Eliminar" look="danger"
+                                                 actionListener="#{usuariosController.eliminarUsuario()}"/>
+                            </h:form>
+                        </f:facet>
+                    </b:modal>
+                    <b:modal id="cargamodal" title="Carga Masiva De Usuarios" styleClass="modalCarga" style="text-align: center;">
+                        <h:form style="height: 300px; text-align: left" enctype="multipart/form-data">
+                            <div class="col-12 mt-5">
+                                <div class="col-md-12 mt-5">
+                                    <h:outputLabel value="Archivo Externo"/>
+                                    <h:inputFile class="form-control" id="archivo" value="#{usuariosController.archivo}"/>
+                                </div>
+                                <div class="col-md-12" style="margin-top:15px;">
+                                    <h:outputLabel value="Formato a usar:"/>
+                                    <a href="carga_masiva_usuarios.xls" class="btn btn-link">Descargar</a>
+                                </div>
+                                <div class="col-md-12 mt-5" style="margin-top: 15px;">
+                                    <p align="center">
+                                        <b:commandButton actionListener="#{usuariosController.doUppload()}" style="margin-right: 5px;" value="Subir" class="btn btn-primary">
+                                        </b:commandButton>
+                                        <b:button value="Cancelar" dismiss="modal"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </h:form>
+                    </b:modal>
+
+                </div>
+            </div>
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>

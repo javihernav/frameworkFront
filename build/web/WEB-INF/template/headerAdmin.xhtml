@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pst="http://xmlns.jcp.org/jsf/passthrough/"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <!-- header area start -->
+        <div class="header-area">
+            <div class="row align-items-center">
+                <!-- nav and search button -->
+                <div class="col-md-6 col-sm-10 clearfix">
+                    <div class="nav-btn pull-left">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="search-box pull-left search" >
+                        <input type="text" name="search" id="search" placeholder="Buscar..." required=""/>
+                        <i class="ti-search"></i>
+                    </div>
+                    <img align="right" style="width: 9%;" src="#{request.contextPath}/recursos/images/automation.png" alt="logo"/>
+
+                </div>
+
+
+                <!-- profile info & task notification -->
+                <div class="col-md-6 col-sm-4 clearfix">
+
+                    <ul class="notification-area pull-right">
+                        <li id="full-view"><i class="ti-fullscreen"></i></li>
+                        <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- header area end -->
+        <!-- page title area start -->
+        <h:form prependId="false">
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <br/>
+                            <h4 class="page-title pull-left">Framework Automatión SQA</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix"> 
+                        <div class="user-profile pull-right" >
+                            <h6 class="user-name dropdown-toggle" data-toggle="dropdown">#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido}<i class="fa fa-angle-down"></i></h6>
+                            <div class="dropdown-menu" style="background-color: #004085;">
+                                <div class="card" style="width: 100%;" >
+                                    <div class="card-body text-primary">
+                                        <center>
+                                            <h6 class="card-title" style="padding-bottom: 20px; padding-top: 20px;">#{sessionController.usuario.primerNombre} #{sessionController.usuario.segundoNombre} #{sessionController.usuario.primerApellido} #{sessionController.usuario.segundoApellido}</h6>
+                                        </center>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <b:button value="Perfil" look="default" onclick="$('.modalperfil').modal()" size="md"/>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <b:button value="Contraseña" look="default" size="md" onclick="$('.modalpass').modal()"/>
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                        </div>
+
+                                        <div>
+                                            <center>
+                                                <h:commandLink style="padding-bottom: 20px; padding-top: 20px;" class="btn btn-dark btn btn-lg" action="#{sessionController.cerrarSesion()}">
+                                                    <span class="fa fa-sign-out" style="padding-left: 50%;">Cerrar Sesión</span>
+                                                </h:commandLink>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <b:modal id="pmodal" title="Mis Datos Personales" styleClass="modalperfil" style="text-align: center">
+
+            <h:form  style="height: 340px;text-align: left">
+                <div class="col-12 mt-5">
+
+                    <div class="col-md-6 mt-5">
+                        <h:outputText value="Primer Nombre"/>
+                        <b:inputText value="#{sessionController.usuario.primerNombre}"/>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <h:outputText value="Segundo Nombre"/>
+                        <b:inputText value="#{sessionController.usuario.segundoNombre}"/>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <h:outputText value="Primer Apellido"/>
+                        <b:inputText value="#{sessionController.usuario.primerApellido}"/>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <h:outputText value="Segundo Apellido"/>
+                        <b:inputText value="#{sessionController.usuario.segundoApellido}"/>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <h:outputText value="Documento"/>
+                        <b:inputText value="#{sessionController.usuario.documento}" disabled="true"/>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <h:outputText value="Correo"/>
+                        <b:inputText value="#{sessionController.usuario.correo}"/>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <h:outputText value="Telefono"/>
+                        <b:inputText value="#{sessionController.usuario.telefono}"/>
+                    </div>                    
+                    <div class="col-md-12 mt-5">
+                        <p align="center">
+                            <b:commandButton value="Editar" look="success" style="margin-right:  5px;" actionListener="#{sessionController.actualizarDatos()}" />
+                            <b:button value="Cancelar" dismiss="modal" look="danger"/>
+                        </p>
+                    </div>
+
+                </div>
+
+            </h:form>
+
+        </b:modal>
+
+        <b:modal id="ppass" title="Cambio de Contraseña" styleClass="modalpass" style="text-align: center;">
+            <h:form prependId="false" style="height: 290px;text-align: left" id="esteform">
+                <b:messages id="mensajes" globalOnly="true"/>
+                <div class="col-md-12 mt-5">
+                    <b:inputSecret value="#{emailController.passwordActual}" id="actual" label="Contraseña actual" placeholder="Ingrese contraseña actual"/>
+                    <i class="fa fa-eye ojo1 ojopass" id="ojoactual" aria-hidden="true"></i>
+                    <i class="fa fa-eye-slash ojo2 ojopass" id="ojoactual2" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <b:inputSecret value="#{emailController.passwordNueva}" id="nueva" label="Contraseña nueva" placeholder="Ingrese nueva contraseña"/>
+                    <i class="fa fa-eye ojo3 ojopass" id="ojonuevo" aria-hidden="true"></i>
+                    <i class="fa fa-eye-slash ojo4 ojopass" id="ojonuevo2" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <b:inputSecret id="confirm" value="#{emailController.passwordConfirm}" label="Confirme Contraseña" placeholder="Confirmar contraseña"/>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <p align="center">
+                        <b:commandButton value="Cambiar Contraseña" look="success" style="margin-right:  5px;" action="#{emailController.cambiarContraseña()}">
+                            <f:ajax event="click" execute="actual nueva confirm" render="mensajes actual nueva confirm"/>
+                        </b:commandButton>
+                        <b:button value="Cancelar" dismiss="modal" look="danger"/>
+                    </p>
+                </div>
+            </h:form>
+        </b:modal>
+    </h:body>
+</html>
+

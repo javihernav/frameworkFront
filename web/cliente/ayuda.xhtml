@@ -1,0 +1,424 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="contenido">
+
+
+        <div class="jumbotron text-center" style="padding-bottom: 30px;">
+            <h1 style="font-size: 50px;">Guía de usuario</h1>
+            <p>Seleccione el título del tema del que desee saber.</p>
+        </div>
+
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Diseño Scripts
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body" >
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Ir al menu</h3>
+                            <p>Dirigirse al menú en la opción <b>Diseño De Scripts</b> y dar clic en <b>Diseñar</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación de Suit</p>
+                            <br/>    
+                            <div class="col-xs-6">
+                                <img style="width: 50%;" src="#{request.contextPath}/recursos/images/ayuda/MenuDiseñoScripts.png"></img>
+                            </div>
+                            <div class="col-xs-6">
+                                <img style="width: 50%;" src="#{request.contextPath}/recursos/images/ayuda/MenuDiseñar.png"></img>
+                            </div> 
+                        </div>
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Creación de Suit </h3>
+                            <p>La Suit reúne un conjunto de escenarios y los escenarios un conjunto de script automatizados.</p>
+                            <p>Se deben llenar todos los campos y posteriormente dar clic en Siguiente.</p>
+                            <br/>
+                            <div class="col-sm-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/MenuSuit.png"/>
+                            </div> 
+                        </div>
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 3 Creación de Escenario</h3>
+                            <p>Se deben llenar todos los campos y posteriormente dar clic en Siguiente.</p>
+                            <p>Especificar correctamente el ambiente Web, Desk (escritorio), Móvil o Servicios, El estado debe ser activo para poder ejecutar el ecenario posteriormente.</p>        
+                            <br/>
+                            <div class="col-sm-12" ><img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/MenuEcenario.png"/></div> 
+                        </div>
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 4 Creación de Casos</h3>
+                            <p>Se deben llenar todos los campos y posteriormente dar clic en Siguiente.</p>
+                            <p>El estado debe ser activo para poder ejecutar el caso posteriormente.</p>        
+                            <br/>
+                            <div class="col-sm-12" ><img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/MenuNuevoCaso.png"/></div> 
+                        </div>
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 5 Asignar pasos</h3> 
+                            <div  style="  background-color: " class="col-md-10 col-md-offset-1">
+                                <p>Se deben llenar todos los campos y posteriormente dar clic en Agregar se agregará el paso a la lista en la parte inferior. los campos que se encuentran son: Acción del paso, Navegador, Tipo de Localizador, Localizador, Parámetro, Parámetro x, y en caso que se requiera el uso coordenadas. Dependiendo de tipo de acción que se elija se habilitaran los campos necesarios a continuación se indican los tipos de campo.</p>   
+                                <b>Acción del paso:</b> Indica la acción que se va a realizar como ingresar a una URL, dar un clic, ingresar texto en un campo o tiempo de espera. <br/>
+
+                                <b>Navegador:</b> Se selecciona el navegador sobre el cual se ejecutara el paso ya sea Chrome, Firefox o Internet Explorer.<br/>
+                                <b>Tipo de Localizador:</b> Es el tipo tag o identificador del elemento de la página con el que se va a interactuar (name, id, xpad, etc..).   <br/>  
+                                <b>Localizador:</b> Es el nombre que identifica al elemento, (la forma en la que se llama el tag).<br/>  
+                                <b>Parámetro:</b> Lo que se desea ingresar en el campo.<br/>  
+                                <b>Parámetro x, y:</b> la posición en coordenadas del elemento. <br/>  
+                            </div>  
+                            <div class="col-sm-12" ><img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/MenuAsignarpasos.png"/></div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Ejecución
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Ir al menu</h3>
+                            <p>Dirigirse al menú en la opción <b>Administrar</b> y dar clic en <b>Clientes Ejecución</b></p>
+                            <p>A continuación se dirigirá a la pantalla de clientes disponibles</p>
+                            <br/>    
+                            <div class="col-xs-6">
+                                <img style="width: 50%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion1.png"></img>
+                            </div>
+                            <div class="col-xs-6">
+                                <img style="width: 50%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion2.png"></img>
+                            </div> 
+                        </div>
+
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Clientes</h3>
+                            <p>A continuación se dirigirá a la pantalla de clientes disponibles y se debera dar click en <b>Activar</b> para habilitar el Cliente a ejecutar</p>
+                            <br/>   
+                            <div class="col-xs-12">
+                                <img style="width: 65%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion3.gif"></img>
+                            </div> 
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 3 Ejecución Back</h3>
+                            <p>Dirigirse ala carpeta de <b>Ejecucion</b> y dar clic en <b>Ejecutar.bat</b></p>
+                            <p>A continuación se efectura la ejecucion de los casos <b>Habilitados</b>  por el cliente seleccionado a ejecutar anteriormente</p>
+                            <br/>    
+                            <div class="col-xs-12">
+                                <img style="width: 60%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion4.gif"></img>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 4 Resultados - Reporte</h3>
+                            <p>Nos dirigimos a la carpeta <b>extentReports</b>.</p>
+                            <p>A continuación se visualizara el reporte de la anterior <b>Ejecucion</b>.</p>
+                            <br/>    
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion5.gif"></img>
+                            </div>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Ejecucion6.png"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Administrar Usuarios
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Ir al menu</h3>
+                            <p>Dirigirse al menú en la opción <b>Administrar</b> y dar clic en <b>Usuarios</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación gestion de usuarios del sistema</p>
+                            <br/>    
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Editar</h3>
+                            <p>Dirigirse al botton <b>Editar</b> y dar click</p>
+                            <p>A continuación se dirigirá a la pantalla para la edicion de los datos basicos del usuario. y dara click en <b>Actualizar</b> para aplicar los cambios.</p>
+                            <br/>    
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 3 Eliminar</h3>
+                            <p>Dirigirse al botton <b>Eliminar</b> y dar click.</p>
+                            <p>A continuación se visualizara un ventana de confirmación. Se debera dar click en <b>Eliminar</b> para confirmar.</p>
+                            <br/>    
+                            <div class="col-xs-6">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario3.gif"></img>
+                            </div>
+                            <div class="col-xs-6">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario4.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 4 Registrar</h3>
+                            <p>Dirigirse al botton <b>Registrar</b> y dar click.</p>
+                            <p>A continuación se visualizara el formulario de registro con los campos requeridos. Al finalizar se debera dar click en <b>Registro</b> para culminar con el registro.</p>
+                            <br/>    
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario5.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 5 Carga Masiva</h3>
+                            <p>Dirigirse al botton <b>Carga Masiva</b> y dar click.</p>
+                            <p>A continuación se visualizara el formulario para carga el formato. Al finalizar se debera dar click en <b>Subir</b> para culminar con el registro masivo.</p>
+                            <br/>    
+                            <div class="col-xs-7">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario6.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Usuario7.gif"></img>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFor" aria-expanded="false" aria-controls="collapseFor">
+                            Administrar Framework
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFor" class="collapse" aria-labelledby="headingFor" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Creación de Suite</h3>
+                            <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Suits</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación y administración de Suit</p>
+                            <br/>      
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Suite1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Creación</h3>
+                            <p>Para crear una nueva Suite dar clic en registrar se dirigirá a un formulario donde ingresar los datos para la Suite nueva. Se deben ingresar todos los campos Nombre, Descripción, Usuario  y estado, posteriormente clic en registro. La nueva Suite se agregara a la lista.<br></br> 
+                                <b>Nombre:</b> El nombre que se asignará a la nueva Suite.
+                                <br/>  
+                                <b>Descripción:</b> Una breve descripción de la Suite.
+                                <br/>
+                                <b>Usuario:</b> El cliente u organización a la que corresponde esta Suite.<br/>  
+                                <b>Estado:</b> Los estados son activo o inactivo, la suite debe estar activa para poder ejecutar los casos de automatización asociados a ella de lo contrario dejar en inactiva. 
+                            </p>
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Suite2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Modificar y eliminar Suite</h3>
+                            <p>Para modificar la información de una Suite dar clic en el botón con forma de pincel al costado de la suite se dirigirá a un formulario donde se podrán cambiar los datos y posterior mente clic en actualizar.
+                            </p>  
+                            <div class="col-xs-12">
+                                <img style="width: 70%;" src="#{request.contextPath}/recursos/images/ayuda/Suite3.gif"></img>
+                            </div>
+                            <p><br/>
+                                Para Eliminar una suite der clic en el botón con <b>X</b> al costado de la suite que se desee eliminar.
+                            </p>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Suite4.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Suite5.gif"></img>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Creación de Escenario</h3>
+                            <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Escenarios</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación y administración de Escenarios</p>
+                            <br/>      
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Creación</h3>
+                            <p>Para crear un nuevo escenario dar clic en registrar se dirigirá a un formulario para ingresar los datos para el escenario nuevo. Se deben ingresar todos los campos Nombre, Descripción, Ambiente, Suite, y estado, posteriormente clic en registro. El nuevo escenario se agregara a la lista.<br/>
+                                <b>Nombre:</b> El nombre que se asignará a la nuevo Escenario.
+                                <br/>  
+                                <b>Descripción:</b> Una breve descripción del Escenario.
+                                <br/>
+                                <b>Ambiente:</b> El ambiente es donde se ejecutara el caso ya sea web, escritorio, etc...<br/>  
+                                <b>Suite:</b> La Suite a la que se asociara el escenario. <br/>  
+                                <b>Estado:</b> El estado debe ser activo para poder ejecutar el caso de lo contrario inactivo.
+
+                            </p>   
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Modificar y eliminar Escenarios</h3>
+                            <p>Para modificar la información de un Escenario dar clic en el botón con forma de pincel al costado del se dirigirá a un formulario donde se podrán cambiar los datos y posteriormente clic en actualizar.<br/><br/></p>
+                            <div class="col-xs-12">
+                                <img style="width: 70%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios5.gif"></img>
+                            </div>
+                            <p>Para Eliminar un escenario dar clic en el botón con X al costado.</p>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios3.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Escenarios4.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Creación de Casos</h3>
+                            <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Casos</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación y administración de Casos</p>
+                            <br/>      
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Casos1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Creación</h3>
+                            <p>Para crear un nuevo caso dar clic en registrar se dirigirá a un formulario para ingresar los datos para el caso nuevo. Se deben ingresar todos los campos Nombre, Escenario y estado, posteriormente clic en registro. El nuevo caso se agregara a la lista.<br/><br/> 
+                                <b>Nombre:</b> El nombre que se asignará a la nuevo Escenario.
+                                <br/>           
+                                <b>Escenario:</b> La Escenario a la que se asociara el caso. <br/>  
+                                <b>Estado:</b> El estado debe ser activo para poder ejecutar el caso de lo contrario inactivo.
+                            </p> 
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Casos2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Modificar y eliminar Casos</h3>
+                            <p>Para modificar la información de un caso dar clic en el botón con forma de pincel al costado del, se dirigirá a un formulario donde se podrán cambiar los datos y posteriormente clic en actualizar.<br/><br/>
+                                <div class="col-xs-12">
+                                    <img style="width: 70%;" src="#{request.contextPath}/recursos/images/ayuda/Casos3.gif"></img>
+                                </div>
+                            </p>  
+                            <p>Para Eliminar un caso dar clic en el botón con X al costado.</p>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Casos4.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Casos5.gif"></img>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Creación de Pasos</h3>
+                            <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Pasos</b></p>
+                            <p>A continuación se dirigirá a la pantalla para creación y administración de Pasos</p>
+                            <br/>      
+                            <div class="col-xs-12">
+                                <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos1.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 1 Creación</h3>
+                            <p>Para crear un nuevo caso dar clic en registrar se dirigirá a un formulario para ingresar los datos para el caso nuevo. Se deben ingresar todos los campos Nombre, Escenario y estado, posteriormente clic en registro. El nuevo caso se agregara a la lista.<br/><br/> 
+                                <b>Nombre:</b> El nombre que se asignará a la nuevo Escenario.
+                                <br/>           
+                                <b>Escenario:</b> La Escenario a la que se asociara el caso. <br/>  
+                                <b>Estado:</b> El estado debe ser activo para poder ejecutar el caso de lo contrario inactivo.
+                            </p> 
+                            <div class="col-xs-12">
+                                <img style="width: 80%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos2.gif"></img>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <h3>Paso 2 Modificar y eliminar Pasos</h3>
+                            <p>Para modificar la información de un caso dar clic en el botón con forma de pincel al costado del, se dirigirá a un formulario donde se podrán cambiar los datos y posteriormente clic en actualizar.<br/><br/>
+                                <div class="col-xs-12">
+                                    <img style="width: 70%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos3.gif"></img>
+                                </div>
+                            </p>  
+                            <p>Para Eliminar un caso dar clic en el botón con X al costado.</p>
+                            <div class="col-xs-7">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos4.gif"></img>
+                            </div>
+                            <div class="col-xs-5">
+                                <img style="width: 100%;" src="#{request.contextPath}/recursos/images/ayuda/Pasos.gif"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFor" aria-expanded="false" aria-controls="collapseFor">
+
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFor" class="collapse" aria-labelledby="headingFor" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="col-sm-12" style="text-align: center; padding-bottom: 30px;">
+                            <!--                            <h3>Creación de Suite</h3>
+                                                        <p>Dirigirse al menú en la opción <b>Administrar Framework</b> y dar clic en <b>Suits</b></p>
+                                                        <p>A continuación se dirigirá a la pantalla para creación y administración de Suit</p>
+                                                        <br/>      
+                                                        <div class="col-xs-12">
+                                                            <img style="width: 25%;" src="#{request.contextPath}/recursos/images/ayuda/Suite1.gif"></img>
+                                                        </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>

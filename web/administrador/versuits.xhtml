@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template=".././WEB-INF/template/templateAdmin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="contenido">
+        <div class="col-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Lista de Suits</h4>
+                    <br/>
+                    <h:form prependId="false">
+                        <p align="right" style="padding-bottom: 20px;">
+                            <c:if test="#{sessionController.permisorol == 'Sqa'}">
+                                <b:commandButton action="#{suitsController.nuevo()}" style="margin-right: 5px;" value="Registrar" class="btn btn-success"/>
+                            </c:if>
+                            <b:commandButton value="Refrescar" actionListener="#{suitsController.init()}">
+                                <b:icon name="refresh"/>
+                                <f:ajax event="click" render="datatablesuit"/>
+                            </b:commandButton>
+                        </p>
+                        <b:dataTable value="#{suitsController.suits}" var="s" id="datatablesuit">
+                            <b:dataTableColumn label="Usuario" value="#{s.idUsuario.primerNombre } #{s.idUsuario.primerApellido}" />
+                            <b:dataTableColumn label="Nombre" value="#{s.nombreSuit}" />
+                            <b:dataTableColumn label="Descripción" value="#{s.descripcionSuit}" />
+                            <b:dataTableColumn label="Estado" value="#{s.estadoSuit}" />
+                            <b:dataTableColumn label="Fecha de Creación">
+                                <h:outputText value="#{s.fechaCreacion}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:MM:SS"/>
+                                </h:outputText>
+                            </b:dataTableColumn>
+                            <c:if test="#{sessionController.permisorol == 'Sqa'}">
+                                <b:dataTableColumn label="Opciones">
+                                    <b:commandButton class="btn btn-sm" style="margin-right: 10px;" look="primary" iconAwesome="paint-brush" value="" action="#{suitsController.preModificar(s)}"/>
+                                    <b:commandButton class="btn btn-sm" look="danger" iconAwesome="trash" value="" onclick="$('.modalPseudoClass').modal();">
+                                        <f:ajax event="click" render=":message-modal-confirm" listener="#{suitsController.setSuit(s)}"/>
+                                    </b:commandButton>
+                                </b:dataTableColumn>
+                            </c:if>
+                        </b:dataTable>
+                    </h:form>
+                    <b:modal id="amodal" title="Eliminar Suite"  styleClass="modalPseudoClass">
+                        <h:panelGroup id="message-modal-confirm" layout="block">
+                            <p>¿Está seguro de eliminar la suit #{suitsController.suit.nombreSuit} ?
+                            </p>
+                        </h:panelGroup>
+                        <f:facet name="footer">
+                            <h:form id="form-eliminar" prependId="false">
+                                <b:button value="Cancelar" dismiss="modal" />
+                                <b:commandButton value="Eliminar" look="danger"
+                                                 actionListener="#{suitsController.eliminarSuit()}"/>
+                            </h:form>
+                        </f:facet>
+                    </b:modal>
+                </div>
+            </div>
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>
