@@ -31,11 +31,21 @@ public class LeerXmlController {
 
     public static void leerArchivoXml() throws JDOMException, IOException {
         Element elemento = ((Document) (new SAXBuilder()).build(new File("wsdl.xml"))).getRootElement();
-        System.out.println("Elemanto raiz: " + elemento.getName());
+        System.out.println("Elemento raiz: " + elemento.getName());
         List<Element> temas = new ArrayList<>();
         temas = elemento.getChildren();
         for (Element e : temas) {
             System.out.println("elemento hijo: " + e.getName());
+            List<Element> subtemas = e.getChildren();
+            for (Element sub : subtemas) {
+                System.out.println("*      elemento nieto: " + sub.getName());
+
+            List<Element> subsubtemas = e.getChildren();
+            for (Element subsub : subsubtemas) {
+                System.out.println("*             elemento bisnieto: " + subsub.getName());
+
+            }
+            }
         }
     }
 
