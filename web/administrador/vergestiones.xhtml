@@ -119,7 +119,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- ///////////////////////////////////////// SECCION PARA REGISTYRAR ESCENARIOS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+                            <!-- ///////////////////////////////////////// SECCION PARA REGISTRAR ESCENARIOS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
                             <div class="row setup-content" id="step-2">
                                 <div class="col-md-12 row">
                                     <div class="col-md-12 row">
@@ -155,10 +155,20 @@
                                             <div class="form-group">
                                                 <div class="form-group">
                                                     <h:outputText value="Ambiente"/>
-                                                    <b:selectOneMenu id="ambienteescenario" style="height: 36px;"  value="#{gestionController.nuevoescenario.idAmbiente}">
-                                                        <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
+                                                    <b:selectOneMenu id="ambienteescenario" class="ambienteescenario" style="height: 36px;"  value="#{gestionController.nuevoescenario.idAmbiente}" >
+                                                        <f:selectItem itemValue="" itemLabel="Seleccionar" ></f:selectItem>
                                                         <f:selectItems value="#{ambientesController.ambientes}" var ="a" itemLabel="#{a.nombreAmbiente}"/>
+                                                        
                                                     </b:selectOneMenu>
+                                                    
+                                                    
+                                                    
+                                                    <h:outputText id="entorn" value="|| #{gestionController.nuevoescenario.idAmbiente.nombreAmbiente} ||" />
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
                                                 </div>
 
                                                 <div id="escenariodivambiente">
@@ -312,7 +322,8 @@
                                     <div class="col-md-12 boton">
                                         <p align="center">
                                             <button class="btn btn-primary btn-sm offset-5" id="anterior_dos" type="button">Atras</button> 
-                                            <button class="btn btn-primary nextBtn btn-sm" type="button" id="Paso_tres">Siguiente</button>
+                                            <button class="btn btn-primary nextBtn btn-sm" type="button" id="Paso_tres" onclick="esServicio()" >
+                                                Siguiente</button>
                                         </p>
                                     </div>
                                 </div>
@@ -331,15 +342,16 @@
                                     <div class="col-md-6" id="col1">
                                         <div class="form-group">
                                             <div class="form-group">
-                                                <h:outputText value="Acción del paso"/>
+                                               
+                                                <h:outputText id="tituloAccion"  class="tituloAccion" value="Acción del paso"  />
                                                 <!-- -->
-                                                <h:inputText id="txtAccion" class="busca form-control col-md-6" autocomplete="off" value="#{accionesController.fragmento}" onkeyup="mostrarOpcionesSelect('formulario:accionespaso')" a:placeholder="Ingrese cualquier parte del nombre y seleccione el paso de la lista">
+                                                <h:inputText id="txtAccion" class="busca form-control col-md-6" autocomplete="off" value="#{accionesController.fragmento}" onkeyup="mostrarOpcionesSelect('formulario:accionespaso')" a:placeholder="Ingrese cualquier parte del nombre y seleccione el paso de la lista" >
                                                     <f:ajax event="keyup" listener="#{accionesController.buscarAccionesNombreParcial()}" render="accionespaso"/>
                                                 </h:inputText>
 
 
                                                 <!-- -->
-                                                <h:selectOneListbox class="form-control" style="height: 108px;"  value="#{gestionController.nuevopaso.actionStep}" id="accionespaso" >
+                                                <h:selectOneListbox class="form-control accionespaso" style="height: 108px;"  value="#{gestionController.nuevopaso.actionStep}" id="accionespaso" >
                                                     <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
                                                     <f:selectItems value="#{accionesController.acciones}" var="a" itemValue="#{a.nombreAccion}" itemLabel="#{a.nombreAccion}"/>
                                                     <f:ajax event="change" onevent="validar()"/>
@@ -347,8 +359,8 @@
                                                 
                                             </div>
                                             <div class="form-group typestep">
-                                                <h:outputText value="Tipo de Localizador"/>
-                                                <h:selectOneMenu class="form-control" style="height: 36px;"  value ="#{gestionController.nuevopaso.typeStep}" id="typestep">
+                                                <h:outputText value="Tipo de Localizador" />
+                                                <h:selectOneMenu class="form-control" style="height: 36px;"  value ="#{gestionController.nuevopaso.typeStep}" id="typestep" >
                                                     <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
                                                     <f:selectItem itemValue="ID" itemLabel="ID"></f:selectItem>
                                                     <f:selectItem itemValue="Name" itemLabel="Name"></f:selectItem>
@@ -360,12 +372,12 @@
                                                     <f:selectItem itemValue="CssSelector" itemLabel="Css Selector"></f:selectItem>
                                                 </h:selectOneMenu>
                                             </div>
-                                            <div class="form-group data">
-                                                <h:outputText value="Parámetro"/>
-                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.parameterStep}" id="data"/>
+                                            <div class="form-group data parametro">
+                                                <h:outputText value="Parámetro" class="txtparametro"/>
+                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control parametro" value="#{gestionController.nuevopaso.parameterStep}" id="data"/>
 
                                             </div>
-                                            <div class="form-group coorY">
+                                            <div class="form-group coorY" >
                                                 <h:outputText value="Coordenada Y"/>
                                                 <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corYStep}" id="coorY"/>                                                           
                                                 <p>Por favor solo ingrese Valores numericos</p>
@@ -375,8 +387,8 @@
                                     <!-- Segunda Columna -->
                                     <div class="col-md-6">
                                         <div class="form-group navegador">
-                                            <h:outputText value="Navegador"/>
-                                            <h:selectOneMenu class="form-control" style="height: 36px;"  value="#{gestionController.nuevopaso.navegador}" id="navegador">
+                                            <h:outputText value="Navegador" />
+                                            <h:selectOneMenu class="form-control" style="height: 36px;"  value="#{gestionController.nuevopaso.navegador}" id="navegador" >
                                                 <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
                                                 <f:selectItem itemValue="Chrome" itemLabel="Chrome"></f:selectItem>
                                                 <f:selectItem itemValue="Firefox" itemLabel="Firefox"></f:selectItem>
@@ -384,8 +396,8 @@
                                             </h:selectOneMenu>
                                         </div>
                                         <div class="form-group valuestep">
-                                            <h:outputText value="Localizador"/>
-                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.valueStep}" id="valuestep"/>                                             
+                                            <h:outputText value="Localizador" class="txtlocalizador"/>
+                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control localizador" value="#{gestionController.nuevopaso.valueStep}" id="valuestep"/>                                             
                                         </div>
                                         <div class="form-group coorX">
                                             <h:outputText value="Coordenada X"/>
@@ -393,7 +405,12 @@
                                             <p>Por favor solo ingrese Valores numericos</p>
                                         </div>
                                         <div class="form-group" style="float:right;">
-                                            <b:commandButton value="Agregar" class="btn btn-success btn-sm" actionListener="#{gestionController.agregarpaso()}">
+                                            <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm" >
+                                                <f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX"/>
+                                            </b:commandButton>
+                                        </div>
+                                        <div class="form-group" style="float:right;">
+                                            <b:commandButton value="Agregar Paso" class="btn btn-success btn-sm" actionListener="#{gestionController.agregarpaso()}">
                                                 <f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX"/>
                                             </b:commandButton>
                                         </div>
@@ -467,7 +484,7 @@
                                             <b:commandButton class="btn btn-sm btn btn-success" style="margin: 5px;" actionListener="#{gestionController.registrarsuit()}" value="Guardar"/>      
                                         </div>
                                         <div class="btn-envio-con" style="float: right;">
-                                            <!-- ////////////// SI, ENVIA DATOS CON AMBEINTE MOVIL \\\\\\\\\\\\\\\\\\\ -->
+                                            <!-- ////////////// SI, ENVIA DATOS CON AMBIENTE MOVIL \\\\\\\\\\\\\\\\\\\ -->
                                             <button id="anterior_tres" style="margin: 5px;" class="btn btn-primary btn-sm mr-1">Atras</button>
                                             <h:commandButton class="btn btn-success btn-sm btn-envio-con" style="margin: 5px;" actionListener="#{gestionController.registerwithdispo()}" value="Guardar sa"/>
                                         </div>

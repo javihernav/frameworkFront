@@ -29,7 +29,7 @@ import javax.servlet.http.Part;
 public class GestionController {
 
     @EJB
-    private SuitFacadeLocal sfl;
+    private SuitFacadeLocal suitfacadelocal;
     private Suit nuevasuit;
     private List<Suit> suits;
 
@@ -48,7 +48,7 @@ public class GestionController {
     private List<Caso> casos;
 
     @EJB
-    private PasoFacadeLocal psfl;
+    private PasoFacadeLocal pasofacadelocal;
     private Paso nuevopaso;
     private Paso paso;
     private List<Paso> pasos;
@@ -145,7 +145,7 @@ public class GestionController {
     //Method init
     @PostConstruct
     public void init() {
-        suits = sfl.findAll();
+        suits = suitfacadelocal.findAll();
         usuarios = ufl.findAll();
         escenarios = efl.findAll();
 
@@ -158,11 +158,11 @@ public class GestionController {
 
     //Getters and Setters de los campos
     public SuitFacadeLocal getSfl() {
-        return sfl;
+        return suitfacadelocal;
     }
 
     public void setSfl(SuitFacadeLocal sfl) {
-        this.sfl = sfl;
+        this.suitfacadelocal = sfl;
     }
 
     public Suit getNuevasuit() {
@@ -246,11 +246,11 @@ public class GestionController {
     }
 
     public PasoFacadeLocal getPsfl() {
-        return psfl;
+        return pasofacadelocal;
     }
 
     public void setPsfl(PasoFacadeLocal psfl) {
-        this.psfl = psfl;
+        this.pasofacadelocal = psfl;
     }
 
     public Paso getNuevopaso() {
@@ -302,8 +302,8 @@ public class GestionController {
     }
 
     //Metodo para agregacion del paso a la lista
-    String puede = "yes";
-    int eje = 1;
+    String puedeContinuar = "yes";
+    int ordenPaso = 1;
 
     public void agregarpaso() {
         nuevopaso.setIdCaso(nuevocaso);
@@ -312,15 +312,15 @@ public class GestionController {
         this.listpaso.forEach((paso) -> {
             if ("Ingresar URL".equals(paso.getActionStep())) {
                 if (nuevopaso.getActionStep().equals(paso.getActionStep())) {
-                    puede = "no";
+                    puedeContinuar = "no";
                 }
             }
-            eje += 1;
+            ordenPaso += 1;
             nuevopaso.setId(paso.getId());
         });
 
         //Condicional para agregar la accion a la lista
-        if (puede.equals("yes")) {
+        if (puedeContinuar.equals("yes")) {
 
             int idre = 0;
             if (nuevopaso.getId() == null) {
@@ -329,7 +329,7 @@ public class GestionController {
                 idre = nuevopaso.getId() + 1;
                 nuevopaso.setId(idre);
             }
-            nuevopaso.setOrderstep(eje);
+            nuevopaso.setOrderstep(ordenPaso);
             this.listpaso.add(nuevopaso);
         } else {
             MessageUtil.enviarMensajeErrorGlobal("N0 SE PUEDE AGREGAR:", "La acción " + nuevopaso.getActionStep() + " ya existe.");
@@ -338,14 +338,14 @@ public class GestionController {
         GestionController.listpaso.forEach((pass) -> {
             if ("Ingresar URL".equals(pass.getActionStep())) {
                 nuevopaso.setNavegador(pass.getNavegador());
-                MessageUtil.enviarMensajeInformacionGlobal("Se modifico la lista:", "El campo navegador se modifico, existe o se agrego la accion de Ingresar URL los demas pasos tomaran su valor de navegador.");
-                this.renamenave();
+                MessageUtil.enviarMensajeInformacionGlobal("Se modifico la lista:", "El campo navegador se modifico, existe o se agrego la accion de Ingresar URL los demás pasos tomaran su valor de navegador.");
+                this.renombrarNavegador();
             }
         });
     }
     //Metodo para renombrar los navegadores de la lista
 
-    public void renamenave() {
+    public void renombrarNavegador() {
         GestionController.listpaso.forEach((pass) -> {
             pass.setNavegador(nuevopaso.getNavegador());
         });
@@ -354,7 +354,7 @@ public class GestionController {
     //Eliminacion del paso de la lista
     public void eliminarpaso(Paso p) {
         GestionController.listpaso.remove(p);
-        System.out.println("eliminnado");
+        System.out.println("paso eliminnado");
     }
 
     //Metodo para registrar suit,escenario,caso y pasos NOTA:METODO ESPECIFICO CUANDO EL ESCENARIO NO ES MOVIL
@@ -372,7 +372,8 @@ public class GestionController {
     
     }
 
-    //Metodo para registrar suit,escenario,caso y pasos NOTA:METODO ESPECIFICO CUANDO EL ESCENARIO ES MOVIL
+    //Metodo para registrar suit,escenario,caso y pasos 
+    //NOTA:METODO ESPECIFICO CUANDO EL ESCENARIO ES MOVIL
     public void registerwithdispo() throws ParseException {
 
         this.crearsuit();
@@ -419,7 +420,7 @@ public class GestionController {
     //Metodo para agregar suits
     public void crearsuit() throws ParseException {
         nuevasuit.setFechaCreacion(fechaSistema());
-        sfl.create(nuevasuit);
+        suitfacadelocal.create(nuevasuit);
         System.out.println("Suit Creada");
     }
 
@@ -435,7 +436,7 @@ public class GestionController {
             nuevopaso.setCorYStep(pass.getCorYStep());
             nuevopaso.setOrderstep(pass.getOrderstep());
             nuevopaso.setIdCaso(nuevocaso);
-            psfl.create(nuevopaso);
+            pasofacadelocal.create(nuevopaso);
             System.out.println("pasocreado");
         });
     }
@@ -517,7 +518,7 @@ public class GestionController {
                 }
 
                 //Validacion de existencia
-                suits = sfl.findAll();
+                suits = suitfacadelocal.findAll();
                 for (Suit sut : suits) {
                     if (su.getNombreSuit().toLowerCase().equals(sut.getNombreSuit().toLowerCase())) {
                         crearsuit = 0;
@@ -528,7 +529,7 @@ public class GestionController {
             }
 
             //Metodo para leer la hoja de escenarios
-            escenarios = ejecar.leerArchivoExcelEscenario(ruta, sfl.findAll(), afl.findAll(), ufl.findAll());
+            escenarios = ejecar.leerArchivoExcelEscenario(ruta, suitfacadelocal.findAll(), afl.findAll(), ufl.findAll());
             cantidadescenario = escenarios.size();
             for (Escenario esce : escenarios) {
                 esce.setFechaCreacion(fechaSistema());
@@ -574,7 +575,7 @@ public class GestionController {
             }
 
             //Metodo para leer la hoja de casos
-            casos = ejecar.leerArchivoExcelCasos(ruta, efl.findAll(), sfl.findAll(), afl.findAll(), ufl.findAll());
+            casos = ejecar.leerArchivoExcelCasos(ruta, efl.findAll(), suitfacadelocal.findAll(), afl.findAll(), ufl.findAll());
             cantidadcaso = casos.size();
             for (Caso cass : casos) {
                 cass.setFechaCreacion(fechaSistema());
@@ -755,7 +756,7 @@ public class GestionController {
                                 nuevasuit.setFechaCreacion(fechaSistema());
                                 nuevasuit.setEstadoSuit(st.getEstadoSuit());
                                 nuevasuit.setIdUsuario(st.getIdUsuario());
-                                sfl.create(nuevasuit);
+                                suitfacadelocal.create(nuevasuit);
                             }
                             MessageUtil.enviarMensajeInformacionGlobal("SE REGISTRARON LAS SUITS: ", "Se registraron " + suits.size() + " suits.");
                             if (escenarios.size() > 0) {
@@ -764,7 +765,7 @@ public class GestionController {
                                     nuevoescenario.setDescripcionEscenario(es.getDescripcionEscenario());
                                     nuevoescenario.setFechaCreacion(fechaSistema());
                                     nuevoescenario.setEstadoEscenario(es.getEstadoEscenario());
-                                    suits = sfl.findAll();
+                                    suits = suitfacadelocal.findAll();
                                     for (Suit sts : suits) {
                                         if (es.getIdSuit().getNombreSuit().equals(sts.getNombreSuit())) {
                                             nuevoescenario.setIdSuit(sts);
@@ -809,7 +810,7 @@ public class GestionController {
                                                 }
                                             }
                                             nuevopaso.setOrderstep(ps.getOrderstep());
-                                            psfl.create(nuevopaso);
+                                            pasofacadelocal.create(nuevopaso);
                                         }
                                         MessageUtil.enviarMensajeInformacionGlobal("SE REGISTRARON LOS PASOS: ", "Se registraron " + pasos.size() + " pasos.");
                                     }

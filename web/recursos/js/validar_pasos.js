@@ -5,6 +5,7 @@
  */
 
 
+
 function validar() {
     //Definicion de variables 
     var accion = document.getElementById('formulario:accionespaso').value;
@@ -813,4 +814,20 @@ function despues() {
 function cargando() {
     $('.card-body').css('display', 'none');
     $('.imagenajax').css('display', 'block');
+}
+
+function esServicio(){
+//    debugger;
+    console.log('esServicio');
+    var ambiente = document.getElementsByClassName('ambienteescenario')[0].value;
+    console.log('ambiente: '+ambiente);
+    if(ambiente==="4"){
+        console.log('ocultando no servicios');
+        $('.tituloAccion').css('display', 'none');
+        console.log('esta vacio txtAccion: '+$('#txtAccion').attr('val'));
+        $('.busca').hide();
+        $('.accionespaso').hide();
+        $('.parametro').show();
+        $('.valuestep').show();
+    }
 }
