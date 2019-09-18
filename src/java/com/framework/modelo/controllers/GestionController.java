@@ -8,7 +8,9 @@ package com.framework.modelo.controllers;
 import com.framework.modelo.controller.cargas.EjecucionCarga;
 import com.framework.modelo.entities.*;
 import com.framework.modelo.facades.*;
+import com.framework.util.LeerXML;
 import com.framework.util.MessageUtil;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,9 +18,12 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.servlet.http.Part;
+import org.jdom2.JDOMException;
 
 /**
  *
@@ -737,6 +742,17 @@ public class GestionController {
         }
     }
 
+    public void escribirParametrosURL(){
+        try {
+            nuevopaso.setValueStep(LeerXML.obtenerEstructuraXml(nuevopaso.getParameterStep()).toString());
+        } catch (JDOMException ex) {
+            Logger.getLogger(GestionController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GestionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
     public void registrocargas(String archivoDestino, List<Caso> casoexcel, List<Escenario> escenarioslist, List<Suit> suitlista, List<Ambiente> ambientelist, List<Usuario> usuarioslist) throws ParseException {
         int totalsuit = cantidadsuit * 3;
         int totalescenario = cantidadescenario * 4;

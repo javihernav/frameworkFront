@@ -407,6 +407,7 @@
                                         </div>
                                         <div class="form-group" style="float:right;">
                                             <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm" type="button">
+                                                <f:ajax listener ="#{gestionController.escribirParametrosURL()}"/> 
                                                 <!--<f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX"/>-->
                                             </b:commandButton>
                                         </div>
