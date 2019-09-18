@@ -397,7 +397,8 @@
                                         </div>
                                         <div class="form-group valuestep">
                                             <h:outputText value="Localizador" class="txtlocalizador"/>
-                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control localizador" value="#{gestionController.nuevopaso.valueStep}" id="valuestep"/>                                             
+                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control localizador" value="#{gestionController.nuevopaso.valueStep}" id="valuestep">
+                                            </h:inputText>                                            
                                         </div>
                                         <div class="form-group coorX">
                                             <h:outputText value="Coordenada X"/>
@@ -405,8 +406,8 @@
                                             <p>Por favor solo ingrese Valores numericos</p>
                                         </div>
                                         <div class="form-group" style="float:right;">
-                                            <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm" >
-                                                <f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX"/>
+                                            <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm" type="button">
+                                                <!--<f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX"/>-->
                                             </b:commandButton>
                                         </div>
                                         <div class="form-group" style="float:right;">
