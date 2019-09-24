@@ -599,7 +599,7 @@ function validar() {
         $('.coorY').css('display', 'block');
 
         // Funciones de teclado o sikuli
-    }else if (accion === "Sikuli Pegar Texto" || accion === "Sikuli Escribir Robot") {
+    } else if (accion === "Sikuli Pegar Texto" || accion === "Sikuli Escribir Robot") {
         //se desactivan primero por si realiza algun cambio en el select
         $('.navegador').css('display', 'none');
         $('.typestep').css('display', 'none');
@@ -609,8 +609,7 @@ function validar() {
         $('.coorY').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.valuestep').css('display', 'block');
-    } 
-    else if (accion === "Enter" || accion === "Escape" || accion === "Tab" || accion === "BackSpace" || accion === "Home" || accion === "End" || accion === "Delete" || accion === "Copy" || accion === "Cut" || accion === "Paste" || accion === "Seleccionar todo (A)" || accion === "Seleccionar todo (E)" || accion === "Find (F)" || accion === "Find (B)" || accion === "Close Tab" || accion === "Next" || accion === "Back" || accion === "Close All" || accion === "AvPag" || accion === "RePag") {
+    } else if (accion === "Enter" || accion === "Escape" || accion === "Tab" || accion === "BackSpace" || accion === "Home" || accion === "End" || accion === "Delete" || accion === "Copy" || accion === "Cut" || accion === "Paste" || accion === "Seleccionar todo (A)" || accion === "Seleccionar todo (E)" || accion === "Find (F)" || accion === "Find (B)" || accion === "Close Tab" || accion === "Next" || accion === "Back" || accion === "Close All" || accion === "AvPag" || accion === "RePag") {
         //se desactivan primero por si realiza algun cambio en el select
         $('.navegador').css('display', 'none');
         $('.typestep').css('display', 'none');
@@ -816,18 +815,58 @@ function cargando() {
     $('.imagenajax').css('display', 'block');
 }
 
-function esServicio(){
+function esServicio() {
 //    debugger;
     console.log('esServicio');
     var ambiente = document.getElementsByClassName('ambienteescenario')[0].value;
-    console.log('ambiente: '+ambiente);
-    if(ambiente==="4"){
+    console.log('ambiente: ' + ambiente);
+    if (ambiente === "4") {
         console.log('ocultando no servicios');
         $('.tituloAccion').css('display', 'none');
-        console.log('esta vacio txtAccion: '+$('#txtAccion').attr('val'));
+        console.log('esta vacio txtAccion: ' + $('#txtAccion').attr('val'));
         $('.busca').hide();
         $('.accionespaso').hide();
         $('.parametro').show();
         $('.valuestep').show();
+    }
+}
+
+function cargarDatosFuncion() {
+    ruta = document.getElementsByClassName("txtparametro")[0].value;
+    if (window.XMLHttpRequest)
+    {
+        // Objeto para IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // Objeto para IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+// Abrimos el archivo que esta alojado en el servidor cd_catalog.xml
+    xmlhttp.open("GET", ruta, false);
+    xmlhttp.send();
+
+// Obtenemos un objeto XMLDocument con el contenido del archivo xml del servidor
+    xmlDoc = xmlhttp.responseXML;
+
+// Obtenemos todos los nodos denominados element del archivo xml
+    var elementos = xmlDoc.getElementsByTagName("element");
+    console.log(elementos.getAttribute("name"));
+// Hacemos un bucle por todos los elementos foro
+    for (var i = 0; i < elementos.length; i++)
+    {
+        // Del elemento elemento, obtenemos del primer elemento denominado "titulo"
+        // el valor del primer elemento interno
+        titulo = elementos[i].getElementsByTagName("titulo")[0].childNodes[0].nodeValue
+
+        url = elementos[i].getElementsByTagName("url")[0].childNodes[0].nodeValue
+
+        document.write("<div>");
+        document.write("<span>");
+        document.write(titulo);
+        document.write("</span><span>");
+        document.write("<a href='" + url + "' target='_blank'>" + url + "</a>");
+        document.write("</span>");
+        document.write("</div>");
     }
 }
