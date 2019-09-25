@@ -796,6 +796,18 @@ function validar() {
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
     }
+     else if (accion === "probar servicio web soap") {
+        //se desactivan primero por si realiza algun cambio en el select
+        $('.navegador').css('display', 'none');
+        $('.typestep').css('display', 'none');
+        $('.valuestep').css('display', 'none');
+        $('.data').css('display', 'none');
+        $('.coorX').css('display', 'none');
+        $('.coorY').css('display', 'none');
+        //Se realiza la respectiva habilitacion de los input que necesita esta accion
+//        $('.valuestep').css('display', 'block');
+        $('.data').css('display', 'block');
+    }
 
 }
 
@@ -815,21 +827,21 @@ function cargando() {
     $('.imagenajax').css('display', 'block');
 }
 
-function esServicio() {
-//    debugger;
-    console.log('esServicio');
-    var ambiente = document.getElementsByClassName('ambienteescenario')[0].value;
-    console.log('ambiente: ' + ambiente);
-    if (ambiente === "4") {
-        console.log('ocultando no servicios');
-        $('.tituloAccion').css('display', 'none');
-        console.log('esta vacio txtAccion: ' + $('#txtAccion').attr('val'));
-        $('.busca').hide();
-        $('.accionespaso').hide();
-        $('.parametro').show();
-        $('.valuestep').show();
-    }
-}
+//function esServicio() {
+////    debugger;
+//    console.log('esServicio');
+//    var ambiente = document.getElementsByClassName('ambienteescenario')[0].value;
+//    console.log('ambiente: ' + ambiente);
+//    if (ambiente === "4") {
+//        console.log('ocultando no servicios');
+//        $('.tituloAccion').css('display', 'none');
+//        console.log('esta vacio txtAccion: ' + $('#txtAccion').attr('val'));
+//        $('.busca').hide();
+//        $('.accionespaso').hide();
+//        $('.parametro').css('display','block');
+//        $('.valuestep').show();
+//    }
+//}
 
 function cargarDatosFuncion() {
     ruta = document.getElementsByClassName("txtparametro")[0].value;
