@@ -882,3 +882,65 @@ function cargarDatosFuncion() {
         document.write("</div>");
     }
 }
+
+function borrarCampos(){
+    console.log("borrarCampos");
+    var accionespaso = document.getElementsByClassName("accionespaso")[0];
+    var typestep = document.getElementById("typestep");
+    var data = document.getElementById("data");//parametro
+    var coorY = document.getElementById("coorY");
+    var navegador = document.getElementById("navegador");
+    var valuestep = document.getElementById("valuestep");
+    var coorX= document.getElementById("coorX");
+    
+    accionespaso.innerHTML="";
+    typestep.innerHTML="";
+    data.innerHTML="";
+    coorY.innerHTML="";
+    navegador.innerHTML="";
+    valuestep.innerHTML="";
+    coorX.innerHTML="";
+} 
+
+
+
+//funciones para escanear servicio soap
+function verDatosSOAP(metodo,valor)
+
+    {
+
+       var pl = new SOAPClientParameters();
+
+        aux = valor.split('|');
+
+        //alert(aux.length);
+
+        for (x=0;x<aux.length;x++) {
+
+            pl.add("in"+x, aux[x]);
+
+        }
+
+        SOAPClient.invoke(url, metodo, pl, true, mostrarDatosSOAP);
+
+    }
+
+    function mostrarDatosSOAP(r, soapResponse)
+
+    {
+
+        if (soapResponse.xml) {                // IE
+
+            respuesta = soapResponse.xml;
+
+        } else {                                       // OTROS
+
+            respuesta = (new XMLSerializer()).serializeToString(soapResponse);
+
+        }
+
+        alert(respuesta);
+
+    }
+
+    verDatosSOAP("listado","bbdd|codigo|valor");   // metodo, parametros

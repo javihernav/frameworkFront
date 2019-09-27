@@ -336,6 +336,7 @@ public class GestionController {
             }
             nuevopaso.setOrderstep(ordenPaso);
             this.listpaso.add(nuevopaso);
+            nuevopaso = new Paso();//añadido para borrar campos
         } else {
             MessageUtil.enviarMensajeErrorGlobal("N0 SE PUEDE AGREGAR:", "La acción " + nuevopaso.getActionStep() + " ya existe.");
         }
@@ -347,7 +348,23 @@ public class GestionController {
                 this.renombrarNavegador();
             }
         });
+        //limpiar los campos
+//        limpiarCampos();
     }
+    
+    //Método para limpiar los campos después de agregar un paso.
+    public void limpiarCampos(){
+        this.nuevopaso.setCorXStep(null);
+        this.nuevopaso.setValueStep(null);
+        this.nuevopaso.setNavegador(null);
+        this.nuevopaso.setCorYStep(null);
+        this.nuevopaso.setParameterStep(null);
+        this.nuevopaso.setTypeStep(null);
+        this.setAcciones(null);
+        
+    }
+    
+    
     //Metodo para renombrar los navegadores de la lista
 
     public void renombrarNavegador() {
