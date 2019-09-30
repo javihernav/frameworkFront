@@ -5,6 +5,7 @@
  */
 package com.framework.util;
 
+import com.framework.managedbeans.ServicioSoap;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,17 +36,17 @@ import org.jdom2.input.SAXBuilder;
 public class LeerXML {
 
     /**
-     * Retorna un List con los nombres de las funciones, las variables y los
-     * tipos de variables.
+     * Retorna un List con los nombres de las funciones, las variables , los
+     * tipos de variables y el namespace al final.
      *
      * @return
      * @throws JDOMException
      * @throws IOException
      */
-    
     public static List obtenerEstructuraXml(String url) throws JDOMException, IOException {
+        //agrega ?wsdl al final de la dirección si no se ha agregado
         if (!url.contains("?wsdl") && !url.contains("?WSDL")) {
-            url=url.concat("?wsdl");
+            url = url.concat("?wsdl");
         }
         String contenido = LeerXML.leerDesdeWeb(url);
 
@@ -54,34 +55,43 @@ public class LeerXML {
 
         Element elemento = ((Document) (new SAXBuilder()).build(new File("wsdl.xml"))).getRootElement();
         Namespace namespc = elemento.getNamespace();
-        System.out.println("Elemento raiz: " + elemento.getName());
+        
+        String targetnmspc = elemento.getAttribute("targetNamespace").getValue();
+        
+//        System.out.println("Elemento raiz: " + elemento.getName() + " Namespace: " + elemento.getNamespace());
 
-        List<Element> temas = new ArrayList<>();
+        List<Element> types = new ArrayList<>();
 //        temas = elemento.getChildren("types", Namespace.getNamespace(namespc));
-        temas = elemento.getChildren("types", namespc);
+        types = elemento.getChildren("types", namespc);
+//        System.out.println("nombre: "+elemento.getChildren("service",namespc).get(0).getAttributeValue("name"));
+        String nombreServicio=elemento.getChildren("service",namespc).get(0).getAttributeValue("name");
+        for (Element e : types) {
+//            System.out.println("hijo: " + e.getName());
+            List<Element> schema = e.getChildren();
+            for (Element sub : schema) {//schema
+//                System.out.println("*      nieto: " + sub.getName());
 
-        for (Element e : temas) {
-            System.out.println("hijo: " + e.getName());
-            List<Element> subtemas = e.getChildren();
-            for (Element sub : subtemas) {//schema
-                System.out.println("*      nieto: " + sub.getName());
-
-                List<Element> subsubtemas = sub.getChildren();
-                for (Element subsub : subsubtemas) {//complextype
-                    System.out.println("*             nombreClase: " + subsub.getAttribute("name").getValue());
-                    estructura.add(new String("**"+subsub.getAttribute("name").getValue()));
+                List<Element> elem = sub.getChildren();
+                for (Element subsub : elem) {//complextype
+                    if (subsub.getName().equals("element")) {
+//                    System.out.println("*             nombreClase: " + subsub.getAttribute("name").getValue()+" "+subsub.getName());
+                    estructura.add(new String("**" + subsub.getAttribute("name").getValue()));//marca los métodos con **
+                    }
+                        
+                    
                     List<Element> subsubsubtemas = subsub.getChildren();
                     for (Element subsubsub : subsubsubtemas) {//sequence
-                        System.out.println("*                     tataranieto: " + subsubsub.getName());
+//                        System.out.println("*                     tataranieto: " + subsubsub.getName());
                         List<Element> subsubsubsubtemas = subsubsub.getChildren();
                         for (Element subsubsubsub : subsubsubsubtemas) {//element
-                            System.out.println("*                             tataratataranieto: " + subsubsubsub.getName());
+//                            System.out.println("*                             tataratataranieto: " + subsubsubsub.getName());
                             List<Element> subsubsubsubsubtemas = subsubsub.getChildren();
                             for (Element subsubsubsubsub : subsubsubsubsubtemas) {//element
-                                System.out.println("*                                     tataratataranieto: " + subsubsubsubsub.getName());
+//                                System.out.println("*                                     tataratataranieto: " + subsubsubsubsub.getName());
                                 List<Element> ssubtemas = subsubsubsubsub.getChildren();
+                                
                                 for (Element x : ssubtemas) {//element
-                                    System.out.println("*                                     nombreVariable: " + x.getAttributeValue("name") + " " + x.getAttributeValue("type"));
+//                                    System.out.println("*                                     nombreVariable: " + x.getAttributeValue("name") + " " + x.getAttributeValue("type"));
                                     estructura.add(new String(x.getAttribute("name").getValue()));
                                     estructura.add(new String(x.getAttribute("type").getValue()));
                                 }
@@ -91,6 +101,12 @@ public class LeerXML {
                 }
             }
         }
+//        namespc=elemento.getAdditionalNamespaces().get(1);
+//        estructura.add(namespc.getURI());
+        estructura.add(targetnmspc);
+        estructura.add("SS"+nombreServicio);
+        
+        
         return estructura;
     }
 
@@ -119,10 +135,13 @@ public class LeerXML {
             }
             in.close();
         } catch (MalformedURLException ex) {
+             ex.printStackTrace(System.out);
             Logger.getLogger(LeerXML.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+             ex.printStackTrace(System.out);
             Logger.getLogger(LeerXML.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("Texto obtenido de: "+direccion);
         return str2;
     }
 
@@ -157,7 +176,9 @@ public class LeerXML {
 //        System.out.println("contenido: " + contenido);
 //        File archivo = LeerXML.convertirStringAArchivo(contenido, "wsdl.xml");
 
-        List estruc = LeerXML.obtenerEstructuraXml("http://fx.cloanto.com/webservices/CloantoCurrencyServer.asmx");
+//        List estruc = LeerXML.obtenerEstructuraXml("http://www.dneonline.com/calculator.asmx");
+//        System.out.println("Datos: " + estruc.toString());
+        List estruc = LeerXML.obtenerEstructuraXml("http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso");
         System.out.println("Datos: " + estruc.toString());
     }
 

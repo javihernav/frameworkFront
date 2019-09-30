@@ -411,19 +411,27 @@
                                                 <p>Por favor solo ingrese Valores numericos</p>
                                             </div>
                                             <div class="form-group" style="float:right;">
-                                                <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm" type="button" onclick="cargarDatosFuncion()">
+                                                <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm"  onclick="cargarDatosFuncion()">
 
-                                                    <!--<f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX"/>-->
+                                                    <f:ajax execute="data" render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX" listener="#{ObtenerDatosSOAP.obtenerEstructuraXml(gestionController.nuevopaso.parameterStep.toString())}" />
                                                 </b:commandButton>
                                             </div>
                                             <div class="form-group" style="float:right;">
                                                 <b:commandButton value="Agregar Paso" class="btn btn-success btn-sm" actionListener="#{gestionController.agregarpaso()}" update="datospaso" >
-                                                    <f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX" />
+                                                    <f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX" /> 
                                                 </b:commandButton>
                                             </div>
                                         </div>
 
                                     </p:fieldset>
+
+                                    <div>
+                                        <c:forEach var="item" items="#{ObtenerDatosSOAP.metodos}">
+                                            <h:outputText value="#{item}"/><br/>
+
+                                        </c:forEach>
+
+                                    </div>
 
                                     <div  id="divtable">
                                         <div class="container col-11">

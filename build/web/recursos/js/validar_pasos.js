@@ -1,10 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 
 function validar() {
     //Definicion de variables 
@@ -882,65 +875,66 @@ function cargarDatosFuncion() {
         document.write("</div>");
     }
 }
-
-function borrarCampos(){
-    console.log("borrarCampos");
-    var accionespaso = document.getElementsByClassName("accionespaso")[0];
-    var typestep = document.getElementById("typestep");
-    var data = document.getElementById("data");//parametro
-    var coorY = document.getElementById("coorY");
-    var navegador = document.getElementById("navegador");
-    var valuestep = document.getElementById("valuestep");
-    var coorX= document.getElementById("coorX");
-    
-    accionespaso.innerHTML="";
-    typestep.innerHTML="";
-    data.innerHTML="";
-    coorY.innerHTML="";
-    navegador.innerHTML="";
-    valuestep.innerHTML="";
-    coorX.innerHTML="";
-} 
+//borra los datos del formulario despues de haber agreagado el paso
+//la función no funciona con fases
+//function borrarCampos(){
+//    console.log("borrarCampos");
+//    var accionespaso = document.getElementsByClassName("accionespaso")[0];
+//    var typestep = document.getElementById("typestep");
+//    var data = document.getElementById("data");//parametro
+//    var coorY = document.getElementById("coorY");
+//    var navegador = document.getElementById("navegador");
+//    var valuestep = document.getElementById("valuestep");
+//    var coorX= document.getElementById("coorX");
+//    
+//    accionespaso.innerHTML="";
+//    typestep.innerHTML="";
+//    data.innerHTML="";
+//    coorY.innerHTML="";
+//    navegador.innerHTML="";
+//    valuestep.innerHTML="";
+//    coorX.innerHTML="";
+//} 
 
 
 
 //funciones para escanear servicio soap
-function verDatosSOAP(metodo,valor)
+//function verDatosSOAP(metodo,valor)
+//
+//    {
+//
+//       var pl = new SOAPClientParameters();
+//
+//        aux = valor.split('|');
+//
+//        //alert(aux.length);
+//
+//        for (x=0;x<aux.length;x++) {
+//
+//            pl.add("in"+x, aux[x]);
+//
+//        }
+//
+//        SOAPClient.invoke(url, metodo, pl, true, mostrarDatosSOAP);
+//
+//    }
 
-    {
+//    function mostrarDatosSOAP(r, soapResponse)
+//
+//    {
+//
+//        if (soapResponse.xml) {                // IE
+//
+//            respuesta = soapResponse.xml;
+//
+//        } else {                                       // OTROS
+//
+//            respuesta = (new XMLSerializer()).serializeToString(soapResponse);
+//
+//        }
+//
+//        alert(respuesta);
+//
+//    }
 
-       var pl = new SOAPClientParameters();
-
-        aux = valor.split('|');
-
-        //alert(aux.length);
-
-        for (x=0;x<aux.length;x++) {
-
-            pl.add("in"+x, aux[x]);
-
-        }
-
-        SOAPClient.invoke(url, metodo, pl, true, mostrarDatosSOAP);
-
-    }
-
-    function mostrarDatosSOAP(r, soapResponse)
-
-    {
-
-        if (soapResponse.xml) {                // IE
-
-            respuesta = soapResponse.xml;
-
-        } else {                                       // OTROS
-
-            respuesta = (new XMLSerializer()).serializeToString(soapResponse);
-
-        }
-
-        alert(respuesta);
-
-    }
-
-    verDatosSOAP("listado","bbdd|codigo|valor");   // metodo, parametros
+//    verDatosSOAP("listado","bbdd|codigo|valor");   // metodo, parametros

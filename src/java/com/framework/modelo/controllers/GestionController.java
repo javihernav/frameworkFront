@@ -336,7 +336,7 @@ public class GestionController {
             }
             nuevopaso.setOrderstep(ordenPaso);
             this.listpaso.add(nuevopaso);
-            nuevopaso = new Paso();//añadido para borrar campos
+//            nuevopaso = new Paso();//añadido para borrar campos
         } else {
             MessageUtil.enviarMensajeErrorGlobal("N0 SE PUEDE AGREGAR:", "La acción " + nuevopaso.getActionStep() + " ya existe.");
         }
