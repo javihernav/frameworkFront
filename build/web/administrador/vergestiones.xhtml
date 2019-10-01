@@ -342,7 +342,7 @@
                                     </div>
                                     <!-- Primer Columna -->
 
-                                    <p:fieldset widgetVar="datospaso" legend="datos del paso" toggleable="true" toggleSpeed="500">
+                                    <!--<p:fieldset widgetVar="datospaso" legend="datos del paso" toggleable="true" toggleSpeed="500">-->
 
                                         <div class="col-md-6" id="col1">
                                             <div class="form-group">
@@ -411,9 +411,10 @@
                                                 <p>Por favor solo ingrese Valores numericos</p>
                                             </div>
                                             <div class="form-group" style="float:right;">
-                                                <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm"  onclick="cargarDatosFuncion()">
+                                                <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm">
 
-                                                    <f:ajax execute="data" render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX" listener="#{ObtenerDatosSOAP.obtenerEstructuraXml(gestionController.nuevopaso.parameterStep.toString())}" />
+                                                    <f:ajax execute="data" render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX metodos" listener="#{ gestionController.obtenerEstructuraXml( gestionController.nuevopaso.parameterStep)}" />
+)}" />
                                                 </b:commandButton>
                                             </div>
                                             <div class="form-group" style="float:right;">
@@ -423,10 +424,12 @@
                                             </div>
                                         </div>
 
-                                    </p:fieldset>
+                                    <!--</p:fieldset>-->
 
-                                    <div>
-                                        <c:forEach var="item" items="#{ObtenerDatosSOAP.metodos}">
+                                        <h:outputText value="metodos: #{gestionController.metodos.toString()}" id="metodos" />
+                                    <div >
+                                        <br/>
+                                        <c:forEach var="item" items="#{gestionController.metodos}" >
                                             <h:outputText value="#{item}"/><br/>
 
                                         </c:forEach>

@@ -10,7 +10,14 @@ import com.framework.modelo.entities.*;
 import com.framework.modelo.facades.*;
 import com.framework.util.LeerXML;
 import com.framework.util.MessageUtil;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +30,11 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.servlet.http.Part;
+import org.jdom2.Document;
+import org.jdom2.Element;
 import org.jdom2.JDOMException;
+import org.jdom2.Namespace;
+import org.jdom2.input.SAXBuilder;
 
 /**
  *
@@ -32,6 +43,8 @@ import org.jdom2.JDOMException;
 @Named(value = "gestionController")
 @RequestScoped
 public class GestionController {
+
+    private ArrayList metodos;
 
     @EJB
     private SuitFacadeLocal suitfacadelocal;
@@ -351,9 +364,9 @@ public class GestionController {
         //limpiar los campos
 //        limpiarCampos();
     }
-    
+
     //Método para limpiar los campos después de agregar un paso.
-    public void limpiarCampos(){
+    public void limpiarCampos() {
         this.nuevopaso.setCorXStep(null);
         this.nuevopaso.setValueStep(null);
         this.nuevopaso.setNavegador(null);
@@ -361,12 +374,10 @@ public class GestionController {
         this.nuevopaso.setParameterStep(null);
         this.nuevopaso.setTypeStep(null);
         this.setAcciones(null);
-        
-    }
-    
-    
-    //Metodo para renombrar los navegadores de la lista
 
+    }
+
+    //Metodo para renombrar los navegadores de la lista
     public void renombrarNavegador() {
         GestionController.listpaso.forEach((pass) -> {
             pass.setNavegador(nuevopaso.getNavegador());
@@ -391,7 +402,7 @@ public class GestionController {
 
         init();
         listpaso.clear();
-    
+
     }
 
     //Metodo para registrar suit,escenario,caso y pasos 
@@ -496,12 +507,12 @@ public class GestionController {
 
     //Metodo para carga masiva de ejecucion
     public void uploadEjecucion() throws ParseException {
-        
+
         try {
             Thread.sleep(2000);
         } catch (Exception e) {
         }
-       
+
         try {
 
             //Envio del archivo
@@ -705,7 +716,7 @@ public class GestionController {
                             break;
                         case "":
                             TypeValido = "yes";
-                            crearpaso +=1;
+                            crearpaso += 1;
                             break;
                         default:
                             crearpaso = 0;
@@ -739,11 +750,11 @@ public class GestionController {
                     crearpaso = 0;
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL PASO: ", "El caso al que se quiere asignar el paso no exsiste.");
                 }
-                
-                if(pass.getOrderstep() == 0){
+
+                if (pass.getOrderstep() == 0) {
                     crearpaso = 0;
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL PASO: ", "El orden de algun paso esta vacio o el valor es 0.");
-                }else{
+                } else {
                     crearpaso += 1;
                 }
 
@@ -759,7 +770,7 @@ public class GestionController {
         }
     }
 
-    public void escribirParametrosURL(){
+    public void escribirParametrosURL() {
         try {
             nuevopaso.setValueStep(LeerXML.obtenerEstructuraXml(nuevopaso.getParameterStep()).toString());
         } catch (JDOMException ex) {
@@ -767,9 +778,9 @@ public class GestionController {
         } catch (IOException ex) {
             Logger.getLogger(GestionController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
-    
+
     public void registrocargas(String archivoDestino, List<Caso> casoexcel, List<Escenario> escenarioslist, List<Suit> suitlista, List<Ambiente> ambientelist, List<Usuario> usuarioslist) throws ParseException {
         int totalsuit = cantidadsuit * 3;
         int totalescenario = cantidadescenario * 4;
@@ -862,6 +873,140 @@ public class GestionController {
         } else {
             MessageUtil.enviarMensajeErrorGlobal("NO SE PUEDE REGISTRAR LOS DATOS: ", "Verificar los datos de las suit.");
         }
+    }
+
+    //métodos para leer servicio web soap
+    public void obtenerEstructuraXml(String url) throws JDOMException, IOException {
+        System.out.println("Obteniendo estructura de: "+url);
+        //agrega ?wsdl al final de la dirección si no se ha agregado
+       
+        if (!url.contains("?wsdl") && !url.contains("?WSDL")) {
+            url = url.concat("?wsdl");
+        }
+        String contenido = LeerXML.leerDesdeWeb(url);
+
+        File archivo = LeerXML.convertirStringAArchivo(contenido, "wsdl.xml");
+        List estructura = new ArrayList();
+
+        Element elemento = ((Document) (new SAXBuilder()).build(new File("wsdl.xml"))).getRootElement();
+        Namespace namespc = elemento.getNamespace();
+
+        String targetnmspc = elemento.getAttribute("targetNamespace").getValue();
+
+//        System.out.println("Elemento raiz: " + elemento.getName() + " Namespace: " + elemento.getNamespace());
+        List<Element> types = new ArrayList<>();
+//        temas = elemento.getChildren("types", Namespace.getNamespace(namespc));
+        types = elemento.getChildren("types", namespc);
+//        System.out.println("nombre: "+elemento.getChildren("service",namespc).get(0).getAttributeValue("name"));
+        String nombreServicio = elemento.getChildren("service", namespc).get(0).getAttributeValue("name");
+        for (Element e : types) {
+//            System.out.println("hijo: " + e.getName());
+            List<Element> schema = e.getChildren();
+            for (Element sub : schema) {//schema
+//                System.out.println("*      nieto: " + sub.getName());
+
+                List<Element> elem = sub.getChildren();
+                for (Element subsub : elem) {//complextype
+                    if (subsub.getName().equals("element")) {
+//                    System.out.println("*             nombreClase: " + subsub.getAttribute("name").getValue()+" "+subsub.getName());
+                        estructura.add(new String("**" + subsub.getAttribute("name").getValue()));//marca los métodos con **
+                    }
+
+                    List<Element> subsubsubtemas = subsub.getChildren();
+                    for (Element subsubsub : subsubsubtemas) {//sequence
+//                        System.out.println("*                     tataranieto: " + subsubsub.getName());
+                        List<Element> subsubsubsubtemas = subsubsub.getChildren();
+                        for (Element subsubsubsub : subsubsubsubtemas) {//element
+//                            System.out.println("*                             tataratataranieto: " + subsubsubsub.getName());
+                            List<Element> subsubsubsubsubtemas = subsubsub.getChildren();
+                            for (Element subsubsubsubsub : subsubsubsubsubtemas) {//element
+//                                System.out.println("*                                     tataratataranieto: " + subsubsubsubsub.getName());
+                                List<Element> ssubtemas = subsubsubsubsub.getChildren();
+
+                                for (Element x : ssubtemas) {//element
+//                                    System.out.println("*                                     nombreVariable: " + x.getAttributeValue("name") + " " + x.getAttributeValue("type"));
+                                    estructura.add(new String(x.getAttribute("name").getValue()));
+                                    estructura.add(new String(x.getAttribute("type").getValue()));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+//        namespc=elemento.getAdditionalNamespaces().get(1);
+//        estructura.add(namespc.getURI());
+        estructura.add(targetnmspc);
+        estructura.add("SS" + nombreServicio);
+        metodos = (ArrayList) estructura;
+        System.out.println("metodos: "+metodos.toString());
+    }
+
+    /**
+     * Lee un archivo que esta en la ubicación de internet proporcionada en la
+     * variable direccion.
+     *
+     * @param direccion
+     * @return
+     */
+    public String leerDesdeWeb(String direccion) {
+        String str1 = "";
+        String str2 = "";
+
+        URL url;
+        BufferedReader in = null;
+        try {
+            url = new URL(direccion);
+
+            //lee todo el texto retornado por el servidor
+            in = new BufferedReader(new InputStreamReader(url.openStream()));
+
+            while ((str1 = in.readLine()) != null) {
+                str2 = str2 + str1;
+            }
+            in.close();
+        } catch (MalformedURLException ex) {
+            ex.printStackTrace(System.out);
+            Logger.getLogger(LeerXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+            Logger.getLogger(LeerXML.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Texto obtenido de: " + direccion);
+        return str2;
+    }
+
+    /**
+     * Toma una cadena de texto y la pone como contenido de un archivo cuyo
+     * nombre se especifica en nombreArchivo y esta ubicado en la raiz del
+     * proyecto
+     *
+     * @param contenido
+     * @param nombreArchivo
+     * @return
+     * @throws IOException
+     */
+    public File convertirStringAArchivo(String contenido, String nombreArchivo) throws IOException {
+        String ruta = nombreArchivo;
+        File archivo = new File(ruta);
+        BufferedWriter bw;
+        if (archivo.exists()) {
+            bw = new BufferedWriter(new FileWriter(archivo, false));
+            bw.write(contenido);
+        } else {
+            bw = new BufferedWriter(new FileWriter(archivo));
+            bw.write(contenido);
+        }
+        bw.close();
+        return archivo;
+    }
+
+    public ArrayList getMetodos() {
+        return metodos;
+    }
+
+    public void setMetodos(ArrayList metodos) {
+        this.metodos = metodos;
     }
 
 }

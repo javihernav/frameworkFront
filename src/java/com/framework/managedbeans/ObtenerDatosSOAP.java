@@ -138,13 +138,13 @@ public class ObtenerDatosSOAP {
         String str1 = "";
         String str2 = "";
 
-        // Create a URL for the desired page
+        
         URL url;
         BufferedReader in = null;
         try {
             url = new URL(direccion);
 
-            // Read all the text returned by the server
+            //lee todo el texto retornado por el servidor
             in = new BufferedReader(new InputStreamReader(url.openStream()));
 
             while ((str1 = in.readLine()) != null) {
@@ -177,7 +177,7 @@ public class ObtenerDatosSOAP {
         File archivo = new File(ruta);
         BufferedWriter bw;
         if (archivo.exists()) {
-            bw = new BufferedWriter(new FileWriter(archivo));
+            bw = new BufferedWriter(new FileWriter(archivo,false));
             bw.write(contenido);
         } else {
             bw = new BufferedWriter(new FileWriter(archivo));
