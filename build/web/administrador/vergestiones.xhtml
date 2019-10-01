@@ -8,7 +8,8 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"> <!--para usar las funciones jstl-->
 
     <ui:define name="contenido">    
         <div class="col-12 mt-5">
@@ -165,7 +166,7 @@
 
 
 
-                                                    <h:outputText id="entorn" value="|| #{gestionController.nuevoescenario.idAmbiente.nombreAmbiente} ||" />
+                                                    <!--<h:outputText id="entorn" value="|| #{gestionController.nuevoescenario.idAmbiente.nombreAmbiente} ||" />-->
 
 
 
@@ -344,98 +345,137 @@
 
                                     <!--<p:fieldset widgetVar="datospaso" legend="datos del paso" toggleable="true" toggleSpeed="500">-->
 
-                                        <div class="col-md-6" id="col1">
+                                    <div class="col-md-6" id="col1">
+                                        <div class="form-group">
                                             <div class="form-group">
-                                                <div class="form-group">
 
-                                                    <h:outputText id="tituloAccion"  class="tituloAccion" value="Acción del paso"  />
-                                                    <!-- -->
-                                                    <h:inputText id="txtAccion" class="busca form-control col-md-6" autocomplete="off" value="#{accionesController.fragmento}" onkeyup="mostrarOpcionesSelect('formulario:accionespaso')" a:placeholder="Ingrese cualquier parte del nombre y seleccione el paso de la lista" >
-                                                        <f:ajax event="keyup" listener="#{accionesController.buscarAccionesNombreParcial()}" render="accionespaso"/>
-                                                    </h:inputText>
+                                                <h:outputText id="tituloAccion"  class="tituloAccion" value="Acción del paso"  />
+                                                <!-- -->
+                                                <h:inputText id="txtAccion" class="busca form-control col-md-6" autocomplete="off" value="#{accionesController.fragmento}" onkeyup="mostrarOpcionesSelect('formulario:accionespaso')" a:placeholder="Ingrese cualquier parte del nombre y seleccione el paso de la lista" >
+                                                    <f:ajax event="keyup" listener="#{accionesController.buscarAccionesNombreParcial()}" render="accionespaso"/>
+                                                </h:inputText>
 
 
-                                                    <!-- -->
-                                                    <h:selectOneListbox class="form-control accionespaso" style="height: 108px;"  value="#{gestionController.nuevopaso.actionStep}" id="accionespaso" >
-                                                        <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
-                                                        <f:selectItems value="#{accionesController.acciones}" var="a" itemValue="#{a.nombreAccion}" itemLabel="#{a.nombreAccion}"/>
-                                                        <f:ajax event="change" onevent="validar()"/>
-                                                    </h:selectOneListbox>
+                                                <!-- -->
+                                                <h:selectOneListbox class="form-control accionespaso" style="height: 108px;"  value="#{gestionController.nuevopaso.actionStep}" id="accionespaso" >
+                                                    <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
+                                                    <f:selectItems value="#{accionesController.acciones}" var="a" itemValue="#{a.nombreAccion}" itemLabel="#{a.nombreAccion}"/>
+                                                    <f:ajax event="change" onevent="validar()"/>
+                                                </h:selectOneListbox>
 
-                                                </div>
-                                                <div class="form-group typestep">
-                                                    <h:outputText value="Tipo de Localizador" />
-                                                    <h:selectOneMenu class="form-control" style="height: 36px;"  value ="#{gestionController.nuevopaso.typeStep}" id="typestep" >
-                                                        <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
-                                                        <f:selectItem itemValue="ID" itemLabel="ID"></f:selectItem>
-                                                        <f:selectItem itemValue="Name" itemLabel="Name"></f:selectItem>
-                                                        <f:selectItem itemValue="ClassName" itemLabel="Class Name"></f:selectItem>
-                                                        <f:selectItem itemValue="LinkText" itemLabel="Link Text"></f:selectItem>
-                                                        <f:selectItem itemValue="PartialLinkText" itemLabel="Partial Link Text"></f:selectItem>
-                                                        <f:selectItem itemValue="TagName" itemLabel="Tag Name"></f:selectItem>
-                                                        <f:selectItem itemValue="XPath" itemLabel="XPath"></f:selectItem>
-                                                        <f:selectItem itemValue="CssSelector" itemLabel="Css Selector"></f:selectItem>
-                                                    </h:selectOneMenu>
-                                                </div>
-                                                <div class="form-group data parametro">
-                                                    <h:outputText value="Parámetro" class="txtparametro"/>
-                                                    <h:inputText autocomplete="off" style="height: 36px;"  class="form-control parametro" value="#{gestionController.nuevopaso.parameterStep}" id="data"/>
-
-                                                </div>
-                                                <div class="form-group coorY" >
-                                                    <h:outputText value="Coordenada Y"/>
-                                                    <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corYStep}" id="coorY"/>                                                           
-                                                    <p>Por favor solo ingrese Valores numericos</p>
-                                                </div>
                                             </div>
-                                        </div>
-                                        <!-- Segunda Columna -->
-                                        <div class="col-md-6" >
-                                            <div class="form-group navegador">
-                                                <h:outputText value="Navegador" />
-                                                <h:selectOneMenu class="form-control" style="height: 36px;"  value="#{gestionController.nuevopaso.navegador}" id="navegador" >
+                                            <div class="form-group typestep">
+                                                <h:outputText value="Tipo de Localizador" />
+                                                <h:selectOneMenu class="form-control" style="height: 36px;"  value ="#{gestionController.nuevopaso.typeStep}" id="typestep" >
                                                     <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
-                                                    <f:selectItem itemValue="Chrome" itemLabel="Chrome"></f:selectItem>
-                                                    <f:selectItem itemValue="Firefox" itemLabel="Firefox"></f:selectItem>
-                                                    <f:selectItem itemValue="InternetExplorer" itemLabel="Internet Explorer"></f:selectItem>
+                                                    <f:selectItem itemValue="ID" itemLabel="ID"></f:selectItem>
+                                                    <f:selectItem itemValue="Name" itemLabel="Name"></f:selectItem>
+                                                    <f:selectItem itemValue="ClassName" itemLabel="Class Name"></f:selectItem>
+                                                    <f:selectItem itemValue="LinkText" itemLabel="Link Text"></f:selectItem>
+                                                    <f:selectItem itemValue="PartialLinkText" itemLabel="Partial Link Text"></f:selectItem>
+                                                    <f:selectItem itemValue="TagName" itemLabel="Tag Name"></f:selectItem>
+                                                    <f:selectItem itemValue="XPath" itemLabel="XPath"></f:selectItem>
+                                                    <f:selectItem itemValue="CssSelector" itemLabel="Css Selector"></f:selectItem>
                                                 </h:selectOneMenu>
                                             </div>
-                                            <div class="form-group valuestep">
-                                                <h:outputText value="Localizador" class="txtlocalizador"/>
-                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control localizador" value="#{gestionController.nuevopaso.valueStep}" id="valuestep">
-                                                </h:inputText>                                            
+                                            <div class="form-group data parametro">
+                                                <h:outputText value="Parámetro" class="txtparametro"/>
+                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control parametro" value="#{gestionController.nuevopaso.parameterStep}" id="data"/>
+
                                             </div>
-                                            <div class="form-group coorX">
-                                                <h:outputText value="Coordenada X"/>
-                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corXStep}" id="coorX"/>
+                                            <div class="form-group coorY" >
+                                                <h:outputText value="Coordenada Y"/>
+                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corYStep}" id="coorY"/>                                                           
                                                 <p>Por favor solo ingrese Valores numericos</p>
                                             </div>
-                                            <div class="form-group" style="float:right;">
-                                                <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm">
-
-                                                    <f:ajax execute="data" render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX metodos" listener="#{ gestionController.obtenerEstructuraXml( gestionController.nuevopaso.parameterStep)}" />
-)}" />
-                                                </b:commandButton>
-                                            </div>
-                                            <div class="form-group" style="float:right;">
-                                                <b:commandButton value="Agregar Paso" class="btn btn-success btn-sm" actionListener="#{gestionController.agregarpaso()}" update="datospaso" >
-                                                    <f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX" /> 
-                                                </b:commandButton>
-                                            </div>
                                         </div>
-
-                                    <!--</p:fieldset>-->
-
-                                        <h:outputText value="metodos: #{gestionController.metodos.toString()}" id="metodos" />
-                                    <div >
-                                        <br/>
-                                        <c:forEach var="item" items="#{gestionController.metodos}" >
-                                            <h:outputText value="#{item}"/><br/>
-
-                                        </c:forEach>
-
+                                    </div>
+                                    <!-- Segunda Columna -->
+                                    <div class="col-md-6" >
+                                        <div class="form-group navegador">
+                                            <h:outputText value="Navegador" />
+                                            <h:selectOneMenu class="form-control" style="height: 36px;"  value="#{gestionController.nuevopaso.navegador}" id="navegador" >
+                                                <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
+                                                <f:selectItem itemValue="Chrome" itemLabel="Chrome"></f:selectItem>
+                                                <f:selectItem itemValue="Firefox" itemLabel="Firefox"></f:selectItem>
+                                                <f:selectItem itemValue="InternetExplorer" itemLabel="Internet Explorer"></f:selectItem>
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="form-group valuestep">
+                                            <h:outputText value="Localizador" class="txtlocalizador"/>
+                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control localizador" value="#{gestionController.nuevopaso.valueStep}" id="valuestep">
+                                            </h:inputText>                                            
+                                        </div>
+                                        <div class="form-group coorX">
+                                            <h:outputText value="Coordenada X"/>
+                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corXStep}" id="coorX"/>
+                                            <p>Por favor solo ingrese Valores numericos</p>
+                                        </div>
+                                        <div class="form-group" style="float:right;">
+                                            <b:commandButton value="Agregar Paso" class="btn btn-success btn-sm" actionListener="#{gestionController.agregarpaso()}" update="datospaso" >
+                                                <f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX" /> 
+                                            </b:commandButton>
+                                        </div>
                                     </div>
 
+                                    <!--</p:fieldset>-->
+                                    <h:panelGroup id="ajaxResult" layout="block"> 
+                                        <div class="form-group" style="float:right;">
+                                            <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm">
+
+                                                <f:ajax execute="data" render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX ajaxResult" listener="#{ gestionController.obtenerEstructuraXml( gestionController.nuevopaso.parameterStep)}" />
+
+                                            </b:commandButton>
+                                        </div>
+                                        <!--<h:outputText value="metodos: #{gestionController.metodos.toString()}" id="metodos" />-->
+                                        <div >
+                                            <br/>
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Método
+                                                        </th>
+                                                        <th>
+                                                            Variable
+                                                        </th>
+                                                        <th>
+                                                            Tipo
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                            <c:forEach var="item" items="#{gestionController.metodos}" >
+                                                <c:choose>
+
+                                                    <c:when test="${fn:contains(item.toString(), '**')}" >
+                                                        <tr>
+                                                            <td>
+                                                            <h:outputText value="Método: #{item.toString().substring(2)}"/>
+                                                            </td>
+                                                        </tr>
+                                                    </c:when>
+                                                    <c:when test="${fn:contains(item.toString(), 'SS')}" >
+                                                        <h:outputText value="Nombre del Servicio: #{item.toString().substring(2)}"/><br/>
+                                                    </c:when>
+                                                        
+                                                                
+                                                    <c:when test="${fn:contains(item.toString(), ':')}" >
+                                                        <tr><td><h:outputText value="TipoDato: #{item.toString()}"/></td></tr>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <tr><td><b><h:outputText value="Variable: #{item.toString()}   "/></b><h:inputText></h:inputText></td></tr>
+
+                                                    </c:otherwise>
+                                                </c:choose>
+
+                                            </c:forEach>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </h:panelGroup>
                                     <div  id="divtable">
                                         <div class="container col-11">
                                             <h:dataTable class="table table-bordered table-hover" id="table" value="#{gestionController.listpaso}"  var="p">
@@ -443,8 +483,7 @@
                                                     <f:facet name="header">
                                                         <h:outputLabel value="Acción"/>
                                                     </f:facet>
-                                                    <h:outputLabel value="#{p.id} - #{p.actionStep}">
-                                                    </h:outputLabel>
+                                                    <h:outputLabel value="#{p.id} - #{p.actionStep}"/>
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">
