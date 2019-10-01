@@ -899,6 +899,8 @@ public class GestionController {
         types = elemento.getChildren("types", namespc);
 //        System.out.println("nombre: "+elemento.getChildren("service",namespc).get(0).getAttributeValue("name"));
         String nombreServicio = elemento.getChildren("service", namespc).get(0).getAttributeValue("name");
+ArrayList metodo=new ArrayList();
+ArrayList parametro = new ArrayList();
         for (Element e : types) {
 //            System.out.println("hijo: " + e.getName());
             List<Element> schema = e.getChildren();
@@ -909,7 +911,11 @@ public class GestionController {
                 for (Element subsub : elem) {//complextype
                     if (subsub.getName().equals("element")) {
 //                    System.out.println("*             nombreClase: " + subsub.getAttribute("name").getValue()+" "+subsub.getName());
-                        estructura.add(new String("**" + subsub.getAttribute("name").getValue()));//marca los métodos con **
+
+ metodo=new ArrayList();
+
+                        metodo.add(new String("**" + subsub.getAttribute("name").getValue()));//marca los métodos con **
+//                        estructura.add(new String("**" + subsub.getAttribute("name").getValue()));//marca los métodos con **
                     }
 
                     List<Element> subsubsubtemas = subsub.getChildren();
@@ -925,8 +931,13 @@ public class GestionController {
 
                                 for (Element x : ssubtemas) {//element
 //                                    System.out.println("*                                     nombreVariable: " + x.getAttributeValue("name") + " " + x.getAttributeValue("type"));
-                                    estructura.add(new String(x.getAttribute("name").getValue()));
-                                    estructura.add(new String(x.getAttribute("type").getValue()));
+parametro = new ArrayList();
+
+                                    parametro.add(new String(x.getAttribute("name").getValue()));
+                                    parametro.add(new String(x.getAttribute("type").getValue()));
+                                    metodo.add(parametro);
+//                                    estructura.add(new String(x.getAttribute("name").getValue()));
+//                                    estructura.add(new String(x.getAttribute("type").getValue()));
                                 }
                             }
                         }
@@ -950,8 +961,8 @@ public class GestionController {
      * @return
      */
     public String leerDesdeWeb(String direccion) {
-        String str1 = "";
-        String str2 = "";
+        String stringTemporal = "";
+        String textoCompleto = "";
 
         URL url;
         BufferedReader in = null;
@@ -961,8 +972,8 @@ public class GestionController {
             //lee todo el texto retornado por el servidor
             in = new BufferedReader(new InputStreamReader(url.openStream()));
 
-            while ((str1 = in.readLine()) != null) {
-                str2 = str2 + str1;
+            while ((stringTemporal = in.readLine()) != null) {
+                textoCompleto = textoCompleto + stringTemporal;
             }
             in.close();
         } catch (MalformedURLException ex) {
@@ -973,7 +984,7 @@ public class GestionController {
             Logger.getLogger(LeerXML.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Texto obtenido de: " + direccion);
-        return str2;
+        return textoCompleto;
     }
 
     /**
@@ -981,21 +992,21 @@ public class GestionController {
      * nombre se especifica en nombreArchivo y esta ubicado en la raiz del
      * proyecto
      *
-     * @param contenido
+     * @param textoArchivo
      * @param nombreArchivo
      * @return
      * @throws IOException
      */
-    public File convertirStringAArchivo(String contenido, String nombreArchivo) throws IOException {
+    public File convertirStringAArchivo(String textoArchivo, String nombreArchivo) throws IOException {
         String ruta = nombreArchivo;
         File archivo = new File(ruta);
         BufferedWriter bw;
         if (archivo.exists()) {
             bw = new BufferedWriter(new FileWriter(archivo, false));
-            bw.write(contenido);
+            bw.write(textoArchivo);
         } else {
             bw = new BufferedWriter(new FileWriter(archivo));
-            bw.write(contenido);
+            bw.write(textoArchivo);
         }
         bw.close();
         return archivo;
