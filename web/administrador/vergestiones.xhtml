@@ -428,6 +428,9 @@
                                             </b:commandButton>
                                         </div>
                                         <!--<h:outputText value="metodos: #{gestionController.metodos.toString()}" id="metodos" />-->
+                                                
+                                    <!--tabla de métodos del servicio soap-->
+                                    
                                         <div >
                                             <br/>
                                             <table class="table table-bordered table-hover">
@@ -437,53 +440,109 @@
                                                             Método
                                                         </th>
                                                         <th>
-                                                            Variable
+                                                            TargetNamespace
                                                         </th>
                                                         <th>
-                                                            Tipo
+                                                            Parametro
                                                         </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    
-                                            <c:forEach var="item" items="#{gestionController.metodos}" >
-                                                <c:choose>
 
-                                                    <c:when test="${fn:contains(item.toString(), '**')}" >
+                                                    <c:forEach var="item" items="#{gestionController.metodos}" >
                                                         <tr>
                                                             <td>
-                                                            <h:outputText value="Método: #{item.toString().substring(2)}"/>
+                                                                <h:outputText value="#{item.nombre}"/>
+                                                            </td>
+                                                            <td>
+                                                                <h:outputText value="#{item.targetNamespace}"/>
+                                                            </td>
+                                                            <td>
+
+
+
+                                                                <table>
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>
+                                                                                Nombre
+                                                                            </th>
+                                                                            <th>
+                                                                                Tipo
+                                                                            </th>
+                                                                            <th>
+                                                                                Origen
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <c:forEach var="variable" items="#{item.parametros}" >
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <h:outputText value="#{variable.nombre}"/>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <h:outputText value="#{variable.tipo}"/>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <h:inputText value="#{variable.origen}"/>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                        </c:forEach>
+                                                                    </tbody>
+                                                                </table>
+
+
                                                             </td>
                                                         </tr>
-                                                    </c:when>
-                                                    <c:when test="${fn:contains(item.toString(), 'SS')}" >
-                                                        <h:outputText value="Nombre del Servicio: #{item.toString().substring(2)}"/><br/>
-                                                    </c:when>
+                                                        <!--                                                <c:choose>
                                                         
-                                                                
-                                                    <c:when test="${fn:contains(item.toString(), ':')}" >
-                                                        <tr><td><h:outputText value="TipoDato: #{item.toString()}"/></td></tr>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <tr><td><b><h:outputText value="Variable: #{item.toString()}   "/></b><h:inputText></h:inputText></td></tr>
+                                                                                                            <c:when test="${fn:contains(item.toString(), '**')}" >
+                                                                                                                <tr>
+                                                                                                                    <td>
+                                                                                                                    <h:outputText value="Método: #{item.toString().substring(2)}"/>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </c:when>
+                                                                                                            <c:when test="${fn:contains(item.toString(), 'SS')}" >
+                                                                                                                <h:outputText value="Nombre del Servicio: #{item.toString().substring(2)}"/><br/>
+                                                                                                            </c:when>
+                                                                                                                
+                                                                                                                        
+                                                                                                            <c:when test="${fn:contains(item.toString(), ':')}" >
+                                                                                                                <tr><td><h:outputText value="TipoDato: #{item.toString()}"/></td></tr>
+                                                                                                            </c:when>
+                                                                                                            <c:otherwise>
+                                                                                                                <tr><td><b><h:outputText value="Variable: #{item.toString()}   "/></b><h:inputText></h:inputText></td></tr>
+                                                        
+                                                                                                            </c:otherwise>
+                                                                                                        </c:choose>-->
 
-                                                    </c:otherwise>
-                                                </c:choose>
-
-                                            </c:forEach>
+                                                    </c:forEach>
                                                 </tbody>
                                             </table>
 
                                         </div>
                                     </h:panelGroup>
-                                    <div  id="divtable">
+
+                                    
+
+
+
+
+
+
+
+
+                                    <div  id="divtable1">
                                         <div class="container col-11">
                                             <h:dataTable class="table table-bordered table-hover" id="table" value="#{gestionController.listpaso}"  var="p">
                                                 <h:column>
                                                     <f:facet name="header">
                                                         <h:outputLabel value="Acción"/>
                                                     </f:facet>
-                                                    <h:outputLabel value="#{p.id} - #{p.actionStep}"/>
+                                                    <h:outputLabel value="#{gestionController.metodos}"/>
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">

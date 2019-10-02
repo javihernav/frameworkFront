@@ -10,6 +10,8 @@ import com.framework.modelo.entities.*;
 import com.framework.modelo.facades.*;
 import com.framework.util.LeerXML;
 import com.framework.util.MessageUtil;
+import com.framework.util.Metodo;
+import com.framework.util.Parametro;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -899,8 +901,8 @@ public class GestionController {
         types = elemento.getChildren("types", namespc);
 //        System.out.println("nombre: "+elemento.getChildren("service",namespc).get(0).getAttributeValue("name"));
         String nombreServicio = elemento.getChildren("service", namespc).get(0).getAttributeValue("name");
-ArrayList metodo=new ArrayList();
-ArrayList parametro = new ArrayList();
+Metodo metodo=new Metodo();
+Parametro parametro = new Parametro();
         for (Element e : types) {
 //            System.out.println("hijo: " + e.getName());
             List<Element> schema = e.getChildren();
@@ -912,9 +914,11 @@ ArrayList parametro = new ArrayList();
                     if (subsub.getName().equals("element")) {
 //                    System.out.println("*             nombreClase: " + subsub.getAttribute("name").getValue()+" "+subsub.getName());
 
- metodo=new ArrayList();
+ metodo=new Metodo();
 
-                        metodo.add(new String("**" + subsub.getAttribute("name").getValue()));//marca los métodos con **
+                        metodo.setNombre(new String(subsub.getAttribute("name").getValue()));//marca los métodos con **
+                        metodo.setTargetNamespace(targetnmspc);
+                        metodo.setParametros(new ArrayList<Parametro>());
 //                        estructura.add(new String("**" + subsub.getAttribute("name").getValue()));//marca los métodos con **
                     }
 
@@ -931,24 +935,25 @@ ArrayList parametro = new ArrayList();
 
                                 for (Element x : ssubtemas) {//element
 //                                    System.out.println("*                                     nombreVariable: " + x.getAttributeValue("name") + " " + x.getAttributeValue("type"));
-parametro = new ArrayList();
+parametro = new Parametro();
 
-                                    parametro.add(new String(x.getAttribute("name").getValue()));
-                                    parametro.add(new String(x.getAttribute("type").getValue()));
-                                    metodo.add(parametro);
+                                    parametro.setNombre(new String(x.getAttribute("name").getValue()));
+                                    parametro.setTipo(new String(x.getAttribute("type").getValue()));
+                                    metodo.getParametros().add(parametro);
 //                                    estructura.add(new String(x.getAttribute("name").getValue()));
 //                                    estructura.add(new String(x.getAttribute("type").getValue()));
-                                }
+                                }//cierre for crea parámetros
                             }
                         }
                     }
-                }
+                    estructura.add(metodo);
+                }//cierre for q crea métodos
             }
         }
 //        namespc=elemento.getAdditionalNamespaces().get(1);
 //        estructura.add(namespc.getURI());
-        estructura.add(targetnmspc);
-        estructura.add("SS" + nombreServicio);
+//        estructura.add(targetnmspc);
+//        estructura.add("SS" + nombreServicio);
         metodos = (ArrayList) estructura;
         System.out.println("metodos: "+metodos.toString());
     }
