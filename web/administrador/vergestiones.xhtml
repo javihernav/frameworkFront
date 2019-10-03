@@ -434,18 +434,18 @@
                                         <div >
                                             <br/>
                                             <table class="table table-bordered table-hover">
+                                                 <h:inputFile>Archivo</h:inputFile>
                                                 <thead>
                                                     <tr>
                                                         <th>
                                                             Método
                                                         </th>
+                                                        
                                                         <th>
-                                                            TargetNamespace
-                                                        </th>
-                                                        <th>
-                                                            Parametro
+                                                            Parámetros
                                                         </th>
                                                     </tr>
+                                                                <h:outputText value="#{gestionController.metodos[0].targetNamespace}"/>
                                                 </thead>
                                                 <tbody>
 
@@ -454,15 +454,16 @@
                                                             <td>
                                                                 <h:outputText value="#{item.nombre}"/>
                                                             </td>
-                                                            <td>
-                                                                <h:outputText value="#{item.targetNamespace}"/>
-                                                            </td>
+                                                            
+                                                            
                                                             <td>
 
 
 
                                                                 <table>
                                                                     <thead>
+                                                                        
+                                                                              <c:if test="${item.parametros.size()!=0}" >
                                                                         <tr>
                                                                             <th>
                                                                                 Nombre
@@ -474,6 +475,7 @@
                                                                                 Origen
                                                                             </th>
                                                                         </tr>
+                                                                              </c:if>
                                                                     </thead>
                                                                     <tbody>
                                                                         <c:forEach var="variable" items="#{item.parametros}" >
@@ -486,6 +488,7 @@
                                                                                 </td>
                                                                                 <td>
                                                                                     <h:inputText value="#{variable.origen}"/>
+                                                                                   
                                                                                 </td>
 
                                                                             </tr>
