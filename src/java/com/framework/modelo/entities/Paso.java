@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,10 +20,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+//import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -47,6 +50,13 @@ public class Paso implements Serializable {
 
     @Basic(optional = false)
     @NotNull
+//    @Column(name = "idCaso")
+//    private int idCaso;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idpaso", fetch = FetchType.EAGER)
+//    private List<Metodo> metodoList;
+//
+//    @Basic(optional = false)
+//    @NotNull
     @Size(min = 1, max = 90)
     @Column(name = "actionStep")
     private String actionStep;
@@ -198,6 +208,23 @@ public class Paso implements Serializable {
     public void setOrderstep(Integer orderstep) {
         this.orderstep = orderstep;
     }
+
+//    public int getIdCaso() {
+//        return idCaso;
+//    }
+//
+//    public void setIdCaso(int idCaso) {
+//        this.idCaso = idCaso;
+//    }
+
+//    @XmlTransient
+//    public List<Metodo> getMetodoList() {
+//        return metodoList;
+//    }
+//
+//    public void setMetodoList(List<Metodo> metodoList) {
+//        this.metodoList = metodoList;
+//    }
 
     
 }

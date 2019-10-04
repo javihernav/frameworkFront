@@ -11,6 +11,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
     } else if (accion === "Ingresar URL") {
         //se desactivan primero por si realiza algun cambio en el select
         $('.navegador').css('display', 'none');
@@ -19,6 +21,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -31,6 +35,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Ir Adelante") {
@@ -41,6 +47,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Refrescar") {
@@ -51,6 +59,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Cerrar Navegador") {
@@ -61,6 +71,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Cambiar Frame") {
@@ -71,6 +83,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -84,6 +98,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Volver a Ventana Original") {
@@ -94,6 +110,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Cambiar Pestana") {
@@ -104,6 +122,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === 'Click Boton "Aceptar"') {
@@ -114,6 +134,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === 'Click Boton "Cancelar"') {
@@ -124,6 +146,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Ingresar Texto Alert") {
@@ -134,6 +158,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -145,6 +171,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -158,6 +186,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -169,6 +199,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -181,6 +213,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -193,6 +227,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -205,6 +241,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -218,6 +256,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -231,6 +271,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -244,6 +286,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -257,6 +301,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -270,6 +316,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -283,6 +331,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -295,6 +345,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -307,6 +359,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -319,6 +373,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.coorX').css('display', 'block');
@@ -331,6 +387,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -342,6 +400,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Tomar Evidencia Elemento") {
@@ -352,6 +412,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -364,6 +426,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -376,6 +440,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -391,6 +457,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -404,6 +472,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -415,6 +485,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.typestep').css('display', 'block');
         $('.valuestep').css('display', 'block');
@@ -427,6 +499,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -439,6 +513,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -450,6 +526,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -465,6 +543,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.coorY').css('display', 'block');
@@ -476,6 +556,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.coorY').css('display', 'block');
@@ -487,6 +569,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Scroll Arriba a Abajo") {
@@ -497,6 +581,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Arrastrar y Soltar") {
@@ -507,6 +593,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -522,6 +610,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Ir Atras Navegador") {
@@ -532,6 +622,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Calibrar Coordenadas") {
@@ -542,6 +634,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.coorX').css('display', 'block');
@@ -554,6 +648,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Ejecutar Paquete Aplicacion") {
@@ -564,6 +660,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Sikuli Click" || accion === "Sikuli Doble Click" || accion === "Sikuli Click Robot" || accion === "Sikuli Click Derecho" || accion === "Sikuli Espera Imagen" || accion === "Sikuli Focus Imagen") {
@@ -574,6 +672,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.valuestep').css('display', 'block');
         $('.data').css('display', 'block');
@@ -585,6 +685,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.valuestep').css('display', 'block');
         $('.data').css('display', 'block');
@@ -600,6 +702,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.valuestep').css('display', 'block');
     } else if (accion === "Enter" || accion === "Escape" || accion === "Tab" || accion === "BackSpace" || accion === "Home" || accion === "End" || accion === "Delete" || accion === "Copy" || accion === "Cut" || accion === "Paste" || accion === "Seleccionar todo (A)" || accion === "Seleccionar todo (E)" || accion === "Find (F)" || accion === "Find (B)" || accion === "Close Tab" || accion === "Next" || accion === "Back" || accion === "Close All" || accion === "AvPag" || accion === "RePag") {
@@ -610,6 +714,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
     } else if (accion === "Finalizar Ejecucion") {
         //se desactivan primero por si realiza algun cambio en el select
@@ -619,6 +725,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Cerrar Aplicacion") {
@@ -629,6 +737,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Nueva Pestana") {
@@ -639,6 +749,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -650,6 +762,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -663,6 +777,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -674,6 +790,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Fila Inicial Excel") {
@@ -684,6 +802,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -695,6 +815,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -707,6 +829,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
     } else if (accion === "Click Mouse") {
@@ -717,6 +841,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -729,6 +855,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.typestep').css('display', 'block');
@@ -741,6 +869,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -752,6 +882,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -763,6 +895,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -774,6 +908,8 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
@@ -785,11 +921,12 @@ function validar() {
         $('.data').css('display', 'none');
         $('.coorX').css('display', 'none');
         $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
         $('.navegador').css('display', 'block');
         $('.data').css('display', 'block');
-    }
-     else if (accion === "probar servicio web soap") {
+    } else if (accion === "probar servicio web soap") {
         //se desactivan primero por si realiza algun cambio en el select
         $('.navegador').css('display', 'none');
         $('.typestep').css('display', 'none');
@@ -800,6 +937,7 @@ function validar() {
         //Se realiza la respectiva habilitacion de los input que necesita esta accion
 //        $('.valuestep').css('display', 'block');
         $('.data').css('display', 'block');
+        $('.escanear').css('display', 'block');
     }
 
 }

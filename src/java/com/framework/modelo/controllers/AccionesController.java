@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -21,7 +22,7 @@ import javax.inject.Named;
  * @author SQA
  */
 @Named(value = "accionesController")
-@SessionScoped
+@RequestScoped
 public class AccionesController implements Serializable {
 
     @EJB

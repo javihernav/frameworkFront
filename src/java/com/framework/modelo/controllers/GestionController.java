@@ -43,7 +43,48 @@ import org.jdom2.input.SAXBuilder;
  * @author SQA
  */
 @Named(value = "gestionController")
-@RequestScoped
+@Request
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        Scoped
 public class GestionController {
 
     private ArrayList metodos;

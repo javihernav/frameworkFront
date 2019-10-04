@@ -421,7 +421,7 @@
                                     <!--</p:fieldset>-->
                                     <h:panelGroup id="ajaxResult" layout="block"> 
                                         <div class="form-group" style="float:right;">
-                                            <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm">
+                                            <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm escanear">
 
                                                 <f:ajax execute="data" render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX ajaxResult" listener="#{ gestionController.obtenerEstructuraXml( gestionController.nuevopaso.parameterStep)}" />
 
@@ -433,8 +433,8 @@
                                     
                                         <div >
                                             <br/>
-                                            <table class="table table-bordered table-hover">
-                                                 <h:inputFile>Archivo</h:inputFile>
+                                            <table class="table table-bordered table-hover metodosservicio">
+                                                 <!--<h:inputFile>Archivo</h:inputFile>-->
                                                 <thead>
                                                     <tr>
                                                         <th>
@@ -460,18 +460,18 @@
 
 
 
-                                                                <table>
+                                                                <table class="table table-bordered col-md-12">
                                                                     <thead>
                                                                         
                                                                               <c:if test="${item.parametros.size()!=0}" >
                                                                         <tr>
-                                                                            <th>
+                                                                            <th class="col-md-4">
                                                                                 Nombre
                                                                             </th>
-                                                                            <th>
+                                                                            <th class="col-md-4">
                                                                                 Tipo
                                                                             </th>
-                                                                            <th>
+                                                                            <th class="col-md-4">
                                                                                 Origen
                                                                             </th>
                                                                         </tr>
@@ -538,14 +538,14 @@
 
 
 
-                                    <div  id="divtable1">
+                                    <div  id="divtable">
                                         <div class="container col-11">
                                             <h:dataTable class="table table-bordered table-hover" id="table" value="#{gestionController.listpaso}"  var="p">
                                                 <h:column>
                                                     <f:facet name="header">
                                                         <h:outputLabel value="Acción"/>
                                                     </f:facet>
-                                                    <h:outputLabel value="#{gestionController.metodos}"/>
+                                                    <h:outputLabel value="#{p.id} - #{p.actionStep}"/>
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">
