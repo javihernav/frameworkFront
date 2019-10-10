@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="FrameWorkBackPU" transaction-type="JTA">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>java:app/FrameworkDS</jta-data-source>
+    <class>com.framework.modelo.entities.Accion</class>
+    <class>com.framework.modelo.entities.Ambiente</class>
+    <class>com.framework.modelo.entities.Caso</class>
+    <class>com.framework.modelo.entities.DispositivoAppium</class>
+    <class>com.framework.modelo.entities.Escenario</class>
+    <class>com.framework.modelo.entities.GrupoAccion</class>
+    <class>com.framework.modelo.entities.Metodo</class>
+    <class>com.framework.modelo.entities.Navegador</class>
+    <class>com.framework.modelo.entities.Parametro</class>
+    <class>com.framework.modelo.entities.Paso</class>
+    <class>com.framework.modelo.entities.Permiso</class>
+    <class>com.framework.modelo.entities.Rol</class>
+    <class>com.framework.modelo.entities.Suit</class>
+    <class>com.framework.modelo.entities.Usuario</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="frameworksqaPerU" transaction-type="JTA">
     <jta-data-source>java:app/FrameworkDS</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>

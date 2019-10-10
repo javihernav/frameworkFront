@@ -35,6 +35,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Navegador.findByNombreNavegador", query = "SELECT n FROM Navegador n WHERE n.nombreNavegador = :nombreNavegador")})
 public class Navegador implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "Id", nullable = false)
+    private Integer id;
     @Size(max = 30)
     @Column(name = "nombreNavegador")
     private String nombreNavegador;
@@ -48,12 +54,6 @@ public class Navegador implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "Id", nullable = false)
-    private Integer id;
 
     public Navegador() {
     }

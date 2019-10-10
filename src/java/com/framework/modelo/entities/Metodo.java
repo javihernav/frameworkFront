@@ -6,6 +6,7 @@
 package com.framework.modelo.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -48,11 +50,11 @@ public class Metodo implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "nombre")
     private String nombre;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idmetodo", fetch = FetchType.EAGER)
-    private Parametro parametro;
-    @JoinColumn(name = "idpaso", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Paso idpaso;
+    @JoinColumn(name = "idPaso", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Paso idPaso;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idmetodo", fetch = FetchType.LAZY)
+    private List<Parametro> parametros;
 
     public Metodo() {
     }
@@ -82,20 +84,12 @@ public class Metodo implements Serializable {
         this.nombre = nombre;
     }
 
-    public Parametro getParametro() {
-        return parametro;
+    public List<Parametro> getParametro() {
+        return parametros;
     }
 
-    public void setParametro(Parametro parametro) {
-        this.parametro = parametro;
-    }
-
-    public Paso getIdpaso() {
-        return idpaso;
-    }
-
-    public void setIdpaso(Paso idpaso) {
-        this.idpaso = idpaso;
+    public void setParametro(List<Parametro> parametro) {
+        this.parametros = parametro;
     }
 
     @Override
@@ -121,6 +115,14 @@ public class Metodo implements Serializable {
     @Override
     public String toString() {
         return "com.framework.modelo.entities.Metodo[ id=" + id + " ]";
+    }
+
+    public Paso getIdPaso() {
+        return idPaso;
+    }
+
+    public void setIdPaso(Paso idPaso) {
+        this.idPaso = idPaso;
     }
     
 }

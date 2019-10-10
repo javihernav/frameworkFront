@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -59,7 +60,7 @@ public class Parametro implements Serializable {
     @Column(name = "origen")
     private String origen;
     @JoinColumn(name = "idmetodo", referencedColumnName = "id")
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Metodo idmetodo;
 
     public Parametro() {
