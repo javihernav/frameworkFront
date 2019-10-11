@@ -116,11 +116,11 @@ public class EjecucionCarga {
         this.nuevoPaso = nuevoPaso;
     }
 
-    public List<Suit> leerArchivoExcelSuit(String archivoDestino, List<Usuario> usuarioslist) {
+    public List<Suit> leerArchivoExcelSuit(String archivoOrigen, List<Usuario> usuarioslist) {
         int contador = 1;
         suits = new ArrayList<>();
         try {
-            Workbook archivoExcel = Workbook.getWorkbook(new File(archivoDestino));
+            Workbook archivoExcel = Workbook.getWorkbook(new File(archivoOrigen));
 
             //Recorre la primer hoja excel
             for (int hojas = 0; hojas < 1; hojas++) {
@@ -189,11 +189,11 @@ public class EjecucionCarga {
         return suits;
     }
 
-    public List<Escenario> leerArchivoExcelEscenario(String archivoDestino, List<Suit> suitlista, List<Ambiente> ambientelist, List<Usuario> usuarioslist) {
+    public List<Escenario> leerArchivoExcelEscenario(String archivoOrigen, List<Suit> suitlista, List<Ambiente> ambientelist, List<Usuario> usuarioslist) {
         int contador = 1;
         escenarios = new ArrayList<>();
         try {
-            Workbook archivoExcel = Workbook.getWorkbook(new File(archivoDestino));
+            Workbook archivoExcel = Workbook.getWorkbook(new File(archivoOrigen));
 
             //Recorrer hoja excel
             for (int hojas = 1; hojas < 2; hojas++) {
@@ -232,7 +232,7 @@ public class EjecucionCarga {
                                     }
 
                                     if (nuevoEscenario.getIdSuit() == null) {
-                                        suits = this.leerArchivoExcelSuit(archivoDestino, usuarioslist);
+                                        suits = this.leerArchivoExcelSuit(archivoOrigen, usuarioslist);
                                         for (Suit st : suits) {
                                             if (name.equals(st.getNombreSuit())) {
                                                 nuevoEscenario.setIdSuit(st);

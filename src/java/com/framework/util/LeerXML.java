@@ -180,6 +180,9 @@ public class LeerXML {
 //        System.out.println("Datos: " + estruc.toString());
         List estruc = LeerXML.obtenerEstructuraXml("http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso");
         System.out.println("Datos: " + estruc.toString());
+        System.out.println("User.home: " + System.getProperty("user.home"));
+        System.out.println("User.dir: " + System.getProperty("user.dir"));
+        
     }
 
 }

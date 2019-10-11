@@ -21,6 +21,7 @@
                                 <b:icon name="refresh"/>
                                 <f:ajax event="click" render="datatablecliente mesanjeclient"/>
                             </b:commandButton>
+                            <b:commandButton actionListener="#{clienteEjecucionController.ejecutarBackend()}" look="success" value="Ejecutar" type="submit"/>
                         </p>
                         <b:dataTable value="#{clienteEjecucionController.usuarios}" var="u" id="datatablecliente">
                             <b:dataTableColumn label="Nombre" value="#{u.primerNombre} #{u.segundoNombre}" />

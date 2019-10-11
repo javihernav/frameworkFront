@@ -112,9 +112,14 @@ public class Metodo implements Serializable {
         return true;
     }
 
+//    @Override
+//    public String toString() {
+//        return "com.framework.modelo.entities.Metodo[ id=" + id + " ]";
+//    }
+
     @Override
     public String toString() {
-        return "com.framework.modelo.entities.Metodo[ id=" + id + " ]";
+        return "com.framework.modelo.entities.Metodo[" + "id=" + id + ", nombre=" + nombre + ", idPaso=" + idPaso + ", parametros=" + parametros + "]";
     }
 
     public Paso getIdPaso() {

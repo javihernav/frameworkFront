@@ -428,24 +428,24 @@
                                             </b:commandButton>
                                         </div>
                                         <!--<h:outputText value="metodos: #{gestionController.metodos.toString()}" id="metodos" />-->
-                                                
-                                    <!--tabla de métodos del servicio soap-->
-                                    
+
+                                        <!--tabla de métodos del servicio soap-->
+
                                         <div >
                                             <br/>
                                             <table class="table table-bordered table-hover metodosservicio">
-                                                 <!--<h:inputFile>Archivo</h:inputFile>-->
+                                                <!--<h:inputFile>Archivo</h:inputFile>-->
                                                 <thead>
                                                     <tr>
                                                         <th>
                                                             Método
                                                         </th>
-                                                        
+
                                                         <th>
                                                             Parámetros
                                                         </th>
                                                     </tr>
-                                                                <h:outputText value="#{gestionController.metodos[0].targetNamespace}"/>
+                                                    <h:outputText value="#{gestionController.metodos[0].targetNamespace}"/>
                                                 </thead>
                                                 <tbody>
 
@@ -454,28 +454,28 @@
                                                             <td>
                                                                 <h:outputText value="#{item.nombre}"/>
                                                             </td>
-                                                            
-                                                            
+
+
                                                             <td>
 
 
 
                                                                 <table class="table table-bordered col-md-12">
                                                                     <thead>
-                                                                        
-                                                                              <c:if test="${item.parametros.size()!=0}" >
-                                                                        <tr>
-                                                                            <th class="col-md-4">
-                                                                                Nombre
-                                                                            </th>
-                                                                            <th class="col-md-4">
-                                                                                Tipo
-                                                                            </th>
-                                                                            <th class="col-md-4">
-                                                                                Origen
-                                                                            </th>
-                                                                        </tr>
-                                                                              </c:if>
+
+                                                                        <c:if test="${item.parametros.size()!=0}" >
+                                                                            <tr>
+                                                                                <th class="col-md-4">
+                                                                                    Nombre
+                                                                                </th>
+                                                                                <th class="col-md-4">
+                                                                                    Tipo
+                                                                                </th>
+                                                                                <th class="col-md-4">
+                                                                                    Origen
+                                                                                </th>
+                                                                            </tr>
+                                                                        </c:if>
                                                                     </thead>
                                                                     <tbody>
                                                                         <c:forEach var="variable" items="#{item.parametros}" >
@@ -487,8 +487,11 @@
                                                                                     <h:outputText value="#{variable.tipo}"/>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <h:inputText value="#{variable.origen}"/>
-                                                                                   
+<!--                                                                                    <h:selectOneMenu>
+                                                                                        <f:selectItems value="columna#{gestionController.columnasExcel}" var="a" itemValue="#{gestionController.columnasExcel}" itemLabel="#{gestionController.columnasExcel}"/>
+                                                                                    </h:selectOneMenu>-->
+                                                                                    <!--<h:inputText value="#{variable.origen}"/>-->
+
                                                                                 </td>
 
                                                                             </tr>
@@ -529,7 +532,7 @@
                                         </div>
                                     </h:panelGroup>
 
-                                    
+
 
 
 

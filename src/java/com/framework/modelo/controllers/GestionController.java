@@ -32,6 +32,9 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.servlet.http.Part;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -47,6 +50,7 @@ import org.jdom2.input.SAXBuilder;
 public class GestionController {
 
     private ArrayList metodos;
+    private String[] columnasExcel;
 
     @EJB
     private SuitFacadeLocal suitfacadelocal;
@@ -74,7 +78,7 @@ public class GestionController {
     private List<Paso> pasos;
 
     @EJB
-    private AmbienteFacadeLocal afl;
+    private AmbienteFacadeLocal ambientfacadelocal;
     private List<Ambiente> ambientes;
 
     @EJB
@@ -160,6 +164,7 @@ public class GestionController {
 
     //Constructor
     public GestionController() {
+
     }
 
     //Method init
@@ -564,7 +569,7 @@ public class GestionController {
             }
 
             //Metodo para leer la hoja de escenarios
-            escenarios = ejecar.leerArchivoExcelEscenario(ruta, suitfacadelocal.findAll(), afl.findAll(), ufl.findAll());
+            escenarios = ejecar.leerArchivoExcelEscenario(ruta, suitfacadelocal.findAll(), ambientfacadelocal.findAll(), ufl.findAll());
             cantidadescenario = escenarios.size();
             for (Escenario esce : escenarios) {
                 esce.setFechaCreacion(fechaSistema());
@@ -610,7 +615,7 @@ public class GestionController {
             }
 
             //Metodo para leer la hoja de casos
-            casos = ejecar.leerArchivoExcelCasos(ruta, efl.findAll(), suitfacadelocal.findAll(), afl.findAll(), ufl.findAll());
+            casos = ejecar.leerArchivoExcelCasos(ruta, efl.findAll(), suitfacadelocal.findAll(), ambientfacadelocal.findAll(), ufl.findAll());
             cantidadcaso = casos.size();
             for (Caso cass : casos) {
                 cass.setFechaCreacion(fechaSistema());
@@ -879,9 +884,9 @@ public class GestionController {
 
     //métodos para leer servicio web soap
     public void obtenerEstructuraXml(String url) throws JDOMException, IOException {
-        System.out.println("Obteniendo estructura de: "+url);
+        System.out.println("Obteniendo estructura de: " + url);
         //agrega ?wsdl al final de la dirección si no se ha agregado
-       
+        leerColumnasExcel();
         if (!url.contains("?wsdl") && !url.contains("?WSDL")) {
             url = url.concat("?wsdl");
         }
@@ -901,8 +906,8 @@ public class GestionController {
         types = elemento.getChildren("types", namespc);
 //        System.out.println("nombre: "+elemento.getChildren("service",namespc).get(0).getAttributeValue("name"));
         String nombreServicio = elemento.getChildren("service", namespc).get(0).getAttributeValue("name");
-Metodo metodo=new Metodo();
-Parametro parametro = new Parametro();
+        Metodo metodo = new Metodo();
+        Parametro parametro = new Parametro();
         for (Element e : types) {
 //            System.out.println("hijo: " + e.getName());
             List<Element> schema = e.getChildren();
@@ -914,7 +919,7 @@ Parametro parametro = new Parametro();
                     if (subsub.getName().equals("element")) {
 //                    System.out.println("*             nombreClase: " + subsub.getAttribute("name").getValue()+" "+subsub.getName());
 
- metodo=new Metodo();
+                        metodo = new Metodo();
 
                         metodo.setNombre(new String(subsub.getAttribute("name").getValue()));//marca los métodos con **
                         metodo.setTargetNamespace(targetnmspc);
@@ -935,7 +940,7 @@ Parametro parametro = new Parametro();
 
                                 for (Element x : ssubtemas) {//element
 //                                    System.out.println("*                                     nombreVariable: " + x.getAttributeValue("name") + " " + x.getAttributeValue("type"));
-parametro = new Parametro();
+                                    parametro = new Parametro();
 
                                     parametro.setNombre(new String(x.getAttribute("name").getValue()));
                                     parametro.setTipo(new String(x.getAttribute("type").getValue()));
@@ -955,7 +960,7 @@ parametro = new Parametro();
 //        estructura.add(targetnmspc);
 //        estructura.add("SS" + nombreServicio);
         metodos = (ArrayList) estructura;
-        System.out.println("metodos: "+metodos.toString());
+        System.out.println("GestionController 963 metodos: " + metodos.toString());
     }
 
     /**
@@ -1025,4 +1030,45 @@ parametro = new Parametro();
         this.metodos = metodos;
     }
 
+    public String[] getColumnasExcel() {
+        return columnasExcel;
+    }
+
+    public void setColumnasExcel(String[] columnasExcel) {
+        this.columnasExcel = columnasExcel;
+    }
+//método para cargar los nombres de columna
+
+    public void leerColumnasExcel() {
+        String archivoOrigen = System.getProperty("user.home") + "\\Desktop\\frameworkSQAIC\\DataDriven\\DataDrivenFBServ.xls";
+        System.out.println("archivo Origen: " + archivoOrigen);
+        String[] columnas;
+        Workbook archivoExcel = null;
+        Sheet hoja = null;
+        int numeroColumnas;
+        int numerofilas;
+        try {
+            archivoExcel = Workbook.getWorkbook(new File(archivoOrigen));
+            hoja = archivoExcel.getSheet(0);
+            numeroColumnas = hoja.getColumns();
+            numerofilas = hoja.getRows();
+            columnas = new String[numeroColumnas];
+            for (int column = 0; column < numeroColumnas; column++) {
+                columnas[column] = hoja.getCell(column, 2).getContents();
+            System.out.println("columnas: "+columnas[column]);
+            }
+            System.out.println("columnas: "+numeroColumnas);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        } catch (BiffException ex) {
+            ex.printStackTrace(System.out);
+        }
+
+        columnas = archivoExcel.getRangeNames();
+        if (columnas == null) {
+            columnas = new String[]{"Columna1", "Columna2", "Columna2", "Columna4", "Columna5", "Columna6", "Columna7", "Columna8"};
+        }
+        columnasExcel = columnas;
+        System.out.println("columnasexcel: " + columnasExcel);
+    }
 }
