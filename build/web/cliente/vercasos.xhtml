@@ -35,7 +35,17 @@
                                 </h:outputText>
                             </b:dataTableColumn>
                             <b:dataTableColumn label="Escenario" value="#{c.idEscenario.nombreEscenario}" />
-                            <b:dataTableColumn label="Estado" value="#{c.estadoCaso}" />
+                            <b:dataTableColumn label="Estado">
+                                <div class="form-group">
+
+                                    <h:outputLabel value="#{(c.estadoCaso==1 ? 'Activo':'Inactivo')}" id="textoestado"/>
+
+                                    <b:commandButton value="" class="btn btn-sm btn-success"  actionListener="#{casosController.cambiarEstadoCaso(c)}" >
+                                        <b:iconAwesome name="fa-power-off"/>
+                                        <f:ajax event="click" render="textoestado"/>
+                                    </b:commandButton>
+                                </div>
+                            </b:dataTableColumn>
                             <b:dataTableColumn label="Opciones">
                                 <b:commandButton class="btn btn-sm" style="margin-right: 10px;" look="primary" iconAwesome="paint-brush" value="" action="#{casosController.preModificar(c)}"/>
                                 <b:commandButton class="btn btn-sm" look="danger" iconAwesome="trash" value="" onclick="$('.modalPseudoClass').modal();">

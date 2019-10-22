@@ -17,9 +17,13 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import prueba.Probar;
 
 /**
  *
@@ -32,6 +36,8 @@ public class ClienteEjecucionController implements Serializable {
     @EJB
     private UsuarioFacadeLocal usfl;
 
+    private static String direccionip;
+    private static String puerto;
     private List<Usuario> usuarios;
     private Usuario usuario;
 
@@ -44,6 +50,8 @@ public class ClienteEjecucionController implements Serializable {
      * Creates a new instance of ClienteEjecucionController
      */
     public ClienteEjecucionController() {
+        direccionip="127.0.0.1";
+        puerto="8080";
     }
 
     public List<Usuario> getUsuarios() {
@@ -134,8 +142,13 @@ public class ClienteEjecucionController implements Serializable {
     }
 
     public static void ejecutarBackend() {
-        System.out.println("Preparado para ejecutar backend");
-        Correr.ejecutarBackend();
+        try {
+            System.out.println("Preparado para ejecutar backend");
+//        Correr.ejecutarBackend();//ejecución en la misma máquina
+Probar.probar(direccionip, puerto);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ClienteEjecucionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private static String encriptar(String s) throws UnsupportedEncodingException {
@@ -145,6 +158,22 @@ public class ClienteEjecucionController implements Serializable {
     public String desencriptar(String s) throws UnsupportedEncodingException {
         byte[] decode = Base64.getDecoder().decode(s.getBytes());
         return new String(decode, "utf-8");
+    }
+
+    public String getDireccionip() {
+        return direccionip;
+    }
+
+    public void setDireccionip(String direccionip) {
+        this.direccionip = direccionip;
+    }
+
+    public String getPuerto() {
+        return puerto;
+    }
+
+    public void setPuerto(String puerto) {
+        this.puerto = puerto;
     }
 
 }

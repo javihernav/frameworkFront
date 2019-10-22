@@ -34,7 +34,18 @@
                             </b:dataTableColumn>    
                             <b:dataTableColumn label="Ambiente" value="#{e.idAmbiente.nombreAmbiente}" />
                             <b:dataTableColumn label="Suit" value="#{e.idSuit.nombreSuit}" />
-                            <b:dataTableColumn label="Estado" value="#{e.estadoEscenario}" />
+                            <b:dataTableColumn label="Estado">
+
+                                <div class="form-group">
+                                    <h:outputLabel value="#{(e.estadoEscenario==1 ? 'Activo':'Inactivo')}" id="textoestado"/>
+
+                                    <b:commandButton value="" class="btn btn-sm btn-success"  actionListener="#{escenariosController.cambiarEstadoEscenario(e)}" >
+                                        <b:iconAwesome name="fa-power-off"/>
+                                        <f:ajax event="click" render="textoestado"/>
+                                    </b:commandButton>
+                                </div>
+
+                            </b:dataTableColumn>
                             <c:if test="#{sessionController.permisorol == 'Sqa'}">
                                 <b:dataTableColumn label="Opciones">
                                     <b:commandButton class="btn btn-sm" style="margin-right: 10px;" look="primary" iconAwesome="paint-brush" value="" action="#{escenariosController.preModificar(e)}"/>

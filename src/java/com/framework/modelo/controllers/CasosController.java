@@ -132,4 +132,21 @@ public class CasosController implements Serializable {
     public void recargarFiltroCliente() {
         casos = cfl.ObtenerFiltroCliente(sc.getIdUsuarioConsultas());
     }
+    
+        public void cambiarEstadoCaso(Caso caso) {
+        setCaso(caso);
+        if (caso.getEstadoCaso()==1) {
+            caso.setEstadoCaso(2);
+        }else{
+        caso.setEstadoCaso(1);
+        }
+        try {
+            cfl.edit(caso);;
+            RecargarlistaRole();
+            System.out.println("Suit: " +caso.getNombreCaso()+" "+ (caso.getEstadoCaso()==1 ? "Activado":"Desactivado"));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+      
+    }
 }

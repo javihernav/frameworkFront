@@ -28,7 +28,18 @@
                             <b:dataTableColumn label="Usuario" value="#{s.idUsuario.primerNombre } #{s.idUsuario.primerApellido}" />
                             <b:dataTableColumn label="Nombre" value="#{s.nombreSuit}" />
                             <b:dataTableColumn label="Descripción" value="#{s.descripcionSuit}" />
-                            <b:dataTableColumn label="Estado" value="#{s.estadoSuit}" />
+                            <b:dataTableColumn label="Estado" >
+                                <div class="form-group">
+
+                                    <h:outputLabel value="#{(s.estadoSuit==1 ? 'Activo':'Inactivo')}" id="textoestado"/>
+
+                                    <b:commandButton value="" class="btn btn-sm btn-success"  actionListener="#{suitsController.cambiarEstadoSuit(s)}" >
+                                        <b:iconAwesome name="fa-power-off"/>
+                                        <f:ajax event="click" render="textoestado"/>
+                                    </b:commandButton>
+                                </div>
+
+                            </b:dataTableColumn>
                             <b:dataTableColumn label="Fecha de Creación">
                                 <h:outputText value="#{s.fechaCreacion}">
                                     <f:convertDateTime pattern="dd/MM/yyyy HH:MM:SS"/>

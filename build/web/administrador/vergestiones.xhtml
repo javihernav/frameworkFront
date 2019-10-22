@@ -357,7 +357,8 @@
 
 
                                                 <!-- -->
-                                                <h:selectOneListbox class="form-control accionespaso" style="height: 108px;"  value="#{gestionController.nuevopaso.actionStep}" id="accionespaso" >
+                                                <!--<h:selectOneListbox class="form-control accionespaso" style="height: 108px;"  value="#{gestionController.nuevopaso.actionStep}" id="accionespaso" >-->
+                                                <h:selectOneListbox class="form-control accionespaso" style="height: 108px;"  value="#{gestionController.actionStep}" id="accionespaso" >
                                                     <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
                                                     <f:selectItems value="#{accionesController.acciones}" var="a" itemValue="#{a.nombreAccion}" itemLabel="#{a.nombreAccion}"/>
                                                     <f:ajax event="change" onevent="validar()"/>
@@ -366,7 +367,8 @@
                                             </div>
                                             <div class="form-group typestep">
                                                 <h:outputText value="Tipo de Localizador" />
-                                                <h:selectOneMenu class="form-control" style="height: 36px;"  value ="#{gestionController.nuevopaso.typeStep}" id="typestep" >
+                                                <!--<h:selectOneMenu class="form-control" style="height: 36px;"  value ="#{gestionController.nuevopaso.typeStep}" id="typestep" >-->
+                                                <h:selectOneMenu class="form-control" style="height: 36px;"  value ="#{gestionController.typeStep}" id="typestep" >
                                                     <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
                                                     <f:selectItem itemValue="ID" itemLabel="ID"></f:selectItem>
                                                     <f:selectItem itemValue="Name" itemLabel="Name"></f:selectItem>
@@ -380,12 +382,14 @@
                                             </div>
                                             <div class="form-group data parametro">
                                                 <h:outputText value="Parámetro" class="txtparametro"/>
-                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control parametro" value="#{gestionController.nuevopaso.parameterStep}" id="data"/>
+                                                <!--<h:inputText autocomplete="off" style="height: 36px;"  class="form-control parametro" value="#{gestionController.nuevopaso.parameterStep}" id="data"/>-->
+                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control parametro" value="#{gestionController.parameterStep}" id="data"/>
 
                                             </div>
                                             <div class="form-group coorY" >
                                                 <h:outputText value="Coordenada Y"/>
-                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corYStep}" id="coorY"/>                                                           
+                                                <!--<h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corYStep}" id="coorY"/>-->                                                           
+                                                <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.corYStep}" id="coorY"/>                                                           
                                                 <p>Por favor solo ingrese Valores numericos</p>
                                             </div>
                                         </div>
@@ -394,7 +398,8 @@
                                     <div class="col-md-6" >
                                         <div class="form-group navegador">
                                             <h:outputText value="Navegador" />
-                                            <h:selectOneMenu class="form-control" style="height: 36px;"  value="#{gestionController.nuevopaso.navegador}" id="navegador" >
+                                            <!--<h:selectOneMenu class="form-control" style="height: 36px;"  value="#{gestionController.nuevopaso.navegador}" id="navegador" >-->
+                                            <h:selectOneMenu class="form-control" style="height: 36px;"  value="#{gestionController.navegador}" id="navegador" >
                                                 <f:selectItem itemValue="" itemLabel="Seleccione"></f:selectItem>
                                                 <f:selectItem itemValue="Chrome" itemLabel="Chrome"></f:selectItem>
                                                 <f:selectItem itemValue="Firefox" itemLabel="Firefox"></f:selectItem>
@@ -403,12 +408,14 @@
                                         </div>
                                         <div class="form-group valuestep">
                                             <h:outputText value="Localizador" class="txtlocalizador"/>
-                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control localizador" value="#{gestionController.nuevopaso.valueStep}" id="valuestep">
+                                            <!--<h:inputText autocomplete="off" style="height: 36px;"  class="form-control localizador" value="#{gestionController.nuevopaso.valueStep}" id="valuestep">-->
+                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control localizador" value="#{gestionController.valueStep}" id="valuestep">
                                             </h:inputText>                                            
                                         </div>
                                         <div class="form-group coorX">
                                             <h:outputText value="Coordenada X"/>
-                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corXStep}" id="coorX"/>
+                                            <!--<h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.nuevopaso.corXStep}" id="coorX"/>-->
+                                            <h:inputText autocomplete="off" style="height: 36px;"  class="form-control" value="#{gestionController.corXStep}" id="coorX"/>
                                             <p>Por favor solo ingrese Valores numericos</p>
                                         </div>
                                         <div class="form-group" style="float:right;">
@@ -423,7 +430,7 @@
                                         <div class="form-group" style="float:right;">
                                             <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm escanear">
 
-                                                <f:ajax execute="data" render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX ajaxResult" listener="#{ gestionController.obtenerEstructuraXml( gestionController.nuevopaso.parameterStep)}" />
+                                                <f:ajax execute="data" render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX ajaxResult" listener="#{ gestionController.obtenerEstructuraXml( gestionController.parameterStep)}" />
 
                                             </b:commandButton>
                                         </div>

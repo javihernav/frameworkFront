@@ -32,9 +32,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.servlet.http.Part;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -99,6 +96,25 @@ public class GestionController {
     private String validarsuit;
     private String validarescenario;
 
+    
+    
+//    variables para poder borrar los campos después de guardar
+    
+private String ActionStep;
+private String Navegador;
+private String TypeStep;
+private String ValueStep;
+private String ParameterStep;
+private int CorXStep;
+private int CorYStep;
+private int Orderstep;
+
+//    variables para poder borrar los campos después de guardar
+    
+    
+    
+    
+    
     //Getters and Setters de existencia
     public String getValidarescenario() {
         return validarescenario;
@@ -165,6 +181,16 @@ public class GestionController {
     //Constructor
     public GestionController() {
 
+        
+        
+        ActionStep="";
+Navegador="";
+TypeStep="";
+ValueStep="";
+ParameterStep="";
+CorXStep=0;
+CorYStep=0;
+Orderstep=0;
     }
 
     //Method init
@@ -333,6 +359,14 @@ public class GestionController {
     public void agregarpaso() {
         nuevopaso.setIdCaso(nuevocaso);
 
+nuevopaso.setActionStep(ActionStep);
+nuevopaso.setNavegador(Navegador);
+nuevopaso.setTypeStep(TypeStep);
+nuevopaso.setValueStep(ValueStep);
+nuevopaso.setParameterStep(ParameterStep);
+nuevopaso.setCorXStep(CorXStep);
+nuevopaso.setCorYStep(CorYStep);
+nuevopaso.setOrderstep(Orderstep);
         //Foreach para saber si existe la accion de ingresar url
         this.listpaso.forEach((paso) -> {
             if ("Ingresar URL".equals(paso.getActionStep())) {
@@ -357,6 +391,17 @@ public class GestionController {
             nuevopaso.setOrderstep(ordenPaso);
             this.listpaso.add(nuevopaso);
 //            nuevopaso = new Paso();//añadido para borrar campos
+
+
+//            nuevopaso.setActionStep("");
+//            nuevopaso.setNavegador("");
+//            nuevopaso.setTypeStep("");
+//            nuevopaso.setValueStep("");
+//            nuevopaso.setParameterStep("");
+//            nuevopaso.setCorXStep(0);
+//            nuevopaso.setCorYStep(0);
+//            nuevopaso.setOrderstep(0);
+//            nuevopaso.setIdCaso(nuevocaso);
         } else {
             MessageUtil.enviarMensajeErrorGlobal("N0 SE PUEDE AGREGAR:", "La acción " + nuevopaso.getActionStep() + " ya existe.");
         }
@@ -370,6 +415,14 @@ public class GestionController {
         });
         //limpiar los campos
 //        limpiarCampos();
+ActionStep="";
+Navegador="";
+TypeStep="";
+ValueStep="";
+ParameterStep="";
+CorXStep=0;
+CorYStep=0;
+Orderstep=0;
     }
 
     //Método para limpiar los campos después de agregar un paso.
@@ -405,7 +458,7 @@ public class GestionController {
 
         this.agregarCaso();
 
-        this.crearPaso();
+        this.crearPasos();
 
         init();
         listpaso.clear();
@@ -422,7 +475,7 @@ public class GestionController {
 
         this.agregarCaso();
 
-        this.crearPaso();
+        this.crearPasos();
 
         init();
         listpaso.clear();
@@ -465,7 +518,8 @@ public class GestionController {
     }
 
     //Metodo para agregar los pasos
-    public void crearPaso() {
+    //Toma la lista de pasos y la persiste en base de datos
+    public void crearPasos() {
         GestionController.listpaso.forEach((pass) -> {
             nuevopaso.setActionStep(pass.getActionStep());
             nuevopaso.setNavegador(pass.getNavegador());
@@ -479,6 +533,7 @@ public class GestionController {
             pasofacadelocal.create(nuevopaso);
             System.out.println("pasocreado");
         });
+        nuevopaso=new Paso();
     }
 
     //Metodo para validacion de esxistencia con sobrecarga de evento AJAX
@@ -886,7 +941,7 @@ public class GestionController {
     public void obtenerEstructuraXml(String url) throws JDOMException, IOException {
         System.out.println("Obteniendo estructura de: " + url);
         //agrega ?wsdl al final de la dirección si no se ha agregado
-        leerColumnasExcel();
+        
         if (!url.contains("?wsdl") && !url.contains("?WSDL")) {
             url = url.concat("?wsdl");
         }
@@ -1030,45 +1085,71 @@ public class GestionController {
         this.metodos = metodos;
     }
 
-    public String[] getColumnasExcel() {
-        return columnasExcel;
+//setters y getters de variables para borrar campos
+    
+
+    public String getActionStep() {
+        return ActionStep;
     }
 
-    public void setColumnasExcel(String[] columnasExcel) {
-        this.columnasExcel = columnasExcel;
+    public void setActionStep(String ActionStep) {
+        this.ActionStep = ActionStep;
     }
-//método para cargar los nombres de columna
 
-    public void leerColumnasExcel() {
-        String archivoOrigen = System.getProperty("user.home") + "\\Desktop\\frameworkSQAIC\\DataDriven\\DataDrivenFBServ.xls";
-        System.out.println("archivo Origen: " + archivoOrigen);
-        String[] columnas;
-        Workbook archivoExcel = null;
-        Sheet hoja = null;
-        int numeroColumnas;
-        int numerofilas;
-        try {
-            archivoExcel = Workbook.getWorkbook(new File(archivoOrigen));
-            hoja = archivoExcel.getSheet(0);
-            numeroColumnas = hoja.getColumns();
-            numerofilas = hoja.getRows();
-            columnas = new String[numeroColumnas];
-            for (int column = 0; column < numeroColumnas; column++) {
-                columnas[column] = hoja.getCell(column, 2).getContents();
-            System.out.println("columnas: "+columnas[column]);
-            }
-            System.out.println("columnas: "+numeroColumnas);
-        } catch (IOException ex) {
-            ex.printStackTrace(System.out);
-        } catch (BiffException ex) {
-            ex.printStackTrace(System.out);
-        }
-
-        columnas = archivoExcel.getRangeNames();
-        if (columnas == null) {
-            columnas = new String[]{"Columna1", "Columna2", "Columna2", "Columna4", "Columna5", "Columna6", "Columna7", "Columna8"};
-        }
-        columnasExcel = columnas;
-        System.out.println("columnasexcel: " + columnasExcel);
+    public String getNavegador() {
+        return Navegador;
     }
+
+    public void setNavegador(String Navegador) {
+        this.Navegador = Navegador;
+    }
+
+    public String getTypeStep() {
+        return TypeStep;
+    }
+
+    public void setTypeStep(String TypeStep) {
+        this.TypeStep = TypeStep;
+    }
+
+    public String getValueStep() {
+        return ValueStep;
+    }
+
+    public void setValueStep(String ValueStep) {
+        this.ValueStep = ValueStep;
+    }
+
+    public String getParameterStep() {
+        return ParameterStep;
+    }
+
+    public void setParameterStep(String ParameterStep) {
+        this.ParameterStep = ParameterStep;
+    }
+
+    public int getCorXStep() {
+        return CorXStep;
+    }
+
+    public void setCorXStep(int CorXStep) {
+        this.CorXStep = CorXStep;
+    }
+
+    public int getCorYStep() {
+        return CorYStep;
+    }
+
+    public void setCorYStep(int CorYStep) {
+        this.CorYStep = CorYStep;
+    }
+
+    public int getOrderstep() {
+        return Orderstep;
+    }
+
+    public void setOrderstep(int Orderstep) {
+        this.Orderstep = Orderstep;
+    }
+//setters y getters de variables para borrar campos
 }

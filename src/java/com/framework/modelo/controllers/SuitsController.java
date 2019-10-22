@@ -134,4 +134,21 @@ public class SuitsController implements Serializable {
         suits = sfl.findAll();
     }
 
+    public void cambiarEstadoSuit(Suit suit) {
+        setSuit(suit);
+        if (suit.getEstadoSuit()==1) {
+            suit.setEstadoSuit(2);
+        }else{
+        suit.setEstadoSuit(1);
+        }
+        try {
+            sfl.edit(suit);;
+            RecargarlistaRole();
+            System.out.println("Suit: " +suit.getNombreSuit()+" "+ (suit.getEstadoSuit()==1 ? "Activado":"Desactivado"));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+      
+    }
+
 }

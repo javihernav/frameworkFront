@@ -21,7 +21,16 @@
                                 <b:icon name="refresh"/>
                                 <f:ajax event="click" render="datatablecliente mesanjeclient"/>
                             </b:commandButton>
-                            <b:commandButton actionListener="#{clienteEjecucionController.ejecutarBackend()}" look="success" value="Ejecutar" type="submit"/>
+                            <br/>
+                            <h:outputText value="Dirección ip del Backend:"/>
+                            <h:inputText value="#{clienteEjecucionController.direccionip}"/>
+                            <br/>
+                            <h:outputText value="Puerto del Backend:"/>
+                            <h:inputText value="#{clienteEjecucionController.puerto}"/>
+                            <br/>
+                            <b:commandButton actionListener="#{clienteEjecucionController.ejecutarBackend()}" look="danger" value="Ejecutar" type="submit">
+                            <b:icon name="play" />
+                            </b:commandButton>
                         </p>
                         <b:dataTable value="#{clienteEjecucionController.usuarios}" var="u" id="datatablecliente">
                             <b:dataTableColumn label="Nombre" value="#{u.primerNombre} #{u.segundoNombre}" />

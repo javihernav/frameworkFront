@@ -13,9 +13,10 @@ public class Correr {
 
     public static void ejecutarBackend() {
         Runtime aplicacion = Runtime.getRuntime();
+        String ruta;
         try {
-
-            aplicacion.exec("cmd.exe /K start C:/Users/SQA-PRUEBA/Desktop/frameworkSQAIC/Ejecutar.bat");
+ruta=System.getProperty("user.home");
+            aplicacion.exec("cmd.exe /K start "+ruta+"/Desktop/Estable/frameworkSQAIC/Ejecutar.bat");
 
         } catch (Exception e) {
             e.printStackTrace(System.out);

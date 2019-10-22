@@ -138,4 +138,22 @@ public class EscenariosController implements Serializable {
         System.out.println("ID: " + sc.getIdUsuarioConsultas());
         escenarios = efl.ObtenerEscenarioConUsuario(sc.getIdUsuarioConsultas());
     }
+    
+    
+    public void cambiarEstadoEscenario(Escenario escenario) {
+        setEscenario(escenario);
+        if (escenario.getEstadoEscenario()==1) {
+            escenario.setEstadoEscenario(2);
+        }else{
+        escenario.setEstadoEscenario(1);
+        }
+        try {
+            efl.edit(escenario);;
+            RecargarlistaRole();
+            System.out.println("Escenario: " +escenario.getNombreEscenario()+" "+ (escenario.getEstadoEscenario()==1 ? "Activado":"Desactivado"));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        
+    }
 }
