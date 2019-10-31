@@ -90,31 +90,32 @@ public class GestionController {
     private NavegadorFacadeLocal nfl;
     private List<Navegador> navegadores;
 
+    
+    @EJB
+    private MetodoFacadeLocal mfl;
+    
+    @EJB
+    private ParametroFacadeLocal pfl;
+    
+    
     private Part archivoEjecucion;
 
     //Atributos Para Validar existencia
     private String validarsuit;
     private String validarescenario;
 
-    
-    
 //    variables para poder borrar los campos después de guardar
-    
-private String ActionStep;
-private String Navegador;
-private String TypeStep;
-private String ValueStep;
-private String ParameterStep;
-private int CorXStep;
-private int CorYStep;
-private int Orderstep;
+    private String ActionStep;
+    private String Navegador;
+    private String TypeStep;
+    private String ValueStep;
+    private String ParameterStep;
+    private int CorXStep;
+    private int CorYStep;
+    private int Orderstep;
+    private List opcionesExcel;
 
 //    variables para poder borrar los campos después de guardar
-    
-    
-    
-    
-    
     //Getters and Setters de existencia
     public String getValidarescenario() {
         return validarescenario;
@@ -173,7 +174,7 @@ private int Orderstep;
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
         String strTimeStamp = dateFormat.format(date);
-        System.out.println(strTimeStamp);
+        //System.out.println(strTimeStamp);
         Date fecha = dateFormat.parse(strTimeStamp);
         return fecha;
     }
@@ -181,16 +182,14 @@ private int Orderstep;
     //Constructor
     public GestionController() {
 
-        
-        
-        ActionStep="";
-Navegador="";
-TypeStep="";
-ValueStep="";
-ParameterStep="";
-CorXStep=0;
-CorYStep=0;
-Orderstep=0;
+        ActionStep = "";
+        Navegador = "";
+        TypeStep = "";
+        ValueStep = "";
+        ParameterStep = "";
+        CorXStep = 0;
+        CorYStep = 0;
+        Orderstep = 0;
     }
 
     //Method init
@@ -359,14 +358,14 @@ Orderstep=0;
     public void agregarpaso() {
         nuevopaso.setIdCaso(nuevocaso);
 
-nuevopaso.setActionStep(ActionStep);
-nuevopaso.setNavegador(Navegador);
-nuevopaso.setTypeStep(TypeStep);
-nuevopaso.setValueStep(ValueStep);
-nuevopaso.setParameterStep(ParameterStep);
-nuevopaso.setCorXStep(CorXStep);
-nuevopaso.setCorYStep(CorYStep);
-nuevopaso.setOrderstep(Orderstep);
+        nuevopaso.setActionStep(ActionStep);
+        nuevopaso.setNavegador(Navegador);
+        nuevopaso.setTypeStep(TypeStep);
+        nuevopaso.setValueStep(ValueStep);
+        nuevopaso.setParameterStep(ParameterStep);
+        nuevopaso.setCorXStep(CorXStep);
+        nuevopaso.setCorYStep(CorYStep);
+        nuevopaso.setOrderstep(Orderstep);
         //Foreach para saber si existe la accion de ingresar url
         this.listpaso.forEach((paso) -> {
             if ("Ingresar URL".equals(paso.getActionStep())) {
@@ -392,7 +391,6 @@ nuevopaso.setOrderstep(Orderstep);
             this.listpaso.add(nuevopaso);
 //            nuevopaso = new Paso();//añadido para borrar campos
 
-
 //            nuevopaso.setActionStep("");
 //            nuevopaso.setNavegador("");
 //            nuevopaso.setTypeStep("");
@@ -415,14 +413,14 @@ nuevopaso.setOrderstep(Orderstep);
         });
         //limpiar los campos
 //        limpiarCampos();
-ActionStep="";
-Navegador="";
-TypeStep="";
-ValueStep="";
-ParameterStep="";
-CorXStep=0;
-CorYStep=0;
-Orderstep=0;
+        ActionStep = "";
+        Navegador = "";
+        TypeStep = "";
+        ValueStep = "";
+        ParameterStep = "";
+        CorXStep = 0;
+        CorYStep = 0;
+        Orderstep = 0;
     }
 
     //Método para limpiar los campos después de agregar un paso.
@@ -447,7 +445,7 @@ Orderstep=0;
     //Eliminacion del paso de la lista
     public void eliminarpaso(Paso p) {
         GestionController.listpaso.remove(p);
-        System.out.println("paso eliminnado");
+        //System.out.println("paso eliminnado");
     }
 
     //Metodo para registrar suit,escenario,caso y pasos NOTA:METODO ESPECIFICO CUANDO EL ESCENARIO NO ES MOVIL
@@ -479,7 +477,7 @@ Orderstep=0;
 
         init();
         listpaso.clear();
-        System.out.println("Registro con android");
+        //System.out.println("Registro con android");
     }
 
     //Metodo agregar caso
@@ -487,7 +485,7 @@ Orderstep=0;
         nuevocaso.setFechaCreacion(fechaSistema());
         nuevocaso.setIdEscenario(nuevoescenario);
         csfl.create(nuevocaso);
-        System.out.println("Caso Creado");
+        //System.out.println("Caso Creado");
     }
 
     //Metodo agregar escenario sin dispositivo
@@ -495,26 +493,26 @@ Orderstep=0;
         nuevoescenario.setFechaCreacion(fechaSistema());
         nuevoescenario.setIdSuit(nuevasuit);
         efl.create(nuevoescenario);
-        System.out.println("Escenario Creado");
+        //System.out.println("Escenario Creado");
     }
 
     //Metodo agregar escenario con dispositivo
     public void crearEscenarioDispo() throws ParseException {
         dpufl.create(nuevodispo);
-        System.out.println("Dispositivo creado");
+        //System.out.println("Dispositivo creado");
 
         nuevoescenario.setFechaCreacion(fechaSistema());
         nuevoescenario.setIdSuit(nuevasuit);
         nuevoescenario.setIddispositivo(nuevodispo);
         efl.create(nuevoescenario);
-        System.out.println("Escenario Creado");
+        //System.out.println("Escenario Creado");
     }
 
     //Metodo para agregar suits
     public void crearsuit() throws ParseException {
         nuevasuit.setFechaCreacion(fechaSistema());
         suitfacadelocal.create(nuevasuit);
-        System.out.println("Suit Creada");
+        //System.out.println("Suit Creada");
     }
 
     //Metodo para agregar los pasos
@@ -531,9 +529,9 @@ Orderstep=0;
             nuevopaso.setOrderstep(pass.getOrderstep());
             nuevopaso.setIdCaso(nuevocaso);
             pasofacadelocal.create(nuevopaso);
-            System.out.println("pasocreado");
+            //System.out.println("pasocreado");
         });
-        nuevopaso=new Paso();
+        nuevopaso = new Paso();
     }
 
     //Metodo para validacion de esxistencia con sobrecarga de evento AJAX
@@ -579,10 +577,15 @@ Orderstep=0;
 
             //Envio del archivo
             String ruta = System.getProperty("user.home") + "\\Desktop\\" + archivoEjecucion.getSubmittedFileName();
-            System.out.println("RUTA: " + ruta);
+            //System.out.println("RUTA: " + ruta);
 
-            //Metodo para leer la hoja de suit
-            suits = ejecar.leerArchivoExcelSuit(ruta, ufl.findAll());
+            
+
+
+
+
+//Metodo para leer la hoja de suit
+            opcionesExcel = ejecar.leerArchivoExcelSuit(ruta, ufl.findAll());
             cantidadsuit = suits.size();
             for (Suit su : suits) {
                 su.setFechaCreacion(fechaSistema());
@@ -591,7 +594,7 @@ Orderstep=0;
                 if (su.getIdUsuario() != null) {
                     crearsuit += 1;
                 } else {
-                    System.out.println("no se pudo");
+                    //System.out.println("no se pudo");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR LA SUIT '" + su.getNombreSuit() + "': ", "El Correo del usuario no coincide con ningun usuario registrado.");
                 }
 
@@ -599,14 +602,14 @@ Orderstep=0;
                 if (su.getEstadoSuit() == 1 || su.getEstadoSuit() == 2) {
                     crearsuit += 1;
                 } else {
-                    System.out.println("Estado no valido");
+                    //System.out.println("Estado no valido");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR LA SUIT '" + su.getNombreSuit() + "':", "El estado de la suit no es valido, asegurese que sea Activo o Inactivo.");
                 }
 
                 //Validacion de nombre vacio
                 if ("".equals(su.getNombreSuit())) {
                     crearsuit = 0;
-                    System.out.println("suit vacia");
+                    //System.out.println("suit vacia");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR LA SUIT: ", "El nombre de la suit esta vacia o ya existe en la lista.");
                 } else {
                     crearsuit += 1;
@@ -617,7 +620,7 @@ Orderstep=0;
                 for (Suit sut : suits) {
                     if (su.getNombreSuit().toLowerCase().equals(sut.getNombreSuit().toLowerCase())) {
                         crearsuit = 0;
-                        System.out.println("suit Repetida");
+                        //System.out.println("suit Repetida");
                         MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR LA SUIT '" + su.getNombreSuit() + "':", "La suit que se quiere registrar ya existe.");
                     }
                 }
@@ -633,7 +636,7 @@ Orderstep=0;
                     crearescenario += 1;
                 } else {
                     crearescenario = 0;
-                    System.out.println("suit null");
+                    //System.out.println("suit null");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL ESCENARIO '" + esce.getNombreEscenario() + "':", "La suit a la que se quiere asignar no existe.");
                 }
 
@@ -642,7 +645,7 @@ Orderstep=0;
                     crearescenario += 1;
                 } else {
                     crearescenario = 0;
-                    System.out.println("ambientes escenario null");
+                    //System.out.println("ambientes escenario null");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL ESCENARIO '" + esce.getNombreEscenario() + "':", " El ambiente del escenario '" + esce.getNombreEscenario() + "' no es valido.");
                 }
 
@@ -651,18 +654,18 @@ Orderstep=0;
                     crearescenario += 1;
                 } else {
                     crearescenario = 0;
-                    System.out.println("el estado del escenario null");
+                    //System.out.println("el estado del escenario null");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL ESCENARIO '" + esce.getNombreEscenario() + "':", "El estado del Escenario no es valido, asegurese que sea Activo o Inactivo.");
                 }
 
                 //Validacion de existencia en el escenario
                 if ("".equals(esce.getNombreEscenario())) {
                     crearescenario = 0;
-                    System.out.println("escenario vacio");
+                    //System.out.println("escenario vacio");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL ESCENARIO: ", "El nombre del Escenario llego vacio.");
                 } else if ("YA ESTA CON ESTA SUIT".equals(esce.getNombreEscenario())) {
                     crearescenario = 0;
-                    System.out.println("ya esta en la lista");
+                    //System.out.println("ya esta en la lista");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL ESCENARIO:", "El escenario ya existe en la lista asignada a la suit '" + esce.getIdSuit().getNombreSuit() + "'");
                 } else {
                     crearescenario += 1;
@@ -680,7 +683,7 @@ Orderstep=0;
                     crearcaso += 1;
                 } else {
                     crearcaso = 0;
-                    System.out.println("Escenario null");
+                    //System.out.println("Escenario null");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL CASO '" + cass.getNombreCaso() + "':", "El Escenario al que se quiere asignar el caso no existe.");
                 }
 
@@ -689,18 +692,18 @@ Orderstep=0;
                     crearcaso += 1;
                 } else {
                     crearcaso = 0;
-                    System.out.println("Estado caso null");
+                    //System.out.println("Estado caso null");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL CASO '" + cass.getNombreCaso() + "':", "El estado del Caso no es valido, asegurese que sea Activo o Inactivo.");
                 }
 
                 //Validacion de existencia
                 if ("".equals(cass.getNombreCaso())) {
                     crearcaso = 0;
-                    System.out.println("nombre caso null");
+                    //System.out.println("nombre caso null");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL CASO:", "El nombre del caso llego vacio.");
                 } else if ("YA ESTA CON ESTE ESCENARIO".equals(cass.getNombreCaso())) {
                     crearcaso = 0;
-                    System.out.println("caso ya esta");
+                    //System.out.println("caso ya esta");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL CASO '" + cass.getNombreCaso() + "':", "El caso ya existe en la lista asignada al Escenario '" + cass.getIdEscenario().getNombreEscenario() + "'.");
                 } else {
                     crearcaso += 1;
@@ -727,7 +730,7 @@ Orderstep=0;
                     }
                 } else {
                     crearpaso = 0;
-                    System.out.println("no llega");
+                    //System.out.println("no llega");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL PASO: ", "El valor de accion llego vacio.");
                 }
 
@@ -788,7 +791,7 @@ Orderstep=0;
 
                 //Validacion de existencia de accion url
                 if ("Ya existe la accion Ingresar URL".equals(pass.getActionStep())) {
-                    System.out.println("ya existe");
+                    //System.out.println("ya existe");
                     MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO REGISTRAR EL PASO:", "Ya existe la accion Ingresar URL verifique los valores.");
                 }
 
@@ -820,10 +823,10 @@ Orderstep=0;
                     crearpaso += 1;
                 }
 
-                System.out.println(crearsuit);
-                System.out.println(crearescenario);
-                System.out.println(crearcaso);
-                System.out.println(crearpaso);
+                //System.out.println(crearsuit);
+                //System.out.println(crearescenario);
+                //System.out.println(crearcaso);
+                //System.out.println(crearpaso);
             }
             this.registrocargas(ruta, csfl.findAll(), escenarios, suits, ambientes, usuarios);
         } catch (Exception e) {
@@ -831,7 +834,31 @@ Orderstep=0;
             e.printStackTrace();
         }
     }
+    //Metodo para carga masiva de ejecucion de pruebas en servicios
+    /*
+    public void uploadEjecucionServicios() throws ParseException {
 
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+        }
+
+        try {
+
+            //Envio del archivo
+            String ruta = System.getProperty("user.home") + "\\Desktop\\" + archivoEjecucion.getSubmittedFileName();
+            System.out.println("RUTA: " + ruta);
+
+            //Metodo para leer la hoja de suit
+            opcionesExcel = ejecar.leerArchivoExcelServicios(ruta);
+
+
+        } catch (Exception e) {
+            MessageUtil.enviarMensajeErrorGlobal("NO SE PUDO CARGAR EL ARCHIVO: ", "Por favor asegurese de que el archivo este en el escritorio y sea el formato brindalo por el aplicativo.");
+            e.printStackTrace(System.out);
+        }
+    }
+*/
     public void escribirParametrosURL() {
         try {
             nuevopaso.setValueStep(LeerXML.obtenerEstructuraXml(nuevopaso.getParameterStep()).toString());
@@ -939,9 +966,12 @@ Orderstep=0;
 
     //métodos para leer servicio web soap
     public void obtenerEstructuraXml(String url) throws JDOMException, IOException {
-        System.out.println("Obteniendo estructura de: " + url);
+        metodos = new ArrayList();
+        //System.out.println("Obteniendo estructura de: " + url);
         //agrega ?wsdl al final de la dirección si no se ha agregado
-        
+
+        List<Element> eleMetodos = new ArrayList<>();
+
         if (!url.contains("?wsdl") && !url.contains("?WSDL")) {
             url = url.concat("?wsdl");
         }
@@ -950,72 +980,75 @@ Orderstep=0;
         File archivo = LeerXML.convertirStringAArchivo(contenido, "wsdl.xml");
         List estructura = new ArrayList();
 
-        Element elemento = ((Document) (new SAXBuilder()).build(new File("wsdl.xml"))).getRootElement();
+        Element elemento = ((Document) (new SAXBuilder()).build(new File("wsdl.xml"))).getRootElement();//toda la estructura wsdl
         Namespace namespc = elemento.getNamespace();
 
-        String targetnmspc = elemento.getAttribute("targetNamespace").getValue();
+        List<Element> messages = elemento.getChildren("message", namespc);
+        List<Element> types = elemento.getChildren("types", namespc);
+        Element schema = types.get(0);
+        List<Element> schemas = schema.getChildren();//contiene un solo elemento schema
+//        //System.out.println("------------------------schemas: "+schemas.get(0).getName());
 
-//        System.out.println("Elemento raiz: " + elemento.getName() + " Namespace: " + elemento.getNamespace());
-        List<Element> types = new ArrayList<>();
-//        temas = elemento.getChildren("types", Namespace.getNamespace(namespc));
-        types = elemento.getChildren("types", namespc);
-//        System.out.println("nombre: "+elemento.getChildren("service",namespc).get(0).getAttributeValue("name"));
-        String nombreServicio = elemento.getChildren("service", namespc).get(0).getAttributeValue("name");
-        Metodo metodo = new Metodo();
-        Parametro parametro = new Parametro();
-        for (Element e : types) {
-//            System.out.println("hijo: " + e.getName());
-            List<Element> schema = e.getChildren();
-            for (Element sub : schema) {//schema
-//                System.out.println("*      nieto: " + sub.getName());
+        List<Element> elements = schemas.get(0).getChildren();
+        //System.out.println("------------------------tam elements: " + elements.size());
+//        for (Element e:elements) {
+//            //System.out.println("element:name:"+e.getAttributeValue("name"));
+//            
+//        }
 
-                List<Element> elem = sub.getChildren();
-                for (Element subsub : elem) {//complextype
-                    if (subsub.getName().equals("element")) {
-//                    System.out.println("*             nombreClase: " + subsub.getAttribute("name").getValue()+" "+subsub.getName());
+        //System.out.println("Namespace: " + namespc);
 
-                        metodo = new Metodo();
+        List<Element> portType = elemento.getChildren("portType", namespc);
+        for (Element e : portType) {
+            //System.out.println("portType: " + e.getAttributeValue("name"));
+        }
+        List<Element> operations = portType.get(0).getChildren("operation", namespc);
+        for (Element op : operations) {
+            //System.out.println("operation: " + op.getAttributeValue("name"));
+            Metodo metodotemp = new Metodo();
+            metodotemp.setNombre(op.getAttributeValue("name"));
+            //System.out.println("message: " + op.getChild("input", namespc).getAttributeValue("message"));
+            metodotemp.setInput(op.getChild("input", namespc).getAttributeValue("message"));//añade el nombre de input para asociar con message
+            for (Element mesj : messages) {
+                if (metodotemp.getInput().contains(mesj.getAttributeValue("name"))) {
+                    //System.out.println("messagesOK: " + mesj.getAttributeValue("name"));
+                    Element part = mesj.getChild("part", namespc);
+                    //System.out.println("part:message: " + part.getAttributeValue("element"));//muestra el nombre del método con prefijo
+                    //recorrer elements
+                    for (Element e : elements) {
+                        if (e.getName().equals("element")) {
+//                        //System.out.println("///////////////////////////////////////////////////////elements.size: "+elements.size());
+//                        //System.out.println("///////////////////////////////////////////////////////"+part.getAttributeValue("element"));
+//                        //System.out.println("///////////////////////////////////////////////////////"+e.getName());
+//                        //System.out.println("///////////////////////////////////////////////////////"+e.getAttributeValue("name"));
+                            if (part.getAttributeValue("element").contains(e.getAttributeValue("name"))) {
+                                //System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++name: " + e.getName());
+                                List<Element> sequences = e.getChildren();
 
-                        metodo.setNombre(new String(subsub.getAttribute("name").getValue()));//marca los métodos con **
-                        metodo.setTargetNamespace(targetnmspc);
-                        metodo.setParametros(new ArrayList<Parametro>());
-//                        estructura.add(new String("**" + subsub.getAttribute("name").getValue()));//marca los métodos con **
-                    }
+                                sequences = sequences.get(0).getChildren();
 
-                    List<Element> subsubsubtemas = subsub.getChildren();
-                    for (Element subsubsub : subsubsubtemas) {//sequence
-//                        System.out.println("*                     tataranieto: " + subsubsub.getName());
-                        List<Element> subsubsubsubtemas = subsubsub.getChildren();
-                        for (Element subsubsubsub : subsubsubsubtemas) {//element
-//                            System.out.println("*                             tataratataranieto: " + subsubsubsub.getName());
-                            List<Element> subsubsubsubsubtemas = subsubsub.getChildren();
-                            for (Element subsubsubsubsub : subsubsubsubsubtemas) {//element
-//                                System.out.println("*                                     tataratataranieto: " + subsubsubsubsub.getName());
-                                List<Element> ssubtemas = subsubsubsubsub.getChildren();
+                                List<Element> parametros = sequences.get(0).getChildren();
+                                for (Element ekl : parametros) {
+                                    Parametro parametrotemp = new Parametro();
+                                    parametrotemp.setNombre(ekl.getAttributeValue("name"));
+                                    //System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++tam parametros: " + parametrotemp.getNombre());
+                                    parametrotemp.setTipo(ekl.getAttributeValue("type"));
+                                    metodotemp.getParametros().add(parametrotemp);
+                                }
 
-                                for (Element x : ssubtemas) {//element
-//                                    System.out.println("*                                     nombreVariable: " + x.getAttributeValue("name") + " " + x.getAttributeValue("type"));
-                                    parametro = new Parametro();
-
-                                    parametro.setNombre(new String(x.getAttribute("name").getValue()));
-                                    parametro.setTipo(new String(x.getAttribute("type").getValue()));
-                                    metodo.getParametros().add(parametro);
-//                                    estructura.add(new String(x.getAttribute("name").getValue()));
-//                                    estructura.add(new String(x.getAttribute("type").getValue()));
-                                }//cierre for crea parámetros
                             }
                         }
                     }
-                    estructura.add(metodo);
-                }//cierre for q crea métodos
+                }
             }
+
+            metodos.add(metodotemp);
         }
-//        namespc=elemento.getAdditionalNamespaces().get(1);
-//        estructura.add(namespc.getURI());
-//        estructura.add(targetnmspc);
-//        estructura.add("SS" + nombreServicio);
-        metodos = (ArrayList) estructura;
-        System.out.println("GestionController 963 metodos: " + metodos.toString());
+
+        String targetnmspc = elemento.getAttribute("targetNamespace").getValue();
+        Namespace tNamespace = Namespace.getNamespace(targetnmspc);
+//        metodos = (ArrayList) estructura;
+        //System.out.println("GestionController 963 metodos: " + metodos.toString());
     }
 
     /**
@@ -1048,7 +1081,7 @@ Orderstep=0;
             ex.printStackTrace(System.out);
             Logger.getLogger(LeerXML.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Texto obtenido de: " + direccion);
+        //System.out.println("Texto obtenido de: " + direccion);
         return textoCompleto;
     }
 
@@ -1086,8 +1119,6 @@ Orderstep=0;
     }
 
 //setters y getters de variables para borrar campos
-    
-
     public String getActionStep() {
         return ActionStep;
     }
@@ -1152,4 +1183,12 @@ Orderstep=0;
         this.Orderstep = Orderstep;
     }
 //setters y getters de variables para borrar campos
+
+    public List getOpcionesExcel() {
+        return opcionesExcel;
+    }
+
+    public void setOpcionesExcel(List opcionesExcel) {
+        this.opcionesExcel = opcionesExcel;
+    }
 }

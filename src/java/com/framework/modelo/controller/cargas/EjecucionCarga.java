@@ -189,7 +189,35 @@ public class EjecucionCarga {
         return suits;
     }
 
-    public List<Escenario> leerArchivoExcelEscenario(String archivoOrigen, List<Suit> suitlista, List<Ambiente> ambientelist, List<Usuario> usuarioslist) {
+    public List leerArchivoExcelServicios(String archivoOrigen) {
+        int contador = 1;
+        List opciones = new ArrayList();
+        try {
+            Workbook archivoExcel = Workbook.getWorkbook(new File(archivoOrigen));
+
+            //Recorrer títulos hoja excel
+            for (int hojas = 1; hojas < 2; hojas++) {
+                Sheet hoja = archivoExcel.getSheet(hojas);
+                int numerocolumnas = hoja.getColumns();
+                int numerofilas = hoja.getRows();
+                String datos;
+                
+                //Recorre cada fila del archivo
+                for (int fila = 1; fila < 2; fila++) {
+                    
+                    for (int columna = 0; columna < numerocolumnas; columna++) {
+                        datos = hoja.getCell(columna, fila).getContents();
+                        System.out.println("dato: "+datos);
+                        opciones.add(datos);
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+        return opciones;
+    }
+
+        public List<Escenario> leerArchivoExcelEscenario(String archivoOrigen, List<Suit> suitlista, List<Ambiente> ambientelist, List<Usuario> usuarioslist) {
         int contador = 1;
         escenarios = new ArrayList<>();
         try {
@@ -289,6 +317,7 @@ public class EjecucionCarga {
         return escenarios;
     }
 
+    
     public List<Caso> leerArchivoExcelCasos(String archivoDestino, List<Escenario> escenarioslist, List<Suit> suitlista, List<Ambiente> ambientelist, List<Usuario> usuarioslist) {
         int contador = 1;
         casos = new ArrayList<>();

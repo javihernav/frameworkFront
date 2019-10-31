@@ -18,8 +18,10 @@ import javax.inject.Named;
 public class Metodo {
     private String nombre;
     private String targetNamespace;
+    private String input;
     private ArrayList<Parametro> parametros;
-
+private String valorEsperado;
+    
     public String getNombre() {
         return nombre;
     }
@@ -46,6 +48,22 @@ public class Metodo {
 
     public Metodo() {
         this.parametros=new ArrayList();
+    }
+
+    public String getInput() {
+        return input;
+    }
+
+    public void setInput(String input) {
+        this.input = input;
+    }
+
+    public String getValorEsperado() {
+        return valorEsperado;
+    }
+
+    public void setValorEsperado(String valorEsperado) {
+        this.valorEsperado = valorEsperado;
     }
     
 }
