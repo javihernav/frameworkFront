@@ -124,7 +124,7 @@ public class RegistrosPasosController {
     }
     public String registrar2() {
         nuevopaso.setOrderstep(valoralterno);
-        pfl.editarPaso(nuevopaso, valorUltimoPaso );
+        pfl.agregarPaso(nuevopaso, valorUltimoPaso );
         return null;
     }
 

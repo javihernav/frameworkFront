@@ -21,6 +21,7 @@
                         <b:selectOneMenu class="form-control" id="idcaso" value="#{registroPasosController.nuevopaso.idCaso}">
                             <f:selectItem itemValue="" itemLabel="Seleccion"></f:selectItem>
                             <f:selectItems value="#{casosController.casos}" var="c" itemLabel="#{c.nombreCaso}"/>
+                            <f:ajax event="change" listener="#{registroPasosController.cargarPasos}"  render=":tablepasos order" execute="idcaso"/>
                         </b:selectOneMenu>
                         <b:commandButton class="btn btn-sm mb-2" look="primary" iconAwesome="plus" value="Ver Pasos" onclick="$('.ver-pasos').modal();">
                             <f:ajax event="click" listener="#{registroPasosController.cargarPasos}"  render=":tablepasos order" execute="idcaso"/>

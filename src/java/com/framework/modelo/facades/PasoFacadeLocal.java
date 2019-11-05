@@ -22,7 +22,7 @@ public interface PasoFacadeLocal {
 
     void remove(Paso paso);
 
-    void editarPaso(Paso paso, int cantidadPasos);
+    void agregarPaso(Paso paso, int cantidadPasos);
     
     Paso find(Object id);
 

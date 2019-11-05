@@ -15,12 +15,14 @@ import javax.inject.Named;
  */
 @Named(value = "metodo")
 @Dependent
-public class Metodo {
+public class MetodoUtil {
     private String nombre;
     private String targetNamespace;
     private String input;
-    private ArrayList<Parametro> parametros;
+    private ArrayList<ParametroUtil> parametros;
 private String valorEsperado;
+private int idpaso;
+private String contenttype;
     
     public String getNombre() {
         return nombre;
@@ -38,15 +40,15 @@ private String valorEsperado;
         this.targetNamespace = targetNamespace;
     }
 
-    public ArrayList<Parametro> getParametros() {
+    public ArrayList<ParametroUtil> getParametros() {
         return parametros;
     }
 
-    public void setParametros(ArrayList<Parametro> parametros) {
+    public void setParametros(ArrayList<ParametroUtil> parametros) {
         this.parametros = parametros;
     }
 
-    public Metodo() {
+    public MetodoUtil() {
         this.parametros=new ArrayList();
     }
 
@@ -64,6 +66,22 @@ private String valorEsperado;
 
     public void setValorEsperado(String valorEsperado) {
         this.valorEsperado = valorEsperado;
+    }
+
+    public int getIdpaso() {
+        return idpaso;
+    }
+
+    public void setIdpaso(int idpaso) {
+        this.idpaso = idpaso;
+    }
+
+    public String getContenttype() {
+        return contenttype;
+    }
+
+    public void setContenttype(String contenttype) {
+        this.contenttype = contenttype;
     }
     
 }

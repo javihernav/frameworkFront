@@ -56,6 +56,18 @@ public class Metodo implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idmetodo", fetch = FetchType.LAZY)
     private List<Parametro> parametros;
 
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "targetnamespace")
+    private String targetnamespace;
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "valoresperado")
+    private String valoresperado;
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "contenttype")
+    private String contenttype;
     public Metodo() {
     }
 
@@ -128,6 +140,30 @@ public class Metodo implements Serializable {
 
     public void setIdPaso(Paso idPaso) {
         this.idPaso = idPaso;
+    }
+
+    public String getTargetnamespace() {
+        return targetnamespace;
+    }
+
+    public void setTargetnamespace(String targetnamespace) {
+        this.targetnamespace = targetnamespace;
+    }
+
+    public String getValoresperado() {
+        return valoresperado;
+    }
+
+    public void setValoresperado(String valoresperado) {
+        this.valoresperado = valoresperado;
+    }
+
+    public String getContenttype() {
+        return contenttype;
+    }
+
+    public void setContenttype(String contenttype) {
+        this.contenttype = contenttype;
     }
     
 }

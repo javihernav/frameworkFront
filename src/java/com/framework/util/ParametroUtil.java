@@ -14,10 +14,11 @@ import javax.inject.Named;
  */
 @Named(value = "parametro")
 @Dependent
-public class Parametro {
+public class ParametroUtil {
     private String nombre;
     private String tipo;
     private String origen;
+    private int idmetodo;
 
     public String getNombre() {
         return nombre;
@@ -41,6 +42,14 @@ public class Parametro {
 
     public void setOrigen(String origen) {
         this.origen = origen;
+    }
+
+    public int getIdmetodo() {
+        return idmetodo;
+    }
+
+    public void setIdmetodo(int idmetodo) {
+        this.idmetodo = idmetodo;
     }
     
 }

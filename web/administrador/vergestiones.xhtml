@@ -429,15 +429,15 @@
                                     <h:panelGroup id="ajaxResult" layout="block"> 
                                         <div class="form-group" style="float:right;">
                                             <b:commandButton value="Escanear Servicio" class="btn btn-danger btn-sm escanear">
-<!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-                                                <f:ajax execute="data" render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX ajaxResult" listener="#{ gestionController.obtenerEstructuraXml( gestionController.parameterStep)}" />
+                                                <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                                                <f:ajax execute="data" render="table mesajepaso typestep data coorY navegador valuestep coorX ajaxResult" listener="#{ gestionController.obtenerEstructuraXml( gestionController.parameterStep)}" />
 
                                             </b:commandButton>
 
-                                     
-                                        
-                                        
-                                        
+
+
+
+
                                         </div>
                                         <!--<h:outputText value="metodos: #{gestionController.metodos.toString()}" id="metodos" />-->
 
@@ -465,9 +465,15 @@
                                                             <td>
                                                                 <h:outputText value="#{item.nombre}"/>
                                                             </td>
+                                                            <td>
+                                                                <h:outputText value="Content-Type (text/xml)(application/soap+xml)"/><br/>
+                                                                <h:inputText value="#{item.contenttype}"/>
+                                                            </td>
 
 
                                                             <td>
+                                            <!--<h:dataTable class="table table-bordered table-hover" id="table" value="#{gestionController.listpaso}"  var="p">-->
+
                                                                 <table class="table table-bordered col-md-12">
                                                                     <thead>
 
@@ -495,10 +501,10 @@
                                                                                     <h:outputText value="#{variable.tipo}"/>
                                                                                 </td>
                                                                                 <td>                                                                                  
-                                                                                    
-                                                                                    <h:selectOneMenu class="form-control" value="#{variable.origen}" id="origenparametros" >
-                                                                                        <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
-                                                                                        <f:selectItem itemValue="1" itemLabel="Data1"></f:selectItem>
+
+                                                                                    <h:selectOneMenu class="form-control" value="#{variable.origen}" id="origenparametros"  >
+                                                                                        <!--<f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>-->
+                                                                                        <f:selectItem itemValue="1" itemLabel="Data1"  ></f:selectItem>
                                                                                         <f:selectItem itemValue="2" itemLabel="Data2"></f:selectItem>
                                                                                         <f:selectItem itemValue="3" itemLabel="Data3"></f:selectItem>
                                                                                         <f:selectItem itemValue="4" itemLabel="Data4"></f:selectItem>
@@ -598,19 +604,9 @@
                                                                                         <f:selectItem itemValue="98" itemLabel="Data98"></f:selectItem>
                                                                                         <f:selectItem itemValue="99" itemLabel="Data99"></f:selectItem>
                                                                                         <f:selectItem itemValue="100" itemLabel="Data100"></f:selectItem>
-                                                                                        <f:selectItem itemValue="101" itemLabel="Data101"></f:selectItem>
-                                                                                        <f:selectItem itemValue="102" itemLabel="Data102"></f:selectItem>
-                                                                                        <f:selectItem itemValue="103" itemLabel="Data103"></f:selectItem>
-                                                                                        <f:selectItem itemValue="104" itemLabel="Data104"></f:selectItem>
-                                                                                        <f:selectItem itemValue="105" itemLabel="Data105"></f:selectItem>
-                                                                                        <f:selectItem itemValue="106" itemLabel="Data106"></f:selectItem>
-                                                                                        <f:selectItem itemValue="107" itemLabel="Data107"></f:selectItem>
-                                                                                        <f:selectItem itemValue="108" itemLabel="Data108"></f:selectItem>
-                                                                                        <f:selectItem itemValue="109" itemLabel="Data109"></f:selectItem>
-                                                                                        <f:selectItem itemValue="110" itemLabel="Data110"></f:selectItem>
-                                                                            
-                                                                                        <!--<f:selectItems value="#{gestionController.opcionesExcel}" var="a" itemValue="#{gestionController.opcionesExcel}" itemLabel="#{gestionController.opcionesExcel}"/>-->
-                                                                                        <!--<f:ajax event="change" onevent="validar()"/>-->
+
+
+
                                                                                     </h:selectOneMenu>
                                                                                 </td>
 
@@ -619,122 +615,112 @@
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <tr><td>Valor Esperado</td><td  colspan="2">
-                                                                            
+
                                                                                 <h:selectOneMenu class="form-control" value="#{item.valorEsperado}" id="valoresperado" >
-                                                                                        <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
-                                                                                        <f:selectItem itemValue="1" itemLabel="Data1"></f:selectItem>
-                                                                                        <f:selectItem itemValue="2" itemLabel="Data2"></f:selectItem>
-                                                                                        <f:selectItem itemValue="3" itemLabel="Data3"></f:selectItem>
-                                                                                        <f:selectItem itemValue="4" itemLabel="Data4"></f:selectItem>
-                                                                                        <f:selectItem itemValue="5" itemLabel="Data5"></f:selectItem>
-                                                                                        <f:selectItem itemValue="6" itemLabel="Data6"></f:selectItem>
-                                                                                        <f:selectItem itemValue="7" itemLabel="Data7"></f:selectItem>
-                                                                                        <f:selectItem itemValue="8" itemLabel="Data8"></f:selectItem>
-                                                                                        <f:selectItem itemValue="9" itemLabel="Data9"></f:selectItem>
-                                                                                        <f:selectItem itemValue="10" itemLabel="Data10"></f:selectItem>
-                                                                                        <f:selectItem itemValue="11" itemLabel="Data11"></f:selectItem>
-                                                                                        <f:selectItem itemValue="12" itemLabel="Data12"></f:selectItem>
-                                                                                        <f:selectItem itemValue="13" itemLabel="Data13"></f:selectItem>
-                                                                                        <f:selectItem itemValue="14" itemLabel="Data14"></f:selectItem>
-                                                                                        <f:selectItem itemValue="15" itemLabel="Data15"></f:selectItem>
-                                                                                        <f:selectItem itemValue="16" itemLabel="Data16"></f:selectItem>
-                                                                                        <f:selectItem itemValue="17" itemLabel="Data17"></f:selectItem>
-                                                                                        <f:selectItem itemValue="18" itemLabel="Data18"></f:selectItem>
-                                                                                        <f:selectItem itemValue="19" itemLabel="Data19"></f:selectItem>
-                                                                                        <f:selectItem itemValue="20" itemLabel="Data20"></f:selectItem>
-                                                                                        <f:selectItem itemValue="21" itemLabel="Data21"></f:selectItem>
-                                                                                        <f:selectItem itemValue="22" itemLabel="Data22"></f:selectItem>
-                                                                                        <f:selectItem itemValue="23" itemLabel="Data23"></f:selectItem>
-                                                                                        <f:selectItem itemValue="24" itemLabel="Data24"></f:selectItem>
-                                                                                        <f:selectItem itemValue="25" itemLabel="Data25"></f:selectItem>
-                                                                                        <f:selectItem itemValue="26" itemLabel="Data26"></f:selectItem>
-                                                                                        <f:selectItem itemValue="27" itemLabel="Data27"></f:selectItem>
-                                                                                        <f:selectItem itemValue="28" itemLabel="Data28"></f:selectItem>
-                                                                                        <f:selectItem itemValue="29" itemLabel="Data29"></f:selectItem>
-                                                                                        <f:selectItem itemValue="30" itemLabel="Data30"></f:selectItem>
-                                                                                        <f:selectItem itemValue="31" itemLabel="Data31"></f:selectItem>
-                                                                                        <f:selectItem itemValue="32" itemLabel="Data32"></f:selectItem>
-                                                                                        <f:selectItem itemValue="33" itemLabel="Data33"></f:selectItem>
-                                                                                        <f:selectItem itemValue="34" itemLabel="Data34"></f:selectItem>
-                                                                                        <f:selectItem itemValue="35" itemLabel="Data35"></f:selectItem>
-                                                                                        <f:selectItem itemValue="36" itemLabel="Data36"></f:selectItem>
-                                                                                        <f:selectItem itemValue="37" itemLabel="Data37"></f:selectItem>
-                                                                                        <f:selectItem itemValue="38" itemLabel="Data38"></f:selectItem>
-                                                                                        <f:selectItem itemValue="39" itemLabel="Data39"></f:selectItem>
-                                                                                        <f:selectItem itemValue="40" itemLabel="Data40"></f:selectItem>
-                                                                                        <f:selectItem itemValue="41" itemLabel="Data41"></f:selectItem>
-                                                                                        <f:selectItem itemValue="42" itemLabel="Data42"></f:selectItem>
-                                                                                        <f:selectItem itemValue="43" itemLabel="Data43"></f:selectItem>
-                                                                                        <f:selectItem itemValue="44" itemLabel="Data44"></f:selectItem>
-                                                                                        <f:selectItem itemValue="45" itemLabel="Data45"></f:selectItem>
-                                                                                        <f:selectItem itemValue="46" itemLabel="Data46"></f:selectItem>
-                                                                                        <f:selectItem itemValue="47" itemLabel="Data47"></f:selectItem>
-                                                                                        <f:selectItem itemValue="48" itemLabel="Data48"></f:selectItem>
-                                                                                        <f:selectItem itemValue="49" itemLabel="Data49"></f:selectItem>
-                                                                                        <f:selectItem itemValue="50" itemLabel="Data50"></f:selectItem>
-                                                                                        <f:selectItem itemValue="51" itemLabel="Data51"></f:selectItem>
-                                                                                        <f:selectItem itemValue="52" itemLabel="Data52"></f:selectItem>
-                                                                                        <f:selectItem itemValue="53" itemLabel="Data53"></f:selectItem>
-                                                                                        <f:selectItem itemValue="54" itemLabel="Data54"></f:selectItem>
-                                                                                        <f:selectItem itemValue="55" itemLabel="Data55"></f:selectItem>
-                                                                                        <f:selectItem itemValue="56" itemLabel="Data56"></f:selectItem>
-                                                                                        <f:selectItem itemValue="57" itemLabel="Data57"></f:selectItem>
-                                                                                        <f:selectItem itemValue="58" itemLabel="Data58"></f:selectItem>
-                                                                                        <f:selectItem itemValue="59" itemLabel="Data59"></f:selectItem>
-                                                                                        <f:selectItem itemValue="60" itemLabel="Data60"></f:selectItem>
-                                                                                        <f:selectItem itemValue="61" itemLabel="Data61"></f:selectItem>
-                                                                                        <f:selectItem itemValue="62" itemLabel="Data62"></f:selectItem>
-                                                                                        <f:selectItem itemValue="63" itemLabel="Data63"></f:selectItem>
-                                                                                        <f:selectItem itemValue="64" itemLabel="Data64"></f:selectItem>
-                                                                                        <f:selectItem itemValue="65" itemLabel="Data65"></f:selectItem>
-                                                                                        <f:selectItem itemValue="66" itemLabel="Data66"></f:selectItem>
-                                                                                        <f:selectItem itemValue="67" itemLabel="Data67"></f:selectItem>
-                                                                                        <f:selectItem itemValue="68" itemLabel="Data68"></f:selectItem>
-                                                                                        <f:selectItem itemValue="69" itemLabel="Data69"></f:selectItem>
-                                                                                        <f:selectItem itemValue="70" itemLabel="Data70"></f:selectItem>
-                                                                                        <f:selectItem itemValue="71" itemLabel="Data71"></f:selectItem>
-                                                                                        <f:selectItem itemValue="72" itemLabel="Data72"></f:selectItem>
-                                                                                        <f:selectItem itemValue="73" itemLabel="Data73"></f:selectItem>
-                                                                                        <f:selectItem itemValue="74" itemLabel="Data74"></f:selectItem>
-                                                                                        <f:selectItem itemValue="75" itemLabel="Data75"></f:selectItem>
-                                                                                        <f:selectItem itemValue="76" itemLabel="Data76"></f:selectItem>
-                                                                                        <f:selectItem itemValue="77" itemLabel="Data77"></f:selectItem>
-                                                                                        <f:selectItem itemValue="78" itemLabel="Data78"></f:selectItem>
-                                                                                        <f:selectItem itemValue="79" itemLabel="Data79"></f:selectItem>
-                                                                                        <f:selectItem itemValue="80" itemLabel="Data80"></f:selectItem>
-                                                                                        <f:selectItem itemValue="81" itemLabel="Data81"></f:selectItem>
-                                                                                        <f:selectItem itemValue="82" itemLabel="Data82"></f:selectItem>
-                                                                                        <f:selectItem itemValue="83" itemLabel="Data83"></f:selectItem>
-                                                                                        <f:selectItem itemValue="84" itemLabel="Data84"></f:selectItem>
-                                                                                        <f:selectItem itemValue="85" itemLabel="Data85"></f:selectItem>
-                                                                                        <f:selectItem itemValue="86" itemLabel="Data86"></f:selectItem>
-                                                                                        <f:selectItem itemValue="87" itemLabel="Data87"></f:selectItem>
-                                                                                        <f:selectItem itemValue="88" itemLabel="Data88"></f:selectItem>
-                                                                                        <f:selectItem itemValue="89" itemLabel="Data89"></f:selectItem>
-                                                                                        <f:selectItem itemValue="90" itemLabel="Data90"></f:selectItem>
-                                                                                        <f:selectItem itemValue="91" itemLabel="Data91"></f:selectItem>
-                                                                                        <f:selectItem itemValue="92" itemLabel="Data92"></f:selectItem>
-                                                                                        <f:selectItem itemValue="93" itemLabel="Data93"></f:selectItem>
-                                                                                        <f:selectItem itemValue="94" itemLabel="Data94"></f:selectItem>
-                                                                                        <f:selectItem itemValue="95" itemLabel="Data95"></f:selectItem>
-                                                                                        <f:selectItem itemValue="96" itemLabel="Data96"></f:selectItem>
-                                                                                        <f:selectItem itemValue="97" itemLabel="Data97"></f:selectItem>
-                                                                                        <f:selectItem itemValue="98" itemLabel="Data98"></f:selectItem>
-                                                                                        <f:selectItem itemValue="99" itemLabel="Data99"></f:selectItem>
-                                                                                        <f:selectItem itemValue="100" itemLabel="Data100"></f:selectItem>
-                                                                                        <f:selectItem itemValue="101" itemLabel="Data101"></f:selectItem>
-                                                                                        <f:selectItem itemValue="102" itemLabel="Data102"></f:selectItem>
-                                                                                        <f:selectItem itemValue="103" itemLabel="Data103"></f:selectItem>
-                                                                                        <f:selectItem itemValue="104" itemLabel="Data104"></f:selectItem>
-                                                                                        <f:selectItem itemValue="105" itemLabel="Data105"></f:selectItem>
-                                                                                        <f:selectItem itemValue="106" itemLabel="Data106"></f:selectItem>
-                                                                                        <f:selectItem itemValue="107" itemLabel="Data107"></f:selectItem>
-                                                                                        <f:selectItem itemValue="108" itemLabel="Data108"></f:selectItem>
-                                                                                        <f:selectItem itemValue="109" itemLabel="Data109"></f:selectItem>
-                                                                                        <f:selectItem itemValue="110" itemLabel="Data110"></f:selectItem>
-                                                                            
-                                                                                        
-                                                                                    </h:selectOneMenu>
+                                                                                    <!--<f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>-->
+                                                                                    <f:selectItem itemValue="1" itemLabel="Data1"></f:selectItem>
+                                                                                    <f:selectItem itemValue="2" itemLabel="Data2"></f:selectItem>
+                                                                                    <f:selectItem itemValue="3" itemLabel="Data3"></f:selectItem>
+                                                                                    <f:selectItem itemValue="4" itemLabel="Data4"></f:selectItem>
+                                                                                    <f:selectItem itemValue="5" itemLabel="Data5"></f:selectItem>
+                                                                                    <f:selectItem itemValue="6" itemLabel="Data6"></f:selectItem>
+                                                                                    <f:selectItem itemValue="7" itemLabel="Data7"></f:selectItem>
+                                                                                    <f:selectItem itemValue="8" itemLabel="Data8"></f:selectItem>
+                                                                                    <f:selectItem itemValue="9" itemLabel="Data9"></f:selectItem>
+                                                                                    <f:selectItem itemValue="10" itemLabel="Data10"></f:selectItem>
+                                                                                    <f:selectItem itemValue="11" itemLabel="Data11"></f:selectItem>
+                                                                                    <f:selectItem itemValue="12" itemLabel="Data12"></f:selectItem>
+                                                                                    <f:selectItem itemValue="13" itemLabel="Data13"></f:selectItem>
+                                                                                    <f:selectItem itemValue="14" itemLabel="Data14"></f:selectItem>
+                                                                                    <f:selectItem itemValue="15" itemLabel="Data15"></f:selectItem>
+                                                                                    <f:selectItem itemValue="16" itemLabel="Data16"></f:selectItem>
+                                                                                    <f:selectItem itemValue="17" itemLabel="Data17"></f:selectItem>
+                                                                                    <f:selectItem itemValue="18" itemLabel="Data18"></f:selectItem>
+                                                                                    <f:selectItem itemValue="19" itemLabel="Data19"></f:selectItem>
+                                                                                    <f:selectItem itemValue="20" itemLabel="Data20"></f:selectItem>
+                                                                                    <f:selectItem itemValue="21" itemLabel="Data21"></f:selectItem>
+                                                                                    <f:selectItem itemValue="22" itemLabel="Data22"></f:selectItem>
+                                                                                    <f:selectItem itemValue="23" itemLabel="Data23"></f:selectItem>
+                                                                                    <f:selectItem itemValue="24" itemLabel="Data24"></f:selectItem>
+                                                                                    <f:selectItem itemValue="25" itemLabel="Data25"></f:selectItem>
+                                                                                    <f:selectItem itemValue="26" itemLabel="Data26"></f:selectItem>
+                                                                                    <f:selectItem itemValue="27" itemLabel="Data27"></f:selectItem>
+                                                                                    <f:selectItem itemValue="28" itemLabel="Data28"></f:selectItem>
+                                                                                    <f:selectItem itemValue="29" itemLabel="Data29"></f:selectItem>
+                                                                                    <f:selectItem itemValue="30" itemLabel="Data30"></f:selectItem>
+                                                                                    <f:selectItem itemValue="31" itemLabel="Data31"></f:selectItem>
+                                                                                    <f:selectItem itemValue="32" itemLabel="Data32"></f:selectItem>
+                                                                                    <f:selectItem itemValue="33" itemLabel="Data33"></f:selectItem>
+                                                                                    <f:selectItem itemValue="34" itemLabel="Data34"></f:selectItem>
+                                                                                    <f:selectItem itemValue="35" itemLabel="Data35"></f:selectItem>
+                                                                                    <f:selectItem itemValue="36" itemLabel="Data36"></f:selectItem>
+                                                                                    <f:selectItem itemValue="37" itemLabel="Data37"></f:selectItem>
+                                                                                    <f:selectItem itemValue="38" itemLabel="Data38"></f:selectItem>
+                                                                                    <f:selectItem itemValue="39" itemLabel="Data39"></f:selectItem>
+                                                                                    <f:selectItem itemValue="40" itemLabel="Data40"></f:selectItem>
+                                                                                    <f:selectItem itemValue="41" itemLabel="Data41"></f:selectItem>
+                                                                                    <f:selectItem itemValue="42" itemLabel="Data42"></f:selectItem>
+                                                                                    <f:selectItem itemValue="43" itemLabel="Data43"></f:selectItem>
+                                                                                    <f:selectItem itemValue="44" itemLabel="Data44"></f:selectItem>
+                                                                                    <f:selectItem itemValue="45" itemLabel="Data45"></f:selectItem>
+                                                                                    <f:selectItem itemValue="46" itemLabel="Data46"></f:selectItem>
+                                                                                    <f:selectItem itemValue="47" itemLabel="Data47"></f:selectItem>
+                                                                                    <f:selectItem itemValue="48" itemLabel="Data48"></f:selectItem>
+                                                                                    <f:selectItem itemValue="49" itemLabel="Data49"></f:selectItem>
+                                                                                    <f:selectItem itemValue="50" itemLabel="Data50"></f:selectItem>
+                                                                                    <f:selectItem itemValue="51" itemLabel="Data51"></f:selectItem>
+                                                                                    <f:selectItem itemValue="52" itemLabel="Data52"></f:selectItem>
+                                                                                    <f:selectItem itemValue="53" itemLabel="Data53"></f:selectItem>
+                                                                                    <f:selectItem itemValue="54" itemLabel="Data54"></f:selectItem>
+                                                                                    <f:selectItem itemValue="55" itemLabel="Data55"></f:selectItem>
+                                                                                    <f:selectItem itemValue="56" itemLabel="Data56"></f:selectItem>
+                                                                                    <f:selectItem itemValue="57" itemLabel="Data57"></f:selectItem>
+                                                                                    <f:selectItem itemValue="58" itemLabel="Data58"></f:selectItem>
+                                                                                    <f:selectItem itemValue="59" itemLabel="Data59"></f:selectItem>
+                                                                                    <f:selectItem itemValue="60" itemLabel="Data60"></f:selectItem>
+                                                                                    <f:selectItem itemValue="61" itemLabel="Data61"></f:selectItem>
+                                                                                    <f:selectItem itemValue="62" itemLabel="Data62"></f:selectItem>
+                                                                                    <f:selectItem itemValue="63" itemLabel="Data63"></f:selectItem>
+                                                                                    <f:selectItem itemValue="64" itemLabel="Data64"></f:selectItem>
+                                                                                    <f:selectItem itemValue="65" itemLabel="Data65"></f:selectItem>
+                                                                                    <f:selectItem itemValue="66" itemLabel="Data66"></f:selectItem>
+                                                                                    <f:selectItem itemValue="67" itemLabel="Data67"></f:selectItem>
+                                                                                    <f:selectItem itemValue="68" itemLabel="Data68"></f:selectItem>
+                                                                                    <f:selectItem itemValue="69" itemLabel="Data69"></f:selectItem>
+                                                                                    <f:selectItem itemValue="70" itemLabel="Data70"></f:selectItem>
+                                                                                    <f:selectItem itemValue="71" itemLabel="Data71"></f:selectItem>
+                                                                                    <f:selectItem itemValue="72" itemLabel="Data72"></f:selectItem>
+                                                                                    <f:selectItem itemValue="73" itemLabel="Data73"></f:selectItem>
+                                                                                    <f:selectItem itemValue="74" itemLabel="Data74"></f:selectItem>
+                                                                                    <f:selectItem itemValue="75" itemLabel="Data75"></f:selectItem>
+                                                                                    <f:selectItem itemValue="76" itemLabel="Data76"></f:selectItem>
+                                                                                    <f:selectItem itemValue="77" itemLabel="Data77"></f:selectItem>
+                                                                                    <f:selectItem itemValue="78" itemLabel="Data78"></f:selectItem>
+                                                                                    <f:selectItem itemValue="79" itemLabel="Data79"></f:selectItem>
+                                                                                    <f:selectItem itemValue="80" itemLabel="Data80"></f:selectItem>
+                                                                                    <f:selectItem itemValue="81" itemLabel="Data81"></f:selectItem>
+                                                                                    <f:selectItem itemValue="82" itemLabel="Data82"></f:selectItem>
+                                                                                    <f:selectItem itemValue="83" itemLabel="Data83"></f:selectItem>
+                                                                                    <f:selectItem itemValue="84" itemLabel="Data84"></f:selectItem>
+                                                                                    <f:selectItem itemValue="85" itemLabel="Data85"></f:selectItem>
+                                                                                    <f:selectItem itemValue="86" itemLabel="Data86"></f:selectItem>
+                                                                                    <f:selectItem itemValue="87" itemLabel="Data87"></f:selectItem>
+                                                                                    <f:selectItem itemValue="88" itemLabel="Data88"></f:selectItem>
+                                                                                    <f:selectItem itemValue="89" itemLabel="Data89"></f:selectItem>
+                                                                                    <f:selectItem itemValue="90" itemLabel="Data90"></f:selectItem>
+                                                                                    <f:selectItem itemValue="91" itemLabel="Data91"></f:selectItem>
+                                                                                    <f:selectItem itemValue="92" itemLabel="Data92"></f:selectItem>
+                                                                                    <f:selectItem itemValue="93" itemLabel="Data93"></f:selectItem>
+                                                                                    <f:selectItem itemValue="94" itemLabel="Data94"></f:selectItem>
+                                                                                    <f:selectItem itemValue="95" itemLabel="Data95"></f:selectItem>
+                                                                                    <f:selectItem itemValue="96" itemLabel="Data96"></f:selectItem>
+                                                                                    <f:selectItem itemValue="97" itemLabel="Data97"></f:selectItem>
+                                                                                    <f:selectItem itemValue="98" itemLabel="Data98"></f:selectItem>
+                                                                                    <f:selectItem itemValue="99" itemLabel="Data99"></f:selectItem>
+                                                                                    <f:selectItem itemValue="100" itemLabel="Data100"></f:selectItem>
+
+
+                                                                                </h:selectOneMenu>
                                                                             </td></tr>
                                                                     </tfoot>
                                                                 </table>

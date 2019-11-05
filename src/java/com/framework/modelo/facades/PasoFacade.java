@@ -32,9 +32,9 @@ public class PasoFacade extends AbstractFacade<Paso> implements PasoFacadeLocal 
     }
     
     @Override
-    public void editarPaso(Paso paso, int cantidadPasos){
+    public void agregarPaso(Paso paso, int cantidadPasos){
         try {
-            Query q = em.createNativeQuery("CALL EDITARPASO( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            Query q = em.createNativeQuery("CALL AGREGARPASO( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
         q.setParameter( 1,paso.getActionStep());
         q.setParameter( 2,paso.getNavegador());
@@ -45,7 +45,7 @@ public class PasoFacade extends AbstractFacade<Paso> implements PasoFacadeLocal 
         q.setParameter(7,(paso.getCorYStep() == null ? 0  : paso.getCorYStep()));
         q.setParameter(8,paso.getIdCaso().getId());
         q.setParameter(9,paso.getOrderstep());
-        q.setParameter(10,cantidadPasos);
+//        q.setParameter(10,cantidadPasos);
         
         q.executeUpdate();
         

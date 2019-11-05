@@ -286,6 +286,7 @@ public class PasosController implements Serializable {
     }
 
     public String nuevo() {
+        
         return "registrarpasos.xhtml?faces-redirect=true";
     }
 

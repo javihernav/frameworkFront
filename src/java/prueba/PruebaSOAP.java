@@ -1,8 +1,8 @@
 package prueba;
 
 import com.framework.util.LeerXML;
-import com.framework.util.Metodo;
-import com.framework.util.Parametro;
+import com.framework.util.MetodoUtil;
+import com.framework.util.ParametroUtil;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -75,7 +75,7 @@ public class PruebaSOAP {
         List<Element> operations = portType.get(0).getChildren("operation", namespc);
         for (Element op : operations) {
             System.out.println("operation: " + op.getAttributeValue("name"));
-            Metodo metodotemp = new Metodo();
+            MetodoUtil metodotemp = new MetodoUtil();
             metodotemp.setNombre(op.getAttributeValue("name"));
             System.out.println("message: " + op.getChild("input", namespc).getAttributeValue("message"));
             metodotemp.setInput(op.getChild("input", namespc).getAttributeValue("message"));//añade el nombre de input para asociar con message
@@ -99,7 +99,7 @@ public class PruebaSOAP {
 
                             List<Element> parametros = sequences.get(0).getChildren();
                             for (Element ekl : parametros) {
-                                Parametro parametrotemp = new Parametro();
+                                ParametroUtil parametrotemp = new ParametroUtil();
                                 parametrotemp.setNombre(ekl.getAttributeValue("name"));
                             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++tam parametros: " + parametrotemp.getNombre());
                                 parametrotemp.setTipo(ekl.getAttributeValue("type"));

@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/SQA-PRUEBA/Desktop/frameworkFront%20(1)/frameworkFront/web/administrador/vergestiones.xhtml</file>
+            <file>file:/C:/Users/SQA-PRUEBA/Desktop/frameworkFront%20(1)/frameworkFront/src/java/com/framework/modelo/entities/Parametro.java</file>
+            <file>file:/C:/Users/SQA-PRUEBA/Desktop/frameworkFront%20(1)/frameworkFront/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/SQA-PRUEBA/Desktop/frameworkFront%20(1)/frameworkFront/src/java/com/framework/modelo/entities/Paso.java</file>
+            <file>file:/C:/Users/SQA-PRUEBA/Desktop/frameworkFront%20(1)/frameworkFront/src/java/com/framework/modelo/entities/Metodo.java</file>
+            <file>file:/C:/Users/SQA-PRUEBA/Desktop/frameworkFront%20(1)/frameworkFront/src/java/com/framework/util/MetodoUtil.java</file>
+            <file>file:/C:/Users/SQA-PRUEBA/Desktop/frameworkFront%20(1)/frameworkFront/src/java/com/framework/util/ParametroUtil.java</file>
+            <file>file:/C:/Users/SQA-PRUEBA/Desktop/frameworkFront%20(1)/frameworkFront/src/java/com/framework/modelo/controllers/GestionController.java</file>
+        </group>
     </open-files>
 </project-private>

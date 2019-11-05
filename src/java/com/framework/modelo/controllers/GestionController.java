@@ -10,8 +10,8 @@ import com.framework.modelo.entities.*;
 import com.framework.modelo.facades.*;
 import com.framework.util.LeerXML;
 import com.framework.util.MessageUtil;
-import com.framework.util.Metodo;
-import com.framework.util.Parametro;
+import com.framework.util.MetodoUtil;
+import com.framework.util.ParametroUtil;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -46,7 +46,7 @@ import org.jdom2.input.SAXBuilder;
 @RequestScoped
 public class GestionController {
 
-    private ArrayList metodos;
+    private static List<MetodoUtil> metodos;
     private String[] columnasExcel;
 
     @EJB
@@ -90,14 +90,14 @@ public class GestionController {
     private NavegadorFacadeLocal nfl;
     private List<Navegador> navegadores;
 
-    
     @EJB
     private MetodoFacadeLocal mfl;
-    
+    private Metodo nuevometodo;
+
     @EJB
     private ParametroFacadeLocal pfl;
-    
-    
+    private Parametro nuevoparametro;
+
     private Part archivoEjecucion;
 
     //Atributos Para Validar existencia
@@ -518,7 +518,9 @@ public class GestionController {
     //Metodo para agregar los pasos
     //Toma la lista de pasos y la persiste en base de datos
     public void crearPasos() {
-        GestionController.listpaso.forEach((pass) -> {
+        System.out.println("crear pasos");
+        for (Paso pass : GestionController.listpaso) {
+
             nuevopaso.setActionStep(pass.getActionStep());
             nuevopaso.setNavegador(pass.getNavegador());
             nuevopaso.setTypeStep(pass.getTypeStep());
@@ -529,8 +531,37 @@ public class GestionController {
             nuevopaso.setOrderstep(pass.getOrderstep());
             nuevopaso.setIdCaso(nuevocaso);
             pasofacadelocal.create(nuevopaso);
-            //System.out.println("pasocreado");
-        });
+            System.out.println("Paso creado");
+            System.out.println("pasocreado:" + nuevopaso);
+            if (nuevopaso.getActionStep().equals("probar servicio web soap")) {
+                for (MetodoUtil met : GestionController.metodos) {
+
+                    nuevometodo = new Metodo();
+                    nuevometodo.setIdPaso(nuevopaso);
+                    nuevometodo.setNombre(met.getNombre());
+                    nuevometodo.setTargetnamespace(met.getTargetNamespace());
+                    nuevometodo.setValoresperado(met.getValorEsperado());
+                    nuevometodo.setTargetnamespace(met.getTargetNamespace());
+                    nuevometodo.setContenttype(met.getContenttype());
+
+                    mfl.create(nuevometodo);
+                    System.out.println("metodo creado:" + nuevometodo);
+                    for (ParametroUtil param : met.getParametros()) {
+
+                        nuevoparametro = new Parametro();
+                        nuevoparametro.setIdmetodo(nuevometodo);
+                        nuevoparametro.setNombre(param.getNombre());
+                        nuevoparametro.setOrigen(param.getOrigen());
+                        nuevoparametro.setTipo(param.getTipo());
+                        pfl.create(nuevoparametro);
+                        System.out.println("parametro creado:" + nuevoparametro);
+
+                    }
+                }
+
+            }
+
+        }
         nuevopaso = new Paso();
     }
 
@@ -578,11 +609,6 @@ public class GestionController {
             //Envio del archivo
             String ruta = System.getProperty("user.home") + "\\Desktop\\" + archivoEjecucion.getSubmittedFileName();
             //System.out.println("RUTA: " + ruta);
-
-            
-
-
-
 
 //Metodo para leer la hoja de suit
             opcionesExcel = ejecar.leerArchivoExcelSuit(ruta, ufl.findAll());
@@ -834,6 +860,7 @@ public class GestionController {
             e.printStackTrace();
         }
     }
+
     //Metodo para carga masiva de ejecucion de pruebas en servicios
     /*
     public void uploadEjecucionServicios() throws ParseException {
@@ -858,7 +885,7 @@ public class GestionController {
             e.printStackTrace(System.out);
         }
     }
-*/
+     */
     public void escribirParametrosURL() {
         try {
             nuevopaso.setValueStep(LeerXML.obtenerEstructuraXml(nuevopaso.getParameterStep()).toString());
@@ -983,6 +1010,8 @@ public class GestionController {
         Element elemento = ((Document) (new SAXBuilder()).build(new File("wsdl.xml"))).getRootElement();//toda la estructura wsdl
         Namespace namespc = elemento.getNamespace();
 
+        String targetnmspc = elemento.getAttribute("targetNamespace").getValue();
+
         List<Element> messages = elemento.getChildren("message", namespc);
         List<Element> types = elemento.getChildren("types", namespc);
         Element schema = types.get(0);
@@ -997,7 +1026,6 @@ public class GestionController {
 //        }
 
         //System.out.println("Namespace: " + namespc);
-
         List<Element> portType = elemento.getChildren("portType", namespc);
         for (Element e : portType) {
             //System.out.println("portType: " + e.getAttributeValue("name"));
@@ -1005,7 +1033,8 @@ public class GestionController {
         List<Element> operations = portType.get(0).getChildren("operation", namespc);
         for (Element op : operations) {
             //System.out.println("operation: " + op.getAttributeValue("name"));
-            Metodo metodotemp = new Metodo();
+            MetodoUtil metodotemp = new MetodoUtil();
+            metodotemp.setTargetNamespace(targetnmspc);
             metodotemp.setNombre(op.getAttributeValue("name"));
             //System.out.println("message: " + op.getChild("input", namespc).getAttributeValue("message"));
             metodotemp.setInput(op.getChild("input", namespc).getAttributeValue("message"));//añade el nombre de input para asociar con message
@@ -1029,7 +1058,7 @@ public class GestionController {
 
                                 List<Element> parametros = sequences.get(0).getChildren();
                                 for (Element ekl : parametros) {
-                                    Parametro parametrotemp = new Parametro();
+                                    ParametroUtil parametrotemp = new ParametroUtil();
                                     parametrotemp.setNombre(ekl.getAttributeValue("name"));
                                     //System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++tam parametros: " + parametrotemp.getNombre());
                                     parametrotemp.setTipo(ekl.getAttributeValue("type"));
@@ -1045,7 +1074,7 @@ public class GestionController {
             metodos.add(metodotemp);
         }
 
-        String targetnmspc = elemento.getAttribute("targetNamespace").getValue();
+//        String targetnmspc = elemento.getAttribute("targetNamespace").getValue();
         Namespace tNamespace = Namespace.getNamespace(targetnmspc);
 //        metodos = (ArrayList) estructura;
         //System.out.println("GestionController 963 metodos: " + metodos.toString());
@@ -1110,11 +1139,11 @@ public class GestionController {
         return archivo;
     }
 
-    public ArrayList getMetodos() {
+    public List getMetodos() {
         return metodos;
     }
 
-    public void setMetodos(ArrayList metodos) {
+    public void setMetodos(List metodos) {
         this.metodos = metodos;
     }
 
@@ -1190,5 +1219,21 @@ public class GestionController {
 
     public void setOpcionesExcel(List opcionesExcel) {
         this.opcionesExcel = opcionesExcel;
+    }
+
+    public Metodo getNuevometodo() {
+        return nuevometodo;
+    }
+
+    public void setNuevometodo(Metodo nuevometodo) {
+        this.nuevometodo = nuevometodo;
+    }
+
+    public Parametro getNuevoparametro() {
+        return nuevoparametro;
+    }
+
+    public void setNuevoparametro(Parametro nuevoparametro) {
+        this.nuevoparametro = nuevoparametro;
     }
 }
