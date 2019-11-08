@@ -288,6 +288,7 @@
                                 </div>
                             </div>
 
+                            
                             <!-- //////////////////////////////////////// SECCION PARA REGISTRAR LOS CASOS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
                             <div class="row setup-content" id="step-3">
                                 <div class="col-md-12 row">
@@ -325,7 +326,8 @@
                                     <div class="col-md-12 boton">
                                         <p align="center">
                                             <button class="btn btn-primary btn-sm offset-5" id="anterior_dos" type="button">Atras</button> 
-                                            <button class="btn btn-primary nextBtn btn-sm" type="button" id="Paso_tres"  >
+                                            <button class="btn btn-primary nextBtn btn-sm" type="button" id="Paso_tres" onclick="validar()" >
+                          
                                                 Siguiente</button>
                                         </p>
                                     </div>
@@ -358,7 +360,7 @@
 
                                                 <!-- -->
                                                 <!--<h:selectOneListbox class="form-control accionespaso" style="height: 108px;"  value="#{gestionController.nuevopaso.actionStep}" id="accionespaso" >-->
-                                                <h:selectOneListbox class="form-control accionespaso" style="height: 108px;"  value="#{gestionController.actionStep}" id="accionespaso" >
+                                                <h:selectOneListbox class="form-control accionespaso" style="height: 108px;"  value="#{gestionController.actionStep}" id="accionespaso" onchange="llenarbuscador()">
                                                     <f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>
                                                     <f:selectItems value="#{accionesController.acciones}" var="a" itemValue="#{a.nombreAccion}" itemLabel="#{a.nombreAccion}"/>
                                                     <f:ajax event="change" onevent="validar()"/>
@@ -419,7 +421,7 @@
                                             <p>Por favor solo ingrese Valores numericos</p>
                                         </div>
                                         <div class="form-group" style="float:right;">
-                                            <b:commandButton value="Agregar Paso" class="btn btn-success btn-sm" actionListener="#{gestionController.agregarpaso()}" update="datospaso" >
+                                            <b:commandButton value="Agregar Paso" class="btn btn-success btn-sm" actionListener="#{gestionController.agregarpaso()}" update="datospaso" onclick="borrarbuscador()">
                                                 <f:ajax execute="accionespaso typestep data coorY navegador valuestep coorX " render="table mesajepaso accionespaso typestep data coorY navegador valuestep coorX" /> 
                                             </b:commandButton>
                                         </div>
@@ -504,6 +506,7 @@
 
                                                                                     <h:selectOneMenu class="form-control" value="#{variable.origen}" id="origenparametros"  >
                                                                                         <!--<f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>-->
+                                                                                        <f:selectItem itemValue="0" itemLabel="Data0"  ></f:selectItem>
                                                                                         <f:selectItem itemValue="1" itemLabel="Data1"  ></f:selectItem>
                                                                                         <f:selectItem itemValue="2" itemLabel="Data2"></f:selectItem>
                                                                                         <f:selectItem itemValue="3" itemLabel="Data3"></f:selectItem>
@@ -618,6 +621,7 @@
 
                                                                                 <h:selectOneMenu class="form-control" value="#{item.valorEsperado}" id="valoresperado" >
                                                                                     <!--<f:selectItem itemValue="" itemLabel="Seleccionar"></f:selectItem>-->
+                                                                                    <f:selectItem itemValue="0" itemLabel="Data0"></f:selectItem>
                                                                                     <f:selectItem itemValue="1" itemLabel="Data1"></f:selectItem>
                                                                                     <f:selectItem itemValue="2" itemLabel="Data2"></f:selectItem>
                                                                                     <f:selectItem itemValue="3" itemLabel="Data3"></f:selectItem>

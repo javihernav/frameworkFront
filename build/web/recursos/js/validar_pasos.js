@@ -1,6 +1,15 @@
-
+function borrarbuscador(){
+    console.log("borrarbuscador");
+    document.getElementById('formulario:txtAccion').value='';
+}
+function llenarbuscador(){
+    console.log("llenarbuscador");
+    var accion = document.getElementById('formulario:accionespaso').value;
+    document.getElementById('formulario:txtAccion').value=accion;
+}
 function validar() {
     //Definicion de variables 
+    console.log("validar");
     var accion = document.getElementById('formulario:accionespaso').value;
 
     //Validacion Ingresar URL
@@ -938,6 +947,15 @@ function validar() {
 //        $('.valuestep').css('display', 'block');
         $('.data').css('display', 'block');
         $('.escanear').css('display', 'block');
+    } else {
+        $('.navegador').css('display', 'none');
+        $('.typestep').css('display', 'none');
+        $('.valuestep').css('display', 'none');
+        $('.data').css('display', 'none');
+        $('.coorX').css('display', 'none');
+        $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
     }
 
 }

@@ -356,39 +356,43 @@ public class GestionController {
     int ordenPaso = 1;
 
     public void agregarpaso() {
-        nuevopaso.setIdCaso(nuevocaso);
+        if (ActionStep != null) {
 
-        nuevopaso.setActionStep(ActionStep);
-        nuevopaso.setNavegador(Navegador);
-        nuevopaso.setTypeStep(TypeStep);
-        nuevopaso.setValueStep(ValueStep);
-        nuevopaso.setParameterStep(ParameterStep);
-        nuevopaso.setCorXStep(CorXStep);
-        nuevopaso.setCorYStep(CorYStep);
-        nuevopaso.setOrderstep(Orderstep);
-        //Foreach para saber si existe la accion de ingresar url
-        this.listpaso.forEach((paso) -> {
-            if ("Ingresar URL".equals(paso.getActionStep())) {
-                if (nuevopaso.getActionStep().equals(paso.getActionStep())) {
-                    puedeContinuar = "no";
-                }
-            }
-            ordenPaso += 1;
-            nuevopaso.setId(paso.getId());
-        });
+            if (!ActionStep.equals("")) {
 
-        //Condicional para agregar la accion a la lista
-        if (puedeContinuar.equals("yes")) {
+                nuevopaso.setIdCaso(nuevocaso);
 
-            int idre = 0;
-            if (nuevopaso.getId() == null) {
-                nuevopaso.setId(1);
-            } else {
-                idre = nuevopaso.getId() + 1;
-                nuevopaso.setId(idre);
-            }
-            nuevopaso.setOrderstep(ordenPaso);
-            this.listpaso.add(nuevopaso);
+                nuevopaso.setActionStep(ActionStep);
+                nuevopaso.setNavegador(Navegador);
+                nuevopaso.setTypeStep(TypeStep);
+                nuevopaso.setValueStep(ValueStep);
+                nuevopaso.setParameterStep(ParameterStep);
+                nuevopaso.setCorXStep(CorXStep);
+                nuevopaso.setCorYStep(CorYStep);
+                nuevopaso.setOrderstep(Orderstep);
+                //Foreach para saber si existe la accion de ingresar url
+                this.listpaso.forEach((paso) -> {
+                    if ("Ingresar URL".equals(paso.getActionStep())) {
+                        if (nuevopaso.getActionStep().equals(paso.getActionStep())) {
+                            puedeContinuar = "no";
+                        }
+                    }
+                    ordenPaso += 1;
+                    nuevopaso.setId(paso.getId());
+                });
+
+                //Condicional para agregar la accion a la lista
+                if (puedeContinuar.equals("yes")) {
+
+                    int idre = 0;
+                    if (nuevopaso.getId() == null) {
+                        nuevopaso.setId(1);
+                    } else {
+                        idre = nuevopaso.getId() + 1;
+                        nuevopaso.setId(idre);
+                    }
+                    nuevopaso.setOrderstep(ordenPaso);
+                    this.listpaso.add(nuevopaso);
 //            nuevopaso = new Paso();//añadido para borrar campos
 
 //            nuevopaso.setActionStep("");
@@ -400,27 +404,29 @@ public class GestionController {
 //            nuevopaso.setCorYStep(0);
 //            nuevopaso.setOrderstep(0);
 //            nuevopaso.setIdCaso(nuevocaso);
-        } else {
-            MessageUtil.enviarMensajeErrorGlobal("N0 SE PUEDE AGREGAR:", "La acción " + nuevopaso.getActionStep() + " ya existe.");
-        }
+                } else {
+                    MessageUtil.enviarMensajeErrorGlobal("N0 SE PUEDE AGREGAR:", "La acción " + nuevopaso.getActionStep() + " ya existe.");
+                }
 
-        GestionController.listpaso.forEach((pass) -> {
-            if ("Ingresar URL".equals(pass.getActionStep())) {
-                nuevopaso.setNavegador(pass.getNavegador());
-                MessageUtil.enviarMensajeInformacionGlobal("Se modifico la lista:", "El campo navegador se modifico, existe o se agrego la accion de Ingresar URL los demás pasos tomaran su valor de navegador.");
-                this.renombrarNavegador();
-            }
-        });
-        //limpiar los campos
+                GestionController.listpaso.forEach((pass) -> {
+                    if ("Ingresar URL".equals(pass.getActionStep())) {
+                        nuevopaso.setNavegador(pass.getNavegador());
+                        MessageUtil.enviarMensajeInformacionGlobal("Se modifico la lista:", "El campo navegador se modifico, existe o se agrego la accion de Ingresar URL los demás pasos tomaran su valor de navegador.");
+                        this.renombrarNavegador();
+                    }
+                });
+                //limpiar los campos
 //        limpiarCampos();
-        ActionStep = "";
-        Navegador = "";
-        TypeStep = "";
-        ValueStep = "";
-        ParameterStep = "";
-        CorXStep = 0;
-        CorYStep = 0;
-        Orderstep = 0;
+                ActionStep = "";
+                Navegador = "";
+                TypeStep = "";
+                ValueStep = "";
+                ParameterStep = "";
+                CorXStep = 0;
+                CorYStep = 0;
+                Orderstep = 0;
+            }//fin if
+        }//fin if
     }
 
     //Método para limpiar los campos después de agregar un paso.
@@ -537,6 +543,7 @@ public class GestionController {
                 for (MetodoUtil met : GestionController.metodos) {
 
                     nuevometodo = new Metodo();
+//                    nuevometodo.setId(1);
                     nuevometodo.setIdPaso(nuevopaso);
                     nuevometodo.setNombre(met.getNombre());
                     nuevometodo.setTargetnamespace(met.getTargetNamespace());
