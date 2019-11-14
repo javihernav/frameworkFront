@@ -1043,12 +1043,12 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.primefaces-7.0.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.BootsFaces-OSP-1.1.1-dist.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.jdom-2.0.6.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${libs.poi-ooxml.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+<!--        <copyfiles files="${libs.poi-ooxml.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.poi-3.16.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.poi-examples-3.16.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.poi-excelant-3.16.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.poi-ooxml-schemas-3.16.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${libs.poi-scrathcpad-3.16.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.poi-scrathcpad-3.16.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>-->
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>

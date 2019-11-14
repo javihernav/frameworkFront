@@ -48,6 +48,7 @@ public class PasosController implements Serializable {
     @PostConstruct
     public void init() {
         pasos = pfl.findAll();
+//        pasos = pfl.findAllOrderByStepOrder();
         this.RecargarlistaRole();
     }
 
@@ -283,6 +284,7 @@ public class PasosController implements Serializable {
     //Recarga la suit con todos los pasos
     public void recargarPasos() {
         pasos = pfl.findAll();
+//        pasos = pfl.findAllOrderByStepOrder();
     }
 
     public String nuevo() {

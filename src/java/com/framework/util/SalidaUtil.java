@@ -12,9 +12,9 @@ import javax.inject.Named;
  *
  * @author SQA-PRUEBA
  */
-@Named(value = "parametro")
+@Named(value = "salida")
 @Dependent
-public class ParametroUtil {
+public class SalidaUtil {
     private String nombre;
     private String tipo;
     private String origen;
@@ -54,7 +54,7 @@ public class ParametroUtil {
 
     @Override
     public String toString() {
-        return "ParametroUtil{" + "nombre=" + nombre + ", tipo=" + tipo + ", origen=" + origen + ", idmetodo=" + idmetodo + '}';
+        return "SalidaUtil{" + "nombre=" + nombre + ", tipo=" + tipo + ", origen=" + origen + ", idmetodo=" + idmetodo + '}';
     }
     
 }

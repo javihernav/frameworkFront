@@ -12,6 +12,7 @@ import com.framework.util.LeerXML;
 import com.framework.util.MessageUtil;
 import com.framework.util.MetodoUtil;
 import com.framework.util.ParametroUtil;
+import com.framework.util.SalidaUtil;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -96,6 +97,8 @@ public class GestionController {
 
     @EJB
     private ParametroFacadeLocal pfl;
+    @EJB
+    private SalidaFacadeLocal sfl;
     private Parametro nuevoparametro;
 
     private Part archivoEjecucion;
@@ -548,7 +551,7 @@ public class GestionController {
                     nuevometodo.setNombre(met.getNombre());
                     nuevometodo.setTargetnamespace(met.getTargetNamespace());
                     nuevometodo.setValoresperado(met.getValorEsperado());
-                    nuevometodo.setTargetnamespace(met.getTargetNamespace());
+//         
                     nuevometodo.setContenttype(met.getContenttype());
 
                     mfl.create(nuevometodo);
@@ -564,6 +567,18 @@ public class GestionController {
                         System.out.println("parametro creado:" + nuevoparametro);
 
                     }
+
+                        Salida salida = new Salida();
+                        salida.setIdmetodo(nuevometodo);
+                        salida.setNombre(met.getSalida().getNombre());
+                        salida.setOrigen(met.getSalida().getOrigen());
+                        salida.setOrigen(met.getValorEsperado());
+                        salida.setTipo(met.getSalida().getTipo());
+                        sfl.create(salida);
+                    
+                        System.out.println("salida creada:" + salida);
+
+                    
                 }
 
             }
@@ -1003,17 +1018,14 @@ public class GestionController {
         metodos = new ArrayList();
         //System.out.println("Obteniendo estructura de: " + url);
         //agrega ?wsdl al final de la dirección si no se ha agregado
-
-        List<Element> eleMetodos = new ArrayList<>();
-
         if (!url.contains("?wsdl") && !url.contains("?WSDL")) {
             url = url.concat("?wsdl");
         }
         String contenido = LeerXML.leerDesdeWeb(url);
+//        File archivo = LeerXML.convertirStringAArchivo(contenido, "wsdl.xml");
+//        List estructura = new ArrayList();
 
-        File archivo = LeerXML.convertirStringAArchivo(contenido, "wsdl.xml");
-        List estructura = new ArrayList();
-
+//convierte a objeto tipo Element el archivo wsdl
         Element elemento = ((Document) (new SAXBuilder()).build(new File("wsdl.xml"))).getRootElement();//toda la estructura wsdl
         Namespace namespc = elemento.getNamespace();
 
@@ -1045,6 +1057,7 @@ public class GestionController {
             metodotemp.setNombre(op.getAttributeValue("name"));
             //System.out.println("message: " + op.getChild("input", namespc).getAttributeValue("message"));
             metodotemp.setInput(op.getChild("input", namespc).getAttributeValue("message"));//añade el nombre de input para asociar con message
+            metodotemp.setOutput(op.getChild("output", namespc).getAttributeValue("message"));//añade el nombre de input para asociar con message
             for (Element mesj : messages) {
                 if (metodotemp.getInput().contains(mesj.getAttributeValue("name"))) {
                     //System.out.println("messagesOK: " + mesj.getAttributeValue("name"));
@@ -1075,9 +1088,37 @@ public class GestionController {
                             }
                         }
                     }
+                } else if (metodotemp.getOutput().contains(mesj.getAttributeValue("name"))) {
+//System.out.println("messagesOK: " + mesj.getAttributeValue("name"));
+                    Element part = mesj.getChild("part", namespc);
+                    //System.out.println("part:message: " + part.getAttributeValue("element"));//muestra el nombre del método con prefijo
+                    //recorrer elements
+                    for (Element e : elements) {
+                        if (e.getName().equals("element")) {
+//                        //System.out.println("///////////////////////////////////////////////////////elements.size: "+elements.size());
+//                        //System.out.println("///////////////////////////////////////////////////////"+part.getAttributeValue("element"));
+//                        //System.out.println("///////////////////////////////////////////////////////"+e.getName());
+//                        //System.out.println("///////////////////////////////////////////////////////"+e.getAttributeValue("name"));
+                            if (part.getAttributeValue("element").contains(e.getAttributeValue("name"))) {
+                                //System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++name: " + e.getName());
+                                List<Element> sequences = e.getChildren();
+
+                                sequences = sequences.get(0).getChildren();
+
+                                List<Element> salidas = sequences.get(0).getChildren();
+                                for (Element sld : salidas) {
+                                    SalidaUtil salidatemp = new SalidaUtil();
+                                    salidatemp.setNombre(sld.getAttributeValue("name"));
+                                    //System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++tam parametros: " + parametrotemp.getNombre());
+                                    salidatemp.setTipo(sld.getAttributeValue("type"));
+                                    metodotemp.setSalida(salidatemp);
+                                }
+
+                            }
+                        }
+                    }
                 }
             }
-
             metodos.add(metodotemp);
         }
 

@@ -19,7 +19,9 @@ public class MetodoUtil {
     private String nombre;
     private String targetNamespace;
     private String input;
+    private String output;
     private ArrayList<ParametroUtil> parametros;
+    private SalidaUtil salida;
 private String valorEsperado;
 private int idpaso;
 private String contenttype;
@@ -82,6 +84,27 @@ private String contenttype;
 
     public void setContenttype(String contenttype) {
         this.contenttype = contenttype;
+    }
+
+    public String getOutput() {
+        return output;
+    }
+
+    public void setOutput(String output) {
+        this.output = output;
+    }
+
+    public SalidaUtil getSalida() {
+        return salida;
+    }
+
+    public void setSalida(SalidaUtil salida) {
+        this.salida = salida;
+    }
+
+    @Override
+    public String toString() {
+        return "MetodoUtil{" + "nombre=" + nombre + ", targetNamespace=" + targetNamespace + ", input=" + input + ", output=" + output + ", parametros=" + parametros + ", salida=" + salida + ", valorEsperado=" + valorEsperado + ", idpaso=" + idpaso + ", contenttype=" + contenttype + '}';
     }
     
 }

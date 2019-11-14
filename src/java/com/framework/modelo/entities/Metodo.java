@@ -55,6 +55,8 @@ public class Metodo implements Serializable {
     private Paso idPaso;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idmetodo", fetch = FetchType.LAZY)
     private List<Parametro> parametros;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idmetodo", fetch = FetchType.LAZY)
+    private Salida salida;
 
     @NotNull
     @Size(min = 1, max = 40)
@@ -164,6 +166,14 @@ public class Metodo implements Serializable {
 
     public void setContenttype(String contenttype) {
         this.contenttype = contenttype;
+    }
+
+    public Salida getSalida() {
+        return salida;
+    }
+
+    public void setSalida(Salida salida) {
+        this.salida = salida;
     }
     
 }

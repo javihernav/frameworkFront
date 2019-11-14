@@ -35,7 +35,7 @@ public interface PasoFacadeLocal {
     List<Paso> ObtenerPasosAjax(int idCaso);
     
     List<Paso> obtenerValorOrder(int idCaso);
-
+List<Paso> findAllOrderByStepOrder();
     int count();
     
 }
