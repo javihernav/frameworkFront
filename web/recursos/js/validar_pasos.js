@@ -257,6 +257,21 @@ function validar() {
         $('.typestep').css('display', 'block');
         $('.valuestep').css('display', 'block');
         $('.data').css('display', 'block');
+    } else if (accion === "Seleccionar Elemento Lista (Index) Excel") {
+        //se desactivan primero por si realiza algun cambio en el select
+        $('.navegador').css('display', 'none');
+        $('.typestep').css('display', 'none');
+        $('.valuestep').css('display', 'none');
+        $('.data').css('display', 'none');
+        $('.coorX').css('display', 'none');
+        $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
+        //Se realiza la respectiva habilitacion de los input que necesita esta accion
+        $('.navegador').css('display', 'block');
+        $('.typestep').css('display', 'block');
+        $('.valuestep').css('display', 'block');
+        $('.data').css('display', 'block');
     } else if (accion === "Seleccionar Elemento Lista (Value)") {
         //se desactivan primero por si realiza algun cambio en el select
         $('.navegador').css('display', 'none');
@@ -272,7 +287,37 @@ function validar() {
         $('.typestep').css('display', 'block');
         $('.valuestep').css('display', 'block');
         $('.data').css('display', 'block');
+    } else if (accion === "Seleccionar Elemento Lista (Value) Excel") {
+        //se desactivan primero por si realiza algun cambio en el select
+        $('.navegador').css('display', 'none');
+        $('.typestep').css('display', 'none');
+        $('.valuestep').css('display', 'none');
+        $('.data').css('display', 'none');
+        $('.coorX').css('display', 'none');
+        $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
+        //Se realiza la respectiva habilitacion de los input que necesita esta accion
+        $('.navegador').css('display', 'block');
+        $('.typestep').css('display', 'block');
+        $('.valuestep').css('display', 'block');
+        $('.data').css('display', 'block');
     } else if (accion === "Seleccionar Elemento Lista (Visible Text)") {
+        //se desactivan primero por si realiza algun cambio en el select
+        $('.navegador').css('display', 'none');
+        $('.typestep').css('display', 'none');
+        $('.valuestep').css('display', 'none');
+        $('.data').css('display', 'none');
+        $('.coorX').css('display', 'none');
+        $('.coorY').css('display', 'none');
+        $('.escanear').css('display', 'none');
+        $('.metodosservicio').css('display', 'none');
+        //Se realiza la respectiva habilitacion de los input que necesita esta accion
+        $('.navegador').css('display', 'block');
+        $('.typestep').css('display', 'block');
+        $('.valuestep').css('display', 'block');
+        $('.data').css('display', 'block');
+    } else if (accion === "Seleccionar Elemento Lista (Visible Text) Excel") {
         //se desactivan primero por si realiza algun cambio en el select
         $('.navegador').css('display', 'none');
         $('.typestep').css('display', 'none');
@@ -947,6 +992,19 @@ function validar() {
 //        $('.valuestep').css('display', 'block');
         $('.data').css('display', 'block');
         $('.escanear').css('display', 'block');
+    } else if (accion === "Digitar Clave Sikuli Excel") {
+        //se desactivan primero por si realiza algun cambio en el select
+        console.log('Digitar Clave Sikuli Excel');
+        $('.navegador').css('display', 'none');
+        $('.typestep').css('display', 'none');
+        $('.valuestep').css('display', 'none');
+        $('.data').css('display', 'none');
+        $('.coorX').css('display', 'none');
+        $('.coorY').css('display', 'none');
+        //Se realiza la respectiva habilitacion de los input que necesita esta accion
+        $('.data').css('display', 'block');
+        $('.typestep').css('display', 'block');
+        $('.valuestep').css('display', 'block');
     } else {
         $('.navegador').css('display', 'none');
         $('.typestep').css('display', 'none');

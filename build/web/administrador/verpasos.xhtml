@@ -31,6 +31,7 @@
                             <b:dataTableColumn label="Valor" value="#{p.valueStep}" />
                             <b:dataTableColumn label="Data" value="#{p.parameterStep}" style="width: 30px;"/>
                             <b:dataTableColumn label="Caso" value="#{p.idCaso.nombreCaso}" />
+                            <b:dataTableColumn label="Orden" value="#{p.orderstep}" />
                             <b:dataTableColumn label="Opciones">
                                 <c:if test="#{sessionController.permisorol != 'Sqa'}">
                                     <b:commandButton class="btn btn-sm" style="margin-right: 10px;" look="primary" iconAwesome="paint-brush" value="Editar" onclick="$('.modalpasos').modal();">

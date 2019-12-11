@@ -36,8 +36,25 @@ public class PasoFacade extends AbstractFacade<Paso> implements PasoFacadeLocal 
     @Override
     public void agregarPaso(Paso paso, int cantidadPasos) {
         try {
-            Query q = em.createNativeQuery("CALL AGREGARPASO( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+//            Query pasosCaso = em.createNativeQuery("SELECT * FROM pasos WHERE pasos.idCaso = ? AND pasos.orderstep >= ? ORDER BY orderstep asc");
+//
+//            pasosCaso.setParameter(1, paso.getIdCaso().getId());
+//            pasosCaso.setParameter(2, paso.getOrderstep());
+//
+//            List pasos = pasosCaso.getResultList();
+//            if (pasos != null) {
+//                if (pasos.size() > 0) {
+//
+//                    for (int i = 0; i < pasos.size(); i++) {
+//                        Query q = em.createNativeQuery("update pasos set orderstep=? where id = ?");
+//                        q.setParameter(1, ((Paso)pasos.get(i)).getOrderstep() + 1);
+//                        q.setParameter(2, ((Paso)pasos.get(i)).getIdCaso().getId());
+//                        q.executeUpdate();
+//                    }
+//                }
+//            }
 
+            Query q = em.createNativeQuery("CALL AGREGARPASO( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             q.setParameter(1, paso.getActionStep());
             q.setParameter(2, paso.getNavegador());
             q.setParameter(3, paso.getTypeStep());
@@ -75,6 +92,7 @@ public class PasoFacade extends AbstractFacade<Paso> implements PasoFacadeLocal 
 
         return lpsa;
     }
+
     @Override
     public List<Paso> findAll() {
         Query q = em.createNativeQuery("SELECT * FROM pasos ORDER BY idCaso,orderstep", Paso.class);
